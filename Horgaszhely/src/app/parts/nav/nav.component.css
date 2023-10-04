@@ -1,0 +1,6 @@
+.selected{
+    background-color: mediumspringgreen !important;
+}
+.selected:hover{
+    background-color:rgba(0, 250, 154, 0.312) !important;
+}
