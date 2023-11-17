@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" rooterLink="/rolunk">Dány Horgásztelep</a>
+    <a class="navbar-brand" rooterLink="/rolunk" id="active">Dány Horgásztelep</a>
     <button (click)="open()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,23 +8,24 @@
     <div [ngbCollapse]="close" class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link " routerLink="/home" routerLinkActive="selected">Rólunk</a>
+          <a class="nav-link " routerLink="/home" routerLinkActive="selected" id="active">Rólunk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/profile" routerLinkActive="selected">Saját profil</a>
+          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active">Saját profil</a>
         </li>
       </ul>
-      <button type="button" class="btn btn-success" (click)="openModal()">
-        Login
-      </button>
     </div>
   </div>
-  <div class="modal" id="loginModal">
+  <button type="button" class="btn btn-success me-3" routerLink="/signup" (click)="closeModal()">Regisztrálás</button>
+  <button type="button" class="btn btn-success me-3" (click)="openModal()">
+    Bejelentkezés
+  </button>
+  <div class="modal" id="loginModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Bejelentkezés</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"(click)="closeModal()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
         </div>
         <div class="modal-body">
           <form action="/action_page.php">
@@ -36,18 +37,14 @@
               <label for="pwd" class="form-label">Jelszó:</label>
               <input type="password" class="form-control" id="pwd" placeholder="Írjon be jelszót" name="pswd">
             </div>
-            <div class="form-check mb-3">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember" (change)="rememberMe()"> Emlékezzen rám
-              </label>
-            </div>
             <button type="submit" class="btn btn-primary">Bejelentkezek</button>
           </form>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-success" routerLink="/signup"
+            (click)="closeModal()">Regisztrálok</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Bezárás</button>
         </div>
-  
       </div>
     </div>
   </div>

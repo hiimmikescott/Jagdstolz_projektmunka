@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  doc ={
-    email : document.querySelector("email"),
-    password : document.querySelector("pwd")
-  }
+
   close = true
   open(){
     this.close =!this.close
@@ -18,6 +15,7 @@ export class NavComponent {
     const modalDiv = document.getElementById("loginModal")
     if (modalDiv!= null) {
       modalDiv.style.display = "block"
+      modalDiv.style.boxShadow= ""
     }
   }
   closeModal(){
@@ -25,11 +23,5 @@ export class NavComponent {
     if (modalDiv!= null) {
       modalDiv.style.display = "none"
     }
-    this.clearModalFields()
-  }
-  clearModalFields(){
-  }
-  rememberMe(){
-
   }
 }

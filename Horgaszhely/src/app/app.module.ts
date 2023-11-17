@@ -12,7 +12,8 @@ import { HomeComponent } from './parts/home/home.component';
 import { InfoComponent } from './parts/info/info.component';
 import { ProfileComponent } from './parts/profile/profile.component';
 import { NavComponent } from './parts/nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     InfoComponent,
     ProfileComponent,
     NavComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
