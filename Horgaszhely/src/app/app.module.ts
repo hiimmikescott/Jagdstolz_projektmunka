@@ -14,6 +14,10 @@ import { ProfileComponent } from './parts/profile/profile.component';
 import { NavComponent } from './parts/nav/nav.component';
 import { FormsModule} from '@angular/forms';
 import { SignupComponent } from './parts/signup/signup.component';
+import { BookMainComponent } from './parts/book-main/book-main.component';
+import { BookFormComponent } from './parts/book-form/book-form.component';
+import { GaleryComponent } from './parts/galery/galery.component';
+import { FooterComponent } from './parts/footer/footer.component';
 
 
 
@@ -25,6 +29,10 @@ import { SignupComponent } from './parts/signup/signup.component';
     ProfileComponent,
     NavComponent,
     SignupComponent,
+    BookMainComponent,
+    BookFormComponent,
+    GaleryComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
