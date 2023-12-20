@@ -1,16 +1,16 @@
 USE FishingPlace;
 
 INSERT INTO UserLevels(userLevelId, userLevelDescription)
-VALUES ('0' ,' vendég oldal látogato helyekhez és az oldal on lévo infokhoz hoa fér')
+VALUES ('0' ,' vendég oldal látogato helyekhez és az oldal on lévo infokhoz hoa fér');
 
 INSERT INTO UserLevels(userLevelId, userLevelDescription)
-VALUES ('5' ,' felhasznalo jogosultsaga van helyet foglalni ')
+VALUES ('5' ,' felhasznalo jogosultsaga van helyet foglalni ');
 
 INSERT INTO UserLevels(userLevelId, userLevelDescription)
-VALUES ('9' ,' admin joga van felhasznalot torolni modositani horgaszhelyet hoza adni ')
+VALUES ('9' ,' admin joga van felhasznalot torolni modositani horgaszhelyet hoza adni ');
 
 INSERT INTO UserLevels(userLevelId, userLevelDescription)
-VALUES ('10' ,' mestermc MH+ ')
+VALUES ('10' ,' mestermc MH+ ');
 
 INSERT INTO users (userName, userEmail, userPassword, birthDate)
 VALUES('mikescott','hiimmikescott@gmail.com','almafa12;','2001,09,28');
@@ -19,7 +19,7 @@ INSERT INTO users (userName, userEmail, userPassword, birthDate)
 VALUES('tomasman05','cigyany@gmail.com','almafa12;','2001,09,28');
 
 INSERT INTO fishingplace(pier, firepit, shelter, description, longitude, latitude)
-VALUES ('true','false','true','sanyibá gégi stége nem rosz kicsit kotyagos','(google map cordinate)','(google map cordinate)')
+VALUES ('true','false','true','sanyibá gégi stége nem rosz kicsit kotyagos','(google map cordinate)','(google map cordinate)');
 
 INSERT INTO fishingplace(pier, firepit, shelter, description, longitude, latitude)
-VALUES ('false','true','false','horgász rész a nadas melet','(google map cordinate)','(google map cordinate)')
+VALUES ('false','true','false','horgász rész a nadas melet','(google map cordinate)','(google map cordinate)');
