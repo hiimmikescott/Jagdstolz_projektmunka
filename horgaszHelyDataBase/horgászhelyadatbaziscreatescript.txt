@@ -1,54 +1,45 @@
-CREATE DATABASE FishingPlace;
+CREATE DATABASE IF NOT EXISTS FishingPlace;
 USE FishingPlace;
 
-create TABLE userLevels (
+CREATE TABLE IF NOT EXISTS userLevels (
+    userLevelId TINYINT PRIMARY KEY,
+    userLevelDescription VARCHAR(300) NOT NULL
+);
 
-	userLevelId tinyint primary key,
-	userLevelDiscription varchar(300) not null
-	
-	);
+CREATE TABLE IF NOT EXISTS users (
+    userId MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+    userName VARCHAR(40) NOT NULL UNIQUE,
+    userEmail VARCHAR(50) NOT NULL UNIQUE,
+    userPassword VARCHAR(255) NOT NULL,
+    userProfilePicture VARCHAR(60),
+    validated BOOLEAN DEFAULT FALSE,
+    birthDate DATETIME,
+    userLevel TINYINT DEFAULT 5,
+    FOREIGN KEY (userLevel) REFERENCES userLevels (userLevelId)
+);
 
-create TABLE users (
+CREATE TABLE IF NOT EXISTS fishingPlace (
+    placeId MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+    reservable BOOLEAN DEFAULT TRUE,
+    pier BOOLEAN DEFAULT TRUE,
+    firepit BOOLEAN DEFAULT TRUE,
+    shelter BOOLEAN DEFAULT TRUE,
+    averageRating TINYINT DEFAULT 5,
+    description VARCHAR(400),
+    longitude MEDIUMINT NOT NULL,
+    latitude MEDIUMINT NOT NULL
+);
 
-	userId mediumint primary key auto_increment,
-	userName varchar(40) not null unique,
-	userEmail varchar(50) not null unique,
-	userPassword tinytext not null,
-	userProfilePicture varchar(60),
-	validated boolean default false,
-	birthDate DATETIME,
-	userLevel tinyint default 5 ,
-	constraint email_check check (email LIKE '%@%'),
-	FOREIGN KEY (userLevel) REFERENCES userLevels (userLevelId)
-	);
-	
-create TABLE fishingPlace (
-
-	placeId mediumint primary key auto_increment,
-	reservable boolean default true,
-	pier boolean default true,
-	firepit boolean default true,
-	shelter boolean default true,
-	avrageRating tinyint default 5,
-	discription varchar (400),
-	longitude mediumint not null,
-	latitude mediumint not null
-	);
-	
-
-create TABLE sockets (
-
-	socketsId mediumint primary key auto_increment,
-	userId mediumint not null,
-	placeId mediumint not null,
-	reservationStart DATETIME not null,
-	reservationEnd DATETIME not null,
-	actualRate tinyint,
-	FOREIGN KEY sockets (placeId) REFERENCES fishingPlace (placeId),
-	FOREIGN KEY sockets (userId) REFERENCES users (userId)
-	);
-
-
+CREATE TABLE IF NOT EXISTS sockets (
+    socketsId MEDIUMINT PRIMARY KEY AUTO_INCREMENT,
+    userId MEDIUMINT NOT NULL,
+    placeId MEDIUMINT NOT NULL,
+    reservationStart DATETIME NOT NULL,
+    reservationEnd DATETIME NOT NULL,
+    actualRate TINYINT,
+    FOREIGN KEY (placeId) REFERENCES fishingPlace (placeId),
+    FOREIGN KEY (userId) REFERENCES users (userId)
+);
 
 
 
