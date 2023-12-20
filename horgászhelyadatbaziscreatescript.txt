@@ -1,0 +1,63 @@
+CREATE DATABASE FishingPlace;
+USE FishingPlace;
+
+create TABLE userLevels (
+
+	userLevelId tinyint primary key,
+	userLevelDiscription varchar(300) not null
+	
+	);
+
+create TABLE users (
+
+	userId mediumint primary key auto_increment,
+	userName varchar(40) not null unique,
+	userEmail varchar(50) not null unique,
+	userPassword tinytext not null,
+	userProfilePicture varchar(60),
+	validated boolean default false,
+	birthDate DATETIME,
+	userLevel tinyint default 5 ,
+	constraint email_check check (email LIKE '%@%'),
+	FOREIGN KEY (userLevel) REFERENCES userLevels (userLevelId)
+	);
+	
+create TABLE fishingPlace (
+
+	placeId mediumint primary key auto_increment,
+	reservable boolean default true,
+	pier boolean default true,
+	firepit boolean default true,
+	shelter boolean default true,
+	avrageRating tinyint default 5,
+	discription varchar (400),
+	longitude mediumint not null,
+	latitude mediumint not null
+	);
+	
+
+create TABLE sockets (
+
+	socketsId mediumint primary key auto_increment,
+	userId mediumint not null,
+	placeId mediumint not null,
+	reservationStart DATETIME not null,
+	reservationEnd DATETIME not null,
+	actualRate tinyint,
+	FOREIGN KEY sockets (placeId) REFERENCES fishingPlace (placeId),
+	FOREIGN KEY sockets (userId) REFERENCES users (userId)
+	);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
