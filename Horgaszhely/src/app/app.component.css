@@ -2,6 +2,7 @@ body{
     background-image: url(../assets/images/background.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 .container span{
     display: table;
