@@ -1,0 +1,15 @@
+.image-container {
+    position: relative;
+    width: 100%;
+}
+  
+.image-container img {
+    width: 100%;
+    height: auto;
+}
+  
+.clickable-spot {
+    position: absolute;
+    
+    cursor: pointer;
+}

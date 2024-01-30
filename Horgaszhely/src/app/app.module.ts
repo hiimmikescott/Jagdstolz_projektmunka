@@ -18,6 +18,7 @@ import { BookMainComponent } from './parts/book-main/book-main.component';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { GaleryComponent } from './parts/galery/galery.component';
 import { FooterComponent } from './parts/footer/footer.component';
+import { SpotModalComponent } from './parts/spot-modal/spot-modal.component';
 
 
 
@@ -33,6 +34,7 @@ import { FooterComponent } from './parts/footer/footer.component';
     BookFormComponent,
     GaleryComponent,
     FooterComponent,
+    SpotModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+
+
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+  
+.spot-info {
+    margin-bottom: 20px;
+}
+  
+.spot-info p {
+    margin-bottom: 10px;
+}
+  
+.spot-info img {
+    max-width: 100%;
+    min-height: 15px;
+    min-width: 15px;
+    border-radius: 8px;
+}
+  
