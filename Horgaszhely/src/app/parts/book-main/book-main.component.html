@@ -21,8 +21,8 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Spot Information</h4>
-        <button type="button" class="close" aria-label="Close" (click)="closeSpotInfoModal()">
+        <h4 class="modal-title">Információ a kiválasztott helyről</h4>
+        <button type="button" class="btn fw-bold" aria-label="Bezár" (click)="closeSpotInfoModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -31,27 +31,27 @@
         <p>Hely leírása: {{ spotInfo?.helyLeirasa }}</p>
         <div *ngIf="spotInfo?.slideshowImages && spotInfo?.slideshowImages.length > 0">
           <h5>Képek a kiválasztott helyről</h5>
-          <div id="slideshow" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                  <div id="slideshowImages" *ngFor="let image of spotInfo.slideshowImages; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
-                      <img class="d-block w-100" [src]="'path-to-images/' + image" alt="Slideshow Image">
-                  </div>
+          <div id="slideshow" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-inner">
+              <div *ngFor="let image of spotInfo.slideshowImages; let i = index" class="carousel-item" 
+                [ngClass]="{'active': i === 0}">
+                <img id="slideshowImages" class="d-block w-100" [src]="'path-to-images/' + image" alt="Slideshow Image">
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-              </button>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Előző</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Következő</span>
+            </button>
           </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button routerLink="/bookform" class="btn btn-primary">Lefoglalom</button>
-        <button type="button" class="btn btn-secondary" (click)="closeSpotInfoModal()">Mégsem</button>
+        </div>
+        <div class="modal-footer">
+          <button routerLink="/bookform" class="btn btn-primary">Lefoglalom</button>
+          <button type="button" class="btn btn-secondary" (click)="closeSpotInfoModal()">Mégsem</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

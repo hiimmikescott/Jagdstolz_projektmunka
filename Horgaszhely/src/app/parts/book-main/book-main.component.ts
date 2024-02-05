@@ -32,8 +32,6 @@ export class BookMainComponent {
 
     this.parentContainerWidth = window.innerWidth;
     this.parentContainerHeight = window.innerHeight;
-    console.log(this.parentContainerHeight)
-    console.log(this.parentContainerWidth)
   }
 
   openSpotInfoModal(spotId: number) {
