@@ -1,19 +1,34 @@
 .image-container {
     position: relative;
-    width: 100%;
 }
-  
-.image-container img {
-    width: 100%;
-    height: auto;
-}
-  
+
 .clickable-spot {
     position: absolute;
-    
     cursor: pointer;
 }
-.modal{
+
+.marker-container {
+    position: relative;
+    width: 3%;  
+    height: 5%;
+}
+
+
+.marker-img {
+    max-height: 50px;
+    max-width: 30px;
+}
+
+#slideshowImages{
+    max-width: 400px;
+    max-height: 300px;
+}
+#slideshow{
+    max-width: 400px;
+    max-height: 300px;
+}
+
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,4 +37,13 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
+}
+
+
+@media (max-width: 767px) {
+
+    .marker-img {
+        max-height: 25px;
+        max-width: 15px;
+    }
 }

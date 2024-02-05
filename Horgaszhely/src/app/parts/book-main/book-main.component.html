@@ -1,42 +1,56 @@
-<!-- book-main.component.html -->
-
 <div class="container">
-  <div class="image-container">
-    <img src="../../../assets/images/lake.jpg" alt="Lake from above">
+  <h1>A tó térképe</h1>
+  <div class="row mb-3 mt-3">
+    <div class="col-12">
+      <div class="image-container">
+        <img src="../../../assets/images/lake.jpg" alt="Lake from above" class="img-fluid">
 
-    <!-- Assuming the parent container has a specific size -->
-    <div *ngFor="let location of locations" class="clickable-spot" (click)="openSpotInfoModal(location.id)"
-         [style.left.%]="location.leftPercentage" [style.top.%]="location.topPercentage">
-      <img id="marker" src="../../../assets/images/marker.png" alt="marker" style="height: 30px; width: 30px;">
-    </div>
-  </div>
-
-  <!-- Spot Information Modal content -->
-  <div *ngIf="spotInfo" class="modal fade show" style="display: block;" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Spot Information</h4>
-          <button type="button" class="close" aria-label="Close" (click)="closeSpotInfoModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Hely száma: {{ spotInfo?.helySzama }}</p>
-          <p>Hely leírása: {{ spotInfo?.helyLeirasa }}</p>
-
-          <!-- Slideshow with images from the database -->
-          <div *ngIf="spotInfo?.slideshowImages && spotInfo?.slideshowImages.length > 0">
-            <h5>Slideshow</h5>
-            <div *ngFor="let image of spotInfo.slideshowImages">
-              <img [src]="'path-to-images/' + image" alt="Slideshow Image">
-            </div>
+        <div *ngFor="let location of locations" class="clickable-spot" (click)="openSpotInfoModal(location.id)"
+          [style.left.%]="location.leftPercentage" [style.top.%]="location.topPercentage">
+          <div class="marker-container">
+            <img id="marker" src="../../../assets/images/marker.png" alt="marker" class="marker-img">
           </div>
         </div>
-        <div class="modal-footer">
-          <button routerLink="/bookform" class="btn btn-primary">Lefoglalom</button>
-          <button type="button" class="btn btn-secondary" (click)="closeSpotInfoModal()">Close</button>
-        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="spotInfo" class="modal fade show" style="display: block;" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Spot Information</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeSpotInfoModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Hely száma: {{ spotInfo?.helySzama }}</p>
+        <p>Hely leírása: {{ spotInfo?.helyLeirasa }}</p>
+        <div *ngIf="spotInfo?.slideshowImages && spotInfo?.slideshowImages.length > 0">
+          <h5>Képek a kiválasztott helyről</h5>
+          <div id="slideshow" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                  <div id="slideshowImages" *ngFor="let image of spotInfo.slideshowImages; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+                      <img class="d-block w-100" [src]="'path-to-images/' + image" alt="Slideshow Image">
+                  </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button routerLink="/bookform" class="btn btn-primary">Lefoglalom</button>
+        <button type="button" class="btn btn-secondary" (click)="closeSpotInfoModal()">Mégsem</button>
       </div>
     </div>
   </div>
