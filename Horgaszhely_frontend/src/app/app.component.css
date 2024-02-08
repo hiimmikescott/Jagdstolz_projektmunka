@@ -1,0 +1,12 @@
+body{
+    background-image: url(../assets/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+.container span{
+    display: table;
+    background-color: rgba(255, 255, 255, 0.647); 
+    width: 100%;
+    min-height: 100vh;
+}

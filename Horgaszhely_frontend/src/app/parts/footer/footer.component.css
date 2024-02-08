@@ -1,0 +1,19 @@
+#drop {
+    background-color: gainsboro;
+}
+
+.container {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    /* Set the minimum height of the body to 100% of the viewport height */
+}
+
+.footer-container {
+    margin-top: auto;
+    /* Push the footer to the bottom */
+}
