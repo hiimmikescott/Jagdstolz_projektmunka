@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   selector: 'app-nav',
@@ -6,21 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
+  @ViewChild('loginModal') loginModal!: ElementRef;
   close = true
   open(){
     this.close =!this.close
   }
-  openModal(){
-    const modalDiv = document.getElementById("loginModal")
-    if (modalDiv!= null) {
-      modalDiv.style.display = "block"
-      modalDiv.style.boxShadow= ""
-    }
+  constructor(private modalService: NgbModal) {}
+
+  openLoginModal() {
+    const modalRef = this.modalService.open(LoginModalComponent, { centered: true });
   }
-  closeModal(){
-    const modalDiv = document.getElementById("loginModal")
-    if (modalDiv!= null) {
-      modalDiv.style.display = "none"
-    }
-  }
+
 }

@@ -17,6 +17,7 @@ import { NavComponent } from './parts/nav/nav.component';
 import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
+import { LoginModalComponent } from './parts/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MapComponent } from './parts/map/map.component';
     NavComponent,
     ProfileComponent,
     SignupComponent,
-    MapComponent
+    MapComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,

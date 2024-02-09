@@ -10,11 +10,11 @@ class CustomMarker extends L.Marker {
 const customIcon = L.icon({
   iconUrl: '../../../assets/images/marker.png',
   iconSize: [30, 50],
-  iconAnchor: [16, 32],
+  iconAnchor: [1, 32],
   popupAnchor: [0, -32],
 });
 
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { FishingSpotService, FishingSpot } from '../../services/fishing-spot.service';
 import * as bootstrap from 'bootstrap';
@@ -25,7 +25,7 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./map.component.css'],
   providers: [FishingSpotService],
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit {
   private map!: L.Map;
   markers: CustomMarker[] = [];
   selectedSpot: FishingSpot | null = null;
@@ -41,17 +41,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.initializeMap();
       this.addMarkers();
       this.centerMap();
+      
     });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.initializeCarousel();
-    }, 1000);
-  }
 
   private initializeCarousel() {
-    const carousel = document.getElementById('imageCarousel');
+    const carousel = document.getElementById('carouselExampleAutoplaying');
     if (carousel) {
       new bootstrap.Carousel(carousel, {
         interval: 1000,
@@ -67,7 +63,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
 
     L.tileLayer(baseMapURl).addTo(this.map);
-    L.control.zoom().addTo(this.map);
   }
 
   private addMarkers() {
@@ -95,31 +90,30 @@ export class MapComponent implements OnInit, AfterViewInit {
         modalTitle.textContent = this.selectedSpot.description;
 
         modalBody.innerHTML = `
-          <div id="carouselExample" class="carousel slide" data-ride="carousel">
+          <div id="carouselExampleAutoplaying" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               ${this.selectedSpot.images
             .map((image, index) => `
                   <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="${image}" class="d-block w-100" alt="Image ${index + 1}">
+                    <img src="${image}" class="d-block w-100" alt="Image ${index + 1}" style="height: 400px; width: 800px;">
                   </div>
                 `)
             .join('')}
             </div>
-            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+            <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+              <span class="sr-only"></span>
             </a>
-            <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+            <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
+              <span class="sr-only"></span>
             </a>
           </div>
           <ul>
-            <li>Reservable: ${this.selectedSpot.reservable}</li>
-            <li>Pier: ${this.selectedSpot.pier}</li>
-            <li>Firepit: ${this.selectedSpot.firepit}</li>
-            <li>Shelter: ${this.selectedSpot.shelter}</li>
-            <li>Average Rating: ${this.selectedSpot.averageRating}</li>
+            <li>Stég: ${this.selectedSpot.pier}</li>
+            <li>Tűzrakóhely: ${this.selectedSpot.firepit}</li>
+            <li>Beálló: ${this.selectedSpot.shelter}</li>
+            <li>Értékelés: ${this.selectedSpot.averageRating}</li>
           </ul>
         `;
       }
