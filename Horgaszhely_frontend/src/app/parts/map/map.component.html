@@ -1,6 +1,7 @@
 <div id="map"></div>
 
-<div id="customModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="customModalLabel" aria-hidden="true">
+<div id="customModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="customModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,32 +10,30 @@
       </div>
       <div class="modal-body">
         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let image of selectedSpot?.images; let first = first; let i = index" [class.active]="first">
-                <img id="slideImage" [src]="image" class="d-block w-100" alt="Image {{ i }}">
-              </div>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let image of selectedSpot?.images; let first = first; let i = index"
+              [class.active]="first">
+              <img id="slideImage" [src]="image" class="d-block w-100" alt="Kép {{ i }}">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden"></span>
-            </button>
           </div>
-        <ul>
-          <li>Stég: {{ selectedSpot?.pier }}</li>
-          <li>Tűzrakóhely: {{ selectedSpot?.firepit }}</li>
-          <li>Beálló: {{ selectedSpot?.shelter }}</li>
-          <li>Értékelés: {{ selectedSpot?.averageRating }}</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class=" btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Bezárás</button>
+          <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </button>
+          <ul>
+            <li>Stég: {{ selectedSpot?.pier }}</li>
+            <li>Tűzrakóhely: {{ selectedSpot?.firepit }}</li>
+            <li>Beálló: {{ selectedSpot?.shelter }}</li>
+            <li>Értékelés: {{ selectedSpot?.averageRating }}</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class=" btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Bezárás</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-

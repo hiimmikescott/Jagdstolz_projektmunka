@@ -90,21 +90,21 @@ export class MapComponent implements OnInit {
         modalTitle.textContent = this.selectedSpot.description;
 
         modalBody.innerHTML = `
-          <div id="carouselExampleAutoplaying" class="carousel slide" data-ride="carousel">
+          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               ${this.selectedSpot.images
             .map((image, index) => `
                   <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="${image}" class="d-block w-100" alt="Image ${index + 1}" style="height: 400px; width: 800px;">
+                    <img src="${image}" class="d-block w-100" alt="Kép ${index + 1}" style="height: 400px; width: 800px;">
                   </div>
                 `)
             .join('')}
             </div>
-            <a class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <a class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
-            <a class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <a class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only"></span>
             </a>
