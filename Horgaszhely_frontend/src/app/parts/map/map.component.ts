@@ -38,22 +38,12 @@ export class MapComponent implements OnInit {
         new CustomMarker([spot.latitude, spot.longitude], { spot, icon: customIcon })
       );
 
-      this.initializeMap();
-      this.addMarkers();
-      this.centerMap();
-      
+      this.initializeMap()
+      this.addMarkers()
+      this.centerMap()
     });
   }
 
-
-  private initializeCarousel() {
-    const carousel = document.getElementById('carouselExampleAutoplaying');
-    if (carousel) {
-      new bootstrap.Carousel(carousel, {
-        interval: 1000,
-      });
-    }
-  }
 
   private initializeMap() {
     const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
