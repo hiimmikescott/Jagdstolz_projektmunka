@@ -6,7 +6,7 @@ body{
 }
 .container span{
     display: table;
-    background-color: rgba(255, 255, 255, 0.647); 
+    background-color: rgba(255, 255, 255, 0.789); 
     width: 100%;
     min-height: 100vh;
 }
