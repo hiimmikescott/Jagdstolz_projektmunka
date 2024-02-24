@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Reservation;
+Use App\Http\Controllers\ResponseController;
 
 use DB;
 
-class ReservationController extends Controller
+class ReservationController extends ResponseController
 {
     //---{ all reservation  }------------------------------------
 
     public function getReservations(){
         $reservations = Reservation::all();
 
-        return $reservations;
+        return $this->sendResponse($reservations,"öszes foglalás");
     }
 
     //---{ one reservation  }------------------------------------
@@ -24,7 +25,15 @@ class ReservationController extends Controller
         $id = $request["id"];
         $reservation = Reservation::where("id",$id)->first();
 
-        return $reservation;
+        //---{  error  }---------------
+
+        if(is_null($reservation)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+            
+        //---{  success  }-------------
+
+        return  $this->sendResponse($reservation,"egy  foglalás");
 
     }
 
@@ -40,8 +49,18 @@ class ReservationController extends Controller
         $reservation-> reservationEnd=$input["reservationEnd"];
         $reservation-> actualRate=$input["actualRate"];
 
+        //---{  error  }--------------- TODO: validation
+        
+        if(is_null($reservation)){
+            return $this->sendError("hibas adat");
+        }
+        
+        //---{  success  }-------------
+        
         $reservation->save();
-        return "foglalas hozzaadva";
+
+        return  $this->sendResponse($reservation,"foglalás hozáadva");
+
     }
 
     //---{ modify reservation  }---------------------------------
@@ -50,16 +69,26 @@ class ReservationController extends Controller
         $input = $request->all();
         $id = $input["id"];
 
-        $reservation = Reservation::find($id);
-
+        $reservation = Reservation::where("id",$id)->first();
+       
+        //---{  error 1 }---------------
+        
+        if(is_null($reservation)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+        
+        //---{  success  }-------------
+        
         $reservation-> user_id=$input["user_id"];
         $reservation-> fishingplace_id=$input["fishingplace_id"];
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
         $reservation-> actualRate=$input["actualRate"];
-
+            
         $reservation->save();
-        return "foglalas modositva";
+            
+        return  $this->sendResponse($reservation,"foglalás modositva");
+
     }
 
     //---{  delete reservation  }---------------------------------
@@ -69,7 +98,18 @@ class ReservationController extends Controller
         $id = $input["id"];
 
         $reservation = Reservation::find($id);
+        
+        //---{  error  }---------------
+        
+        if(is_null($reservation)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+        
+        //---{  success  }-------------
+        
         $reservation->delete();
-        return "foglalas törölve";
+        
+        return  $this->sendResponse($reservation,"foglalás törölve");
+
     }
 }

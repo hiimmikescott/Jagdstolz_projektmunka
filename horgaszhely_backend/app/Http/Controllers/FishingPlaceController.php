@@ -73,7 +73,15 @@ class FishingPlaceController extends ResponseController
         $id = $input["id"];
 
 
-        $fishingplace = FishingPlace::find($id);
+        $fishingplace = FishingPlace::where("id",$id)->first();
+        
+        //---{  error 1 }--------------- 
+        
+        if(is_null($fishingplace)){
+            return $this->sendError("nincs ilyen horgaszhely");
+        }
+        
+        //---{  success  }-------------
         
         $fishingplace->reservable=$input["reservable"];
         $fishingplace->pier=$input["pier"];
@@ -83,21 +91,7 @@ class FishingPlaceController extends ResponseController
         $fishingplace->description=$input["description"];
         $fishingplace->longitude=$input["longitude"];
         $fishingplace->latitude=$input["latitude"];
-
-        
-        //---{  error 1 }--------------- 
-        
-        if(is_null($fishingplace)){
-            return $this->sendError("nincs ilyen horgaszhely");
-        }
-        
-        //---{  error 2 }--------------- TODO: validation 
-        
-        if(is_null($fishingplace)){
-            return $this->sendError("hibas adatok");
-        }
-        
-        //---{  success  }-------------
+     
 
         $fishingplace->save();
         
