@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\FishingPlace;
 Use App\Http\Controllers\ResponseController;
+Use App\Http\Requests\FishingPlaceChecker;
 
 use DB;
 
@@ -40,7 +41,8 @@ class FishingPlaceController extends ResponseController
  
     //---{  add fishing place  }--------------------------------------------------------
  
-    public function addFishingPlace(Request $request){
+    public function addFishingPlace(FishingPlaceChecker $request){
+        $request->validated();
         $input=$request->all();
 
         $fishingplace = new FishingPlace;
