@@ -21,7 +21,7 @@ class FishingPlace extends Model
         "longitude",
         "latitude",
     ];
-    public function socket(){
-        return $this->hasMany(Socket::class);
+    public function Reservation(){
+        return $this->hasMany(Reservation::class);
     }
 }
