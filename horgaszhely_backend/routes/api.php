@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FishingPlaceController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,10 @@ Route::get("/getreservation",[ReservationController::class , "getReservation"]);
 Route::post("/addreservation",[ReservationController::class , "addReservation"]);
 Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
 Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
+
+//---{  user  }--------------------------------------------------------------------------------
+
+Route::get("/getusers",[UserController::class , "getUsers"]);
+Route::get("/getuser",[UserController::class , "getUser"]);
+Route::put("/modifyuser",[UserController::class , "modifyUser"]);
+Route::delete("/deleteuser",[UserController::class , "deleteUser"]);

@@ -100,7 +100,7 @@ class FishingPlaceController extends ResponseController
     public function deleteFishingPlace(Request $request){
         $input=$request->all();
         $id = $input["id"];
-        $fishingplace = FishingPlace::find($id);
+        $fishingplace = FishingPlace::where("id",$id)->first();
 
         //---{  error  }--------------- 
 

@@ -28,10 +28,10 @@ class FishingPlaceChecker extends FormRequest
         "pier"=>"required",
         "firepit"=>"required",
         "shelter"=>"required",
-        "averageRating"=>"required|min:1|max:5",
+        "averageRating"=>"required|between:1,5",
         "description"=>"required",
-        "longitude"=>"required|numeric|min:-180.000000000|max:180.00000000",
-        "latitude"=>"required||numeric|min:-90.0000000|max:90.00000000"
+        "longitude"=>"required|numeric|between:-180.0,180.0",
+        "latitude"=>"required||numeric|between:-90.0,90.0"
         ];
     }
     public function messages(){
@@ -41,17 +41,15 @@ class FishingPlaceChecker extends FormRequest
             "firepit.required"=>"elvárt mezö",
             "shelter.required"=>"elvárt mezö",
             "averageRating.required"=>"elvárt mezö",
-            "averageRating.min"=>"nem megfelelö értékelés érték",
-            "averageRating.max"=>"nem megfelelö értékelés érték",
+            "averageRating.between"=>"csak 1 és 5 közti értékelést tudsz meg adni",
             "description.required"=>"elvárt mezö",
             "longitude.required"=>"elvárt mezö",
             "latitude.required"=>"elvárt mezö",
             "longitude.numeric"=>"hoszusági kordinátának számnak kell lennie.",
             "latitude.numeric"=>"széleségi kordinátának számnak kell lennie.",
-            "longitude.min"=>"nem valos kordináta",
-            "longitude.max"=>"nem valos kordináta",
-            "latitude.min"=>"nem valos kordináta",
-            "latitude.max"=>"nem valos kordináta"
+            "longitude.between"=>"nem valos kordináta",  
+            "latitude.between"=>"nem valos kordináta",
+            
         ];
     }
     public function failedValidation(Validator $validator){
