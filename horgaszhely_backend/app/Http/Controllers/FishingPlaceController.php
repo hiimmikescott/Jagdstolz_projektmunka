@@ -54,23 +54,18 @@ class FishingPlaceController extends ResponseController
         $fishingplace->description=$input["description"];
         $fishingplace->longitude=$input["longitude"];
         $fishingplace->latitude=$input["latitude"];
-
-        $fishingplace->save();
-
-        //---{  error  }--------------- TODO: validation 
-
-        if(is_null($fishingplace)){
-            return $this->sendError("sikertelen feltöltés");
-        }
-
+ 
         //---{  success  }-------------
+      
+        $fishingplace->save();
 
         return $this->sendResponse($fishingplace,"horgaszhely hozáadva");
     }
 
     //---{  modify fishingplace  }------------------------------------------------------
 
-    public function modifyFishingPlace(Request $request){
+    public function modifyFishingPlace(FishingPlaceChecker $request){
+        $request->validated();
         $input=$request->all();
         $id = $input["id"];
 

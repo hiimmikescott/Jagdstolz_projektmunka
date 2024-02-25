@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Reservation;
 Use App\Http\Controllers\ResponseController;
+Use App\Http\Requests\ReservationChecker;
 
 use DB;
 
@@ -39,7 +40,8 @@ class ReservationController extends ResponseController
 
     //---{  add reservation  }-----------------------------------
 
-    public function addReservation(Request $request){
+    public function addReservation(ReservationChecker $request){
+        $request->validated();
         $input = $request->all();
 
         $reservation = new Reservation;
@@ -48,13 +50,7 @@ class ReservationController extends ResponseController
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
         $reservation-> actualRate=$input["actualRate"];
-
-        //---{  error  }--------------- TODO: validation
-        
-        if(is_null($reservation)){
-            return $this->sendError("hibas adat");
-        }
-        
+  
         //---{  success  }-------------
         
         $reservation->save();
@@ -65,7 +61,8 @@ class ReservationController extends ResponseController
 
     //---{ modify reservation  }---------------------------------
 
-    public function modifyReservation(Request $request){
+    public function modifyReservation(ReservationChecker $request){
+        $request->validated();
         $input = $request->all();
         $id = $input["id"];
 
