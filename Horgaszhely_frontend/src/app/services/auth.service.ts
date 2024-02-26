@@ -6,11 +6,15 @@ import { AuthData } from './auth-data.models';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private http: HttpClient) { }
-
+  private url="http://127.0.0.1:8000/api"
+  
   createUser(email: string, password: string, name: string, username: string, birthDate: Date) {
     const authData: AuthData = { email: email, password: password, name: name, username: username, birthDate: birthDate }
-    this.http.post("https://jsonplaceholder.typicode.com/users", authData).subscribe((response) => console.log(response))
+    this.http.post(`${this.url}/register`, authData).subscribe((response) => console.log(response))
+  }
+
+  isLoggedIn(){
+    return true
   }
 }
