@@ -3,7 +3,7 @@ class CustomMarker extends L.Marker {
 
   constructor(latlng: L.LatLngExpression, options?: L.MarkerOptions & { spot: Fishingspot }) {
     super(latlng, options);
-    this.spot = options?.spot!;
+    this.spot = options?.spot! ;
   }
 }
 
@@ -116,6 +116,7 @@ export class MapComponent implements OnInit {
             <li>Stég: ${this.selectedSpot.pier}</li>
             <li>Tűzrakóhely: ${this.selectedSpot.firepit}</li>
             <li>Beálló: ${this.selectedSpot.shelter}</li>
+            <li>Beálló: ${this.selectedSpot.description}</li>
             <li>Értékelés: ${this.selectedSpot.averageRating}</li>
           </ul>
         `;
