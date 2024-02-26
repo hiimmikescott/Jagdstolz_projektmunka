@@ -52,8 +52,6 @@ export class MapComponent implements OnInit {
     );
   }
 
-
-
   private initializeMap() {
     const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     this.map = L.map('map', {
@@ -68,13 +66,10 @@ export class MapComponent implements OnInit {
     this.markers.forEach((marker) => {
       marker.addTo(this.map);
       marker.on('click', () => {
-        //console.log("marker clicked. marker: ",marker.spot)
-        //if(this.selectedSpot){
-          this.selectedSpot=marker.spot
-          console.log("marker clicked. marker: ",marker.spot)
-          this.openCustomModal()
-          marker.openPopup()
-        //}
+        this.selectedSpot = marker.spot;
+        console.log('Marker clicked. Spot:', this.selectedSpot);
+        this.openCustomModal();
+        marker.openPopup();
       });
     });
   }
@@ -96,7 +91,7 @@ export class MapComponent implements OnInit {
           <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               ${this.selectedSpot.images
-            .map((image, index) => `
+            ?.map((image, index) => `
                   <div class="carousel-item ${index === 0 ? 'active' : ''}">
                     <img src="${image}" class="d-block w-100" alt="Kép ${index + 1}" style="height: 400px; width: 800px;">
                   </div>
