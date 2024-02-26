@@ -7,7 +7,7 @@ class CustomMarker extends L.Marker {
   }
 }
 
-const customIcon = L.icon({
+const reservable = L.icon({
   iconUrl: '../../../assets/images/marker.png',
   iconSize: [30, 50],
   iconAnchor: [1, 32],
@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
   markers: CustomMarker[] = [];
   selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService) {}
+  constructor(private fishingSpotService: FishingSpotService) { }
 
   ngOnInit() {
     this.fishingSpotService.getFishingSpots().subscribe(
@@ -38,12 +38,13 @@ export class MapComponent implements OnInit {
         const fishingSpots = response.data; // Assuming the fishing spots are under the 'data' key
 
         this.markers = fishingSpots.map(
-          (spot:any) => new CustomMarker([spot.latitude, spot.longitude], { spot, icon: customIcon })
+          (spot: any) => new CustomMarker([spot.latitude, spot.longitude], { spot, icon: reservable })
         );
 
         this.initializeMap();
         this.addMarkers();
         this.centerMap();
+        //console.log(response)
       },
       (error) => {
         console.error('Error fetching fishing spots:', error);
@@ -67,9 +68,13 @@ export class MapComponent implements OnInit {
     this.markers.forEach((marker) => {
       marker.addTo(this.map);
       marker.on('click', () => {
-        this.selectedSpot = marker.spot;
-        this.openCustomModal();
-        marker.openPopup();
+        //console.log("marker clicked. marker: ",marker.spot)
+        //if(this.selectedSpot){
+          this.selectedSpot=marker.spot
+          console.log("marker clicked. marker: ",marker.spot)
+          this.openCustomModal()
+          marker.openPopup()
+        //}
       });
     });
   }
@@ -85,7 +90,7 @@ export class MapComponent implements OnInit {
       const modalBody = document.querySelector('.modal-body');
 
       if (modalTitle && modalBody) {
-        modalTitle.textContent = this.selectedSpot.description;
+        modalTitle.textContent = this.selectedSpot.id.toString();
 
         modalBody.innerHTML = `
           <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
