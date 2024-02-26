@@ -3,7 +3,7 @@ class CustomMarker extends L.Marker {
 
   constructor(latlng: L.LatLngExpression, options?: L.MarkerOptions & { spot: Fishingspot }) {
     super(latlng, options);
-    this.spot = options?.spot! ;
+    this.spot = options?.spot!;
   }
 }
 
@@ -52,8 +52,6 @@ export class MapComponent implements OnInit {
     );
   }
 
-
-
   private initializeMap() {
     const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     this.map = L.map('map', {
@@ -68,13 +66,10 @@ export class MapComponent implements OnInit {
     this.markers.forEach((marker) => {
       marker.addTo(this.map);
       marker.on('click', () => {
-        //console.log("marker clicked. marker: ",marker.spot)
-        //if(this.selectedSpot){
-          this.selectedSpot=marker.spot
-          console.log("marker clicked. marker: ",marker.spot)
-          this.openCustomModal()
-          marker.openPopup()
-        //}
+        this.selectedSpot = marker.spot;
+        console.log('Marker clicked. Spot:', this.selectedSpot);
+        this.openCustomModal();
+        marker.openPopup();
       });
     });
   }
@@ -90,15 +85,15 @@ export class MapComponent implements OnInit {
       const modalBody = document.querySelector('.modal-body');
 
       if (modalTitle && modalBody) {
-        modalTitle.textContent = this.selectedSpot.id.toString();
+        modalTitle.textContent = this.selectedSpot.id.toString()+". számú hely";
 
         modalBody.innerHTML = `
           <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               ${this.selectedSpot.images
-            .map((image, index) => `
+            ?.map((image, index) => `
                   <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="${image}" class="d-block w-100" alt="Kép ${index + 1}" style="height: 400px; width: 800px;">
+                    <img src="../../../assets/images/${image}" class="d-block w-100" alt="Kép ${index + 1}" style="height: 400px; width: 800px;">
                   </div>
                 `)
             .join('')}
@@ -113,10 +108,10 @@ export class MapComponent implements OnInit {
             </a>
           </div>
           <ul>
-            <li>Stég: ${this.selectedSpot.pier}</li>
-            <li>Tűzrakóhely: ${this.selectedSpot.firepit}</li>
-            <li>Beálló: ${this.selectedSpot.shelter}</li>
-            <li>Beálló: ${this.selectedSpot.description}</li>
+            <li>Stég: ${this.trueOrFalse(this.selectedSpot.pier)}</li>
+            <li>Tűzrakóhely: ${this.trueOrFalse(this.selectedSpot.firepit)}</li>
+            <li>Beálló: ${this.trueOrFalse(this.selectedSpot.shelter)}</li>
+            <li>Leírás: ${this.selectedSpot.description}</li>
             <li>Értékelés: ${this.selectedSpot.averageRating}</li>
           </ul>
         `;
@@ -125,5 +120,12 @@ export class MapComponent implements OnInit {
       const modal = new bootstrap.Modal(document.getElementById('customModal')!);
       modal.show();
     }
+  }
+
+  private trueOrFalse(data:boolean){
+    if(data==true){
+      return "Van"
+    }
+    return "Nincs"
   }
 }

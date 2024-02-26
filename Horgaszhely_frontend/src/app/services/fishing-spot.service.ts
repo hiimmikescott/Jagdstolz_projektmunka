@@ -26,5 +26,5 @@ export interface Fishingspot{
   description:string
   longitude:number
   latitude:number
-  images:string[]
+  images?:string[]|null
 }
