@@ -1,0 +1,72 @@
+{
+	"success": true,
+	"data": [
+		{
+			"id": 1,
+			"reservable": 1,
+			"pier": 1,
+			"firepit": 1,
+			"shelter": 1,
+			"averageRating": 4,
+			"description": "Beautiful lake with clear water and abundant fish.",
+			"longitude": "19.572352",
+			"latitude": "47.536311"
+		},
+		{
+			"id": 2,
+			"reservable": 1,
+			"pier": 0,
+			"firepit": 1,
+			"shelter": 1,
+			"averageRating": 5,
+			"description": "Scenic riverbank with a peaceful atmosphere.",
+			"longitude": "19.572169",
+			"latitude": "47.534790"
+		},
+		{
+			"id": 3,
+			"reservable": 0,
+			"pier": 1,
+			"firepit": 0,
+			"shelter": 0,
+			"averageRating": 3,
+			"description": "Cozy pond surrounded by lush greenery.",
+			"longitude": "19.570300",
+			"latitude": "47.535814"
+		},
+		{
+			"id": 4,
+			"reservable": 1,
+			"pier": 1,
+			"firepit": 1,
+			"shelter": 1,
+			"averageRating": 4,
+			"description": "Quiet lake with well-maintained fishing facilities.",
+			"longitude": "19.567223",
+			"latitude": "47.537463"
+		},
+		{
+			"id": 5,
+			"reservable": 1,
+			"pier": 0,
+			"firepit": 1,
+			"shelter": 0,
+			"averageRating": 5,
+			"description": "Serene river spot with a rustic firepit.",
+			"longitude": "19.566816",
+			"latitude": "47.538346"
+		},
+		{
+			"id": 6,
+			"reservable": 0,
+			"pier": 0,
+			"firepit": 1,
+			"shelter": 1,
+			"averageRating": 4,
+			"description": "Tranquil pond with a covered shelter for relaxation.",
+			"longitude": "19.574025",
+			"latitude": "47.535666"
+		}
+	],
+	"message": "horgaszhelyekbetöltve"
+}
