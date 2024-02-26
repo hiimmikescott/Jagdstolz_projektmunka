@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FishingSpotService {
-  private apiUrl = 'localhost:8000';
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -14,4 +14,17 @@ export class FishingSpotService {
     return this.http.get<any>(`${this.apiUrl}/fishingplaces`);
   }
 
+
+}
+export interface Fishingspot{
+  id:number
+  reservable:boolean
+  pier:boolean
+  firepit:boolean
+  shelter:boolean
+  averageRating:number
+  description:string
+  longitude:number
+  latitude:number
+  images:string[]
 }

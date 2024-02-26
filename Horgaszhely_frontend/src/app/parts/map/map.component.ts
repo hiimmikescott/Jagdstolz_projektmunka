@@ -1,7 +1,7 @@
 class CustomMarker extends L.Marker {
-  spot: FishingSpot;
+  spot: Fishingspot;
 
-  constructor(latlng: L.LatLngExpression, options?: L.MarkerOptions & { spot: FishingSpot }) {
+  constructor(latlng: L.LatLngExpression, options?: L.MarkerOptions & { spot: Fishingspot }) {
     super(latlng, options);
     this.spot = options?.spot!;
   }
@@ -16,7 +16,7 @@ const customIcon = L.icon({
 
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { FishingSpotService, FishingSpot } from '../../services/fishing-spot.service';
+import { FishingSpotService, Fishingspot } from '../../services/fishing-spot.service';
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -28,21 +28,29 @@ import * as bootstrap from 'bootstrap';
 export class MapComponent implements OnInit {
   private map!: L.Map;
   markers: CustomMarker[] = [];
-  selectedSpot: FishingSpot | null = null;
+  selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService) { }
+  constructor(private fishingSpotService: FishingSpotService) {}
 
   ngOnInit() {
-    this.fishingSpotService.getFishingSpots().subscribe((fishingSpots) => {
-      this.markers = fishingSpots.map((spot) =>
-        new CustomMarker([spot.latitude, spot.longitude], { spot, icon: customIcon })
-      );
+    this.fishingSpotService.getFishingSpots().subscribe(
+      (response) => {
+        const fishingSpots = response.data; // Assuming the fishing spots are under the 'data' key
 
-      this.initializeMap()
-      this.addMarkers()
-      this.centerMap()
-    });
+        this.markers = fishingSpots.map(
+          (spot:any) => new CustomMarker([spot.latitude, spot.longitude], { spot, icon: customIcon })
+        );
+
+        this.initializeMap();
+        this.addMarkers();
+        this.centerMap();
+      },
+      (error) => {
+        console.error('Error fetching fishing spots:', error);
+      }
+    );
   }
+
 
 
   private initializeMap() {
