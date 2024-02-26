@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FishingPlaceController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,15 @@ Route::post("/addreservation",[ReservationController::class , "addReservation"])
 Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
 Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
 
-//---{  user  }--------------------------------------------------------------------------------
+//---{  user routes }--------------------------------------------------------------------------------
 
 Route::get("/getusers",[UserController::class , "getUsers"]);
 Route::get("/getuser",[UserController::class , "getUser"]);
 Route::put("/modifyuser",[UserController::class , "modifyUser"]);
 Route::delete("/deleteuser",[UserController::class , "deleteUser"]);
+
+//---{  userAuth routes  }---------------------------------------------------------------------------
+
+Route::post("/userregister",[AuthController::class , "userRegister"]);
+Route::post("/userlogin",[AuthController::class , "userLogin"]);
+Route::post("/userlogout",[AuthController::class , "userLogout"]);
