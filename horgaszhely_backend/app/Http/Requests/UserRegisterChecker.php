@@ -28,7 +28,7 @@ class UserRegisterChecker extends FormRequest
             "name"=>"required|max:20",
             "email"=>"required|email",
             "password"=>"required|min:6",
-            "profilepicture"=>"required",
+            //"profilepicture"=>"required",
             "birthdate"=>"required"
         ];
     }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string("profilepicture");
+            //$table->string("profilepicture");
             $table->boolean("validated")->default(0);
             $table->datetime("birthdate");
             $table->tinyInteger("userlevel")->default(0); 

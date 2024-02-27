@@ -58,7 +58,7 @@ class UserController extends ResponseController
 
         $user->name=$input["name"];
         $user->email=$input["email"];
-        $user->profilepicture=$input["profilepicture"];
+        //$user->profilepicture=$input["profilepicture"];
         $user->birthdate=$input["birthdate"];
 
         $user->save();

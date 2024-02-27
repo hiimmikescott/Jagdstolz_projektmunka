@@ -26,7 +26,7 @@ class UserChecker extends FormRequest
         return [
             "name"=>"required|max:30",
             "email"=>"required|email",
-            "profilepicture"=>"required",
+            //"profilepicture"=>"required",
             "birthdate"=>"required"
         ];
     }
@@ -36,7 +36,7 @@ class UserChecker extends FormRequest
             "name.max"=>"nemlehet 30 karakternél hoszab",
             "email.required"=>"email elvárt",
             "email.email"=>"nem email formatum",
-            "profilepicture.required"=>"profilkép elvárt",
+            //"profilepicture.required"=>"profilkép elvárt",
             "birthdate.required"=>"szuletési datum kötelezö"
         ];
     }
