@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             //$table->string("profilepicture");
             $table->boolean("validated")->default(0);
-            $table->datetime("birthdate");
+            $table->date("birthdate");
             $table->tinyInteger("userlevel")->default(0); 
         });
     }
