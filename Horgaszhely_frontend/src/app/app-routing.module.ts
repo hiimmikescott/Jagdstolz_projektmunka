@@ -7,15 +7,14 @@ import { SignupComponent } from './parts/signup/signup.component';
 import { BookMainComponent } from './parts/book-main/book-main.component';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { GalleryComponent } from './parts/gallery/gallery.component';
-import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "info", component: InfoComponent },
-  { path: "profile", component: ProfileComponent,canActivate:[AuthGuardService] },
-  { path: "signup", component: SignupComponent },
+  { path: "profile", component: ProfileComponent},
+  { path: "signup", component: SignupComponent},
   { path: "bookmain", component: BookMainComponent },
-  { path: "bookform", component: BookFormComponent, canActivate:[AuthGuardService] },
+  { path: "bookform", component: BookFormComponent },
   { path: "galery", component: GalleryComponent },
 
   { path: " ", component: HomeComponent },

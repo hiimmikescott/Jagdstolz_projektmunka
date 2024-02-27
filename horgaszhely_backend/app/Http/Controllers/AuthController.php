@@ -14,7 +14,7 @@ use App\Http\Requests\UserLoginChecker;
 class AuthController extends ResponseController
 {
     public function userRegister(UserRegisterChecker $request){
-        
+
         //---{  user registration  }------------------------------------------------
 
         $request->validated();
@@ -28,11 +28,11 @@ class AuthController extends ResponseController
         return $this->sendResponse($success,"sikeres regisztrácio");
     }
 
-    
+
     public function userLogin(UserLoginChecker $request){
-        
+
         //---{  user login  }-----------------------------------------------------------
-        
+
         $request->validated();
         if(Auth::attempt(["email"=>$request->email,"password"=>$request->password])){
             $user = Auth::user();

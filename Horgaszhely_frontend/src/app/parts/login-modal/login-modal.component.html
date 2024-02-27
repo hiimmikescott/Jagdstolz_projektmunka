@@ -2,15 +2,13 @@
   <h2 class="text-center">Bejelentkezés</h2>
   <div class="m-3">
     <label for="email" class="form-label">Email:</label>
-    <input type="email" class="form-control" id="email" placeholder="Írja be email címét" name="email">
+    <input type="email" class="form-control" id="email" placeholder="Írja be email címét" name="email" [(ngModel)]="email">
   </div>
   <div class="m-3">
-    <label for="pwd" class="form-label">Jelszó:</label>
-    <input type="password" class="form-control" id="pwd" placeholder="Írja be jelszavát" name="password">
+    <label for="pwd" class="form-label" >Jelszó:</label>
+    <input type="password" class="form-control" id="password" placeholder="Írja be jelszavát" name="password" [(ngModel)]="password">
   </div>
   <div class="text-end">
-    <button id='closeModal' type="button" class="btn btn-danger me-3" data-bs-dismiss="modal">Mégse</button>
-    <button type="submit" class="btn btn-success me-3">Bejelentkezés</button>
-
+    <button type="submit" class="btn btn-success me-3" (click)="login()">Bejelentkezés</button>
   </div>
 </form>
