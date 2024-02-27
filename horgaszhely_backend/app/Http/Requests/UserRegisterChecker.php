@@ -28,8 +28,7 @@ class UserRegisterChecker extends FormRequest
             "name"=>"required|max:20",
             "email"=>"required|email",
             "password"=>"required|min:6",
-            //"profilepicture"=>"required",
-            "birthdate"=>"required"
+            "birthdate"=>"required|date"
         ];
     }
     public function messages(){
@@ -40,6 +39,7 @@ class UserRegisterChecker extends FormRequest
             "email.email"=>"Valid email kötelező",
             "password.required"=>"Jelszó kötelező",
             "password.min"=>"Jelszó túl rövid",
+            "birthdate.required"=>"Születési dátum kötelező"
 
         ];
     }

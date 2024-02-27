@@ -11,8 +11,8 @@ export class SignupComponent {
   email:any
   name:any
   password:any
-  birthDate:any
+  birthdate:Date = new Date()
   signUp(){
-    this.auth.createUser(this.email,this.name,this.password,this.birthDate);
+    this.auth.createUser(this.email,this.name,this.password,this.birthdate);
   }
 }

@@ -26,8 +26,7 @@ class UserChecker extends FormRequest
         return [
             "name"=>"required|max:30",
             "email"=>"required|email",
-            //"profilepicture"=>"required",
-            "birthdate"=>"required"
+            "birthdate"=>"required|date"
         ];
     }
     public function messages(){
@@ -36,11 +35,11 @@ class UserChecker extends FormRequest
             "name.max"=>"nemlehet 30 karakternél hoszab",
             "email.required"=>"email elvárt",
             "email.email"=>"nem email formatum",
-            //"profilepicture.required"=>"profilkép elvárt",
-            "birthdate.required"=>"szuletési datum kötelezö"
+            "birthdate.required"=>"szuletési datum kötelezö",
+            "birthdate.date"=>"szuletési datum kötelezö dátum formátumban"
         ];
     }
-    
+
     public function failedValidation(Validator $validator){
         throw new HttpResponseException(response()->json([
             "success"=>false,
