@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId("user_id");
             $table->foreignId("fishingplace_id");
-            $table->dateTime("reservationStart");
-            $table->dateTime("reservationEnd");
-            $table->tinyInteger("actualRate");
+            $table->date("reservationStart");
+            $table->date("reservationEnd");
+            //$table->tinyInteger("actualRate");
             $table->timestamps();
         });
     }

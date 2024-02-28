@@ -3,15 +3,15 @@
     <form action="/action_page.php">
         <div class="mb-3">
             <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
-            <input type="text" class="form-control" readonly [(ngModel)]="this.id" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" readonly [(ngModel)]="this.fishingplace_id" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="mb-3">
             <label for="startDate" class="form-label">Lefoglalni kívánt időszak kezdete</label>
-            <input type="date" class="form-control">
+            <input type="date" [(ngModel)]="this.startDate"class="form-control"[ngModelOptions]="{standalone: true}">
         </div>
         <div class="mb-3">
             <label for="endDate" class="form-label">Lefoglalni kívánt időszak vége</label>
-            <input type="date" class="form-control">
+            <input type="date" [(ngModel)]="this.endDate" class="form-control"[ngModelOptions]="{standalone: true}">
         </div>
         <div class="mb-3">
             <label for="participants" class="form-label">Érkező vendégek száma</label>
@@ -19,7 +19,7 @@
         </div>
     </form>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success mb-3">Elküldöm</button>
+        <button type="button" class="btn btn-success mb-3" (click)="sendReservation()">Elküldöm</button>
     </div>
 </div>
 <ng-template class="container" #reserved>

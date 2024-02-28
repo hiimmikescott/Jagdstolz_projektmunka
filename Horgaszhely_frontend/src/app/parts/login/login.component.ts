@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit{
       const loginObj= {
         email,password
       }
-      return this.http.post(`${this.url}/userlogin`,loginObj).subscribe((res:any)=>{
+      this.auth.login(loginObj).subscribe((res:any)=>{
         if(res){
-          alert("sikeres bejeletkezés")
           sessionStorage.setItem("token",res.data.token)
+          sessionStorage.setItem("id",res.data.id)
           this.router.navigateByUrl("/home")
         }
         else{
@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit{
         }
       })
     }
-    return alert("Hibás formátum")
+    else{
+      return alert("Hibás formátum")
+    }
   }
 }

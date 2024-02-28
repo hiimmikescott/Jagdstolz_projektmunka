@@ -21,8 +21,13 @@ export class AuthService {
     return this.http.post(`${this.url}/userregister`, userData);
   }
 
+  login(loginObj:any){
+    return this.http.post(`${this.url}/userlogin`,loginObj)
+  }
+
   logout(token:string){
     const headers = new HttpHeaders(token)
     this.http.post(`${this.url}/userlogout`,{headers})
   }
+
 }

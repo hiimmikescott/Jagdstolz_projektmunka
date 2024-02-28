@@ -41,6 +41,7 @@ class AuthController extends ResponseController
 
             $success["token"] = $user->createToken($user->name."token")->plainTextToken;
             $success["name"]=$user->name;
+            $success["id"]=$user->id;
             return $this->sendResponse($success,"Sikeres bejelentkezés");
         }
         else{

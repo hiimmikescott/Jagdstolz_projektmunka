@@ -31,7 +31,7 @@ class ReservationController extends ResponseController
         if(is_null($reservation)){
             return $this->sendError("nincs ilyen foglalás");
         }
-            
+
         //---{  success  }-------------
 
         return  $this->sendResponse($reservation,"egy  foglalás");
@@ -49,10 +49,10 @@ class ReservationController extends ResponseController
         $reservation-> fishingplace_id=$input["fishingplace_id"];
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
-        $reservation-> actualRate=$input["actualRate"];
-  
+        //$reservation-> actualRate=$input["actualRate"];
+
         //---{  success  }-------------
-        
+
         $reservation->save();
 
         return  $this->sendResponse($reservation,"foglalás hozáadva");
@@ -67,23 +67,23 @@ class ReservationController extends ResponseController
         $id = $input["id"];
 
         $reservation = Reservation::where("id",$id)->first();
-       
+
         //---{  error 1 }---------------
-        
+
         if(is_null($reservation)){
             return $this->sendError("nincs ilyen foglalás");
         }
-        
+
         //---{  success  }-------------
-        
+
         $reservation-> user_id=$input["user_id"];
         $reservation-> fishingplace_id=$input["fishingplace_id"];
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
-        $reservation-> actualRate=$input["actualRate"];
-            
+        //$reservation-> actualRate=$input["actualRate"];
+
         $reservation->save();
-            
+
         return  $this->sendResponse($reservation,"foglalás modositva");
 
     }
@@ -95,17 +95,17 @@ class ReservationController extends ResponseController
         $id = $input["id"];
 
         $reservation = Reservation::find($id);
-        
+
         //---{  error  }---------------
-        
+
         if(is_null($reservation)){
             return $this->sendError("nincs ilyen foglalás");
         }
-        
+
         //---{  success  }-------------
-        
+
         $reservation->delete();
-        
+
         return  $this->sendResponse($reservation,"foglalás törölve");
 
     }

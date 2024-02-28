@@ -31,6 +31,7 @@ export class NavComponent {
     if(token){
       this.auth.logout(token)
       sessionStorage.removeItem("token")
+      sessionStorage.removeItem("id")
       this.router.navigateByUrl("/home")
     }
     else{
