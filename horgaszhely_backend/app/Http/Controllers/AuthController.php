@@ -47,13 +47,11 @@ class AuthController extends ResponseController
             return $this->sendError("Adatbeviteli hiba",["Hibás email vagy jelszó"],401);
         }
     }
-    public function userLogout(Request $request){
-        try {
-            auth("sanctum")->user()->currentAccessToken()->delete();
-            return $this->sendResponse("Sikeres kijelentkezés", []);
-        } catch (\Exception $e) {
-            return $this->sendError("Hiba történt a kijelentkezés közben.", [], 500);
-        }
+    public function userLogout(Request $request) {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
 }
