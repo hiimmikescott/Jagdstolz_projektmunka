@@ -23,7 +23,7 @@ export class LoginModalComponent {
         const path = window.location.pathname;
         this.router.navigate(['/home']);
         this.auth.loggedIn=true
-        this.auth.setCookie('userToken', loginResponse.token, 7, domain, path);
+        this.auth.setCookie('userToken', loginResponse.data.token, 7, domain, path);
         console.log(loginResponse)
       },
       error:(loginError) => {
