@@ -36,9 +36,14 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    const headers = {
+      Authorization: `Bearer ${this.getCookieValue('auth_token')}`
+    };
+
     this.cookieService.delete('auth_token');
     this.loggedIn = false;
-    return this.http.post(`${this.url}/userlogout`, {});
+
+    return this.http.post('/userlogout', {}, { headers });
   }
 
   isLoggedIn() {
