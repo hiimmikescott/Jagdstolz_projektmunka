@@ -12,7 +12,7 @@ export class AuthService {
   private userToken: string | null = null;
 
   constructor(private http: HttpClient) {
-    const storedToken = this.getCookie('userToken');
+    const storedToken = this.getCookieValue('userToken');
     if (storedToken) {
       this.loggedIn = true;
     }
@@ -36,23 +36,19 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    if (this.loggedIn && this.userToken) {
-      const options = {
-        headers: {
-          Authorization: `Bearer ${this.userToken}`
-        }
-      };
+    const token = this.getCookieValue('token');
 
-      return this.http.post(`${this.url}/userlogout`, {}, options).pipe(
-        tap(() => {
-          this.deleteCookie('userToken');
-          this.clearUserData();
-        })
-      );
-    } else {
-      console.warn('User is not logged in. Unable to logout.');
-      return new Observable();
+    if (!token) {
+      console.error('Token not found in cookies.');
     }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.deleteCookie('token');
+
+    return this.http.post<any>(`${this.url}/userlogout`, {}, { headers });
   }
 
   isLoggedIn() {
@@ -73,15 +69,24 @@ export class AuthService {
     document.cookie = `${name}=${value};${expires}${domainString}${pathString}`;
   }
 
-  private getCookie(name: string): string | null {
-    const cookieValue = document.cookie
-      .split('; ')
-      .find(row => row.startsWith(name + '='))
-      ?.split('=')[1];
-    return cookieValue || null;
+  private getCookieValue(cookieName: string): string {
+    const name = `${cookieName}=`;
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(';');
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      let cookie = cookieArray[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length);
+      }
+    }
+    return '';
   }
 
-  private deleteCookie(name: string): void {
-    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+  private deleteCookie(cookieName: string): void {
+    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   }
 }
