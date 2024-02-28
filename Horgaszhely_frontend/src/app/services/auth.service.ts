@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private url = "http://127.0.0.1:8000/api";
   loggedIn: boolean = false;
+  private userToken: string | null = null;
 
   constructor(private http: HttpClient) {
     const storedToken = this.getCookie('userToken');
@@ -34,10 +35,28 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    this.deleteCookie('userToken');
+  logout() {
+    if (this.loggedIn && this.userToken) {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${this.userToken}`
+        }
+      };
+
+      return this.http.post(`${this.url}/userlogout`, {}, options);
+    } else {
+      console.warn('User is not logged in. Unable to logout.');
+      return console.log("nem fasza");
+    }
+  }
+
+  isLoggedIn() {
+    return this.loggedIn;
+  }
+
+  clearUserData(): void {
+    this.userToken = null;
     this.loggedIn = false;
-    return this.http.post(`${this.url}/userlogout`, {});
   }
 
   setCookie(name: string, value: string, days: number, domain: string, path: string): void {
