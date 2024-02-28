@@ -16,11 +16,15 @@ export class LoginModalComponent {
     this.activeModal.close();
   }
   login(){
+    
     this.auth.login(this.email, this.password).subscribe(
       (loginResponse) => {
+        const domain = window.location.hostname;
+        const path = window.location.pathname;
+
         this.router.navigate(['/home']);
         this.auth.loggedIn=true
-        this.auth.setCookie('userToken', loginResponse.token, 7, 'yourdomain.com', '/');
+        this.auth.setCookie('userToken', loginResponse.token, 7, domain, path);
       },
       (loginError) => {
         console.error('Login failed after registration', loginError);
