@@ -7,6 +7,7 @@ import { SignupComponent } from './parts/signup/signup.component';
 import { BookMainComponent } from './parts/book-main/book-main.component';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { GalleryComponent } from './parts/gallery/gallery.component';
+import { LoginComponent } from './parts/login/login.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "bookmain", component: BookMainComponent },
   { path: "bookform", component: BookFormComponent },
   { path: "galery", component: GalleryComponent },
+  { path: "login", component: LoginComponent },
 
   { path: " ", component: HomeComponent },
   { path: "**", component: HomeComponent },

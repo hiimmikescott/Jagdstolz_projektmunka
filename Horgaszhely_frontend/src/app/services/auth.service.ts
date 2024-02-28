@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>(null);
   currentUser: Observable<any>;
-  loggedIn: boolean = true;
+  loggedIn: boolean = false;
   private url = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {
@@ -21,13 +21,8 @@ export class AuthService {
     return this.http.post(`${this.url}/userregister`, userData);
   }
 
- login(email:string, password:string){
-    const credentials = {email,password}
-    this.http.post(`${this.url}/userlogin`,credentials).subscribe((res:any)=>{
-      if(res.result){
-        console.log("fasza")
-        localStorage.setItem("loginToken", res.data.token)
-      }
-    })
- }
+  logout(token:string){
+    const headers = new HttpHeaders(token)
+    this.http.post(`${this.url}/userlogout`,{headers})
+  }
 }

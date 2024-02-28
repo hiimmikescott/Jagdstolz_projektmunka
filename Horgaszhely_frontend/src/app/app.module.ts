@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { BookMainComponent } from './parts/book-main/book-main.component';
 import { FooterComponent } from './parts/footer/footer.component';
@@ -16,7 +16,7 @@ import { NavComponent } from './parts/nav/nav.component';
 import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
-import { LoginModalComponent } from './parts/login-modal/login-modal.component';
+import { LoginComponent } from './parts/login/login.component';
 
 
 @NgModule({
@@ -32,7 +32,7 @@ import { LoginModalComponent } from './parts/login-modal/login-modal.component';
     ProfileComponent,
     SignupComponent,
     MapComponent,
-    LoginModalComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +40,7 @@ import { LoginModalComponent } from './parts/login-modal/login-modal.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

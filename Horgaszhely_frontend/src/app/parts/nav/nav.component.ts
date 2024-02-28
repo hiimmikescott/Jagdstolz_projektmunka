@@ -1,8 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,19 +11,31 @@ import { Router } from '@angular/router';
 export class NavComponent {
   @ViewChild('loginModal') loginModal!: ElementRef;
   close = true
-  logged = false
   open(){
     this.close =!this.close
   }
-  constructor(private modalService: NgbModal, public auth: AuthService, private router:Router) {
+  constructor(private modalService: NgbModal, private router:Router, protected auth:AuthService) {
   }
 
-  openLoginModal() {
-    const modalRef = this.modalService.open(LoginModalComponent, { centered: true });
+  loggedin(){
+    let token = sessionStorage.getItem("token");
+    if(token){
+      return true
+    }
+    else{
+      return false
+    }
   }
-
-  logout() {
-    // this.auth.logout()
+  logout(){
+    const token = sessionStorage.getItem("token");
+    if(token){
+      this.auth.logout(token)
+      sessionStorage.removeItem("token")
+      this.router.navigateByUrl("/home")
+    }
+    else{
+      alert("már ki vagy jelenkezve")
+    }
   }
 }
 
