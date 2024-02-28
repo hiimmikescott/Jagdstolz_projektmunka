@@ -35,7 +35,7 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(): Observable<any> {
     if (this.loggedIn && this.userToken) {
       const options = {
         headers: {
@@ -46,7 +46,7 @@ export class AuthService {
       return this.http.post(`${this.url}/userlogout`, {}, options);
     } else {
       console.warn('User is not logged in. Unable to logout.');
-      return console.log("nem fasza");
+      return new Observable();
     }
   }
 

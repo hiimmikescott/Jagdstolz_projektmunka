@@ -23,16 +23,14 @@ export class NavComponent {
     const modalRef = this.modalService.open(LoginModalComponent, { centered: true });
   }
 
-  logout(){
-    const logoutSubscription = this.auth.logout();
-    this.auth.loggedIn=false
-
-    logoutSubscription.subscribe(
+  logout() {
+    this.auth.logout().subscribe(
       {
         next: () => {
+          this.auth.loggedIn = false;
           this.router.navigate(['/login']);
         },
-        error: (error) => {
+        error: (error:any) => {
           console.error('Logout failed', error);
         }
       }
