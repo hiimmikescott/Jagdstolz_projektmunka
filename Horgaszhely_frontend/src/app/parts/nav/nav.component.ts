@@ -24,17 +24,7 @@ export class NavComponent {
   }
 
   logout() {
-    this.auth.logout().subscribe(
-      {
-        next: () => {
-          this.auth.loggedIn = false;
-          this.router.navigate(['/login']);
-        },
-        error: (error:any) => {
-          console.error('Logout failed', error);
-        }
-      }
-    );
+    // this.auth.logout()
   }
 }
 

@@ -18,6 +18,7 @@ import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
 import { LoginModalComponent } from './parts/login-modal/login-modal.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,4 +44,6 @@ import { LoginModalComponent } from './parts/login-modal/login-modal.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

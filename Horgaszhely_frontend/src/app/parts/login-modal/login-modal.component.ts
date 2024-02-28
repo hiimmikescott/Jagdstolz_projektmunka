@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { catchError, tap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-modal',
@@ -9,31 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent {
-  constructor(public activeModal: NgbActiveModal, private auth: AuthService, private router: Router) {}
-
-  email: any;
-  password: any;
-
+  constructor(public activeModal: NgbActiveModal, private http: HttpClient, private router: Router) {}
+  url="http://127.0.0.1:8000/api"
+  loginObj:any ={
+    "email":"",
+    "password":""
+  }
   submitForm() {
     this.activeModal.close();
   }
 
-  login() {
-    this.auth.login(this.email, this.password).subscribe(
-      {
-        next: (loginResponse: any) => {
-          const domain = window.location.hostname;
-          const path = window.location.pathname;
-          this.router.navigate(['/home']);
-          this.auth.loggedIn = true;
-          this.auth.clearUserData();
-          this.auth.cookieService.set('auth_token', loginResponse.data.token, 7, domain, path);
-          console.log(loginResponse);
-        },
-        error: (loginError) => {
-          console.error('Login failed after registration', loginError);
-        }
+  login(){
+    this.http.post(`${this.url}/userlogin`,this.loginObj).subscribe((res:any)=>{
+      if(res.result){
+        console.log("fasza: "+res)
+        localStorage.setItem("loginToken", res.data.token)
       }
-    );
-  }
+      console.log("nem fasza")
+    })
+ }
 }

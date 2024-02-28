@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="nav">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/rolunk" id="active">Dány Horgásztelep</a>
@@ -17,7 +16,8 @@
       </ul>
     </div>
   </div>
-  <button type="button" class="btn btn-success me-3" routerLink="/signup" *ngIf="!auth.loggedIn">Regisztrálás</button>
-  <button type="button" class="btn btn-success me-3" (click)="openLoginModal()" *ngIf="!auth.loggedIn">Bejelentkezés</button>
+  <button type="button" class="btn btn-success me-3" routerLink="/signup" *ngIf="auth.loggedIn">Regisztrálás</button>
+  <button type="button" class="btn btn-success me-3" (click)="openLoginModal()"
+    *ngIf="auth.loggedIn">Bejelentkezés</button>
   <button type="button" class="btn btn-success me-3" (click)="logout()" *ngIf="auth.loggedIn">Kijelentkezés</button>
-
+</nav>

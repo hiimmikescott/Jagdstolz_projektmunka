@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private currentUserSubject = new BehaviorSubject<any>(null);
+  currentUser: Observable<any>;
+  loggedIn: boolean = true;
   private url = "http://127.0.0.1:8000/api";
-  loggedIn: boolean = false;
 
-  constructor(private http: HttpClient, public cookieService: CookieService) {
-    this.loggedIn = this.cookieService.check('auth_token');
+  constructor(private http: HttpClient) {
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   createUser(email: string, name: string, password: string, birthdate: Date): Observable<any> {
@@ -20,54 +21,13 @@ export class AuthService {
     return this.http.post(`${this.url}/userregister`, userData);
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.url}/userlogin`, { username, password }).pipe(
-      map((response: any) => {
-        const token = response.token;
-        this.cookieService.set('auth_token', token);
-        this.loggedIn = true;
-        return response;
-      }),
-      catchError((error: any) => {
-        console.error('Login failed', error);
-        return throwError(error);
-      })
-    );
-  }
-
-  logout(): Observable<any> {
-    const headers = {
-      Authorization: `Bearer ${this.getCookieValue('auth_token')}`
-    };
-
-    this.cookieService.delete('auth_token');
-    this.loggedIn = false;
-
-    return this.http.post('/userlogout', {}, { headers });
-  }
-
-  private getCookieValue(cookieName: string): string {
-    const name = `${cookieName}=`;
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-
-    for (let i = 0; i < cookieArray.length; i++) {
-      let cookie = cookieArray[i];
-      while (cookie.charAt(0) === ' ') {
-        cookie = cookie.substring(1);
+ login(email:string, password:string){
+    const credentials = {email,password}
+    this.http.post(`${this.url}/userlogin`,credentials).subscribe((res:any)=>{
+      if(res.result){
+        console.log("fasza")
+        localStorage.setItem("loginToken", res.data.token)
       }
-      if (cookie.indexOf(name) === 0) {
-        return cookie.substring(name.length, cookie.length);
-      }
-    }
-    return '';
-  }
-
-  isLoggedIn() {
-    return this.loggedIn;
-  }
-
-  clearUserData(): void {
-    this.loggedIn = false;
-  }
+    })
+ }
 }
