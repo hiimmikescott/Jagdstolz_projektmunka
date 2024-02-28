@@ -17,6 +17,7 @@ const reservable = L.icon({
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { FishingSpotService, Fishingspot } from '../../services/fishing-spot.service';
+import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -30,26 +31,36 @@ export class MapComponent implements OnInit {
   markers: CustomMarker[] = [];
   selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService) { }
+  constructor(private fishingSpotService: FishingSpotService, private router: Router) { }
 
   ngOnInit() {
-    this.fishingSpotService.getFishingSpots().subscribe(
-      (response) => {
+    this.fishingSpotService.getFishingSpots().subscribe({
+      next: (response) => {
         const fishingSpots = response.data;
 
         this.markers = fishingSpots.map(
           (spot: any) => new CustomMarker([spot.latitude, spot.longitude], { spot, icon: reservable })
         );
-
         this.initializeMap();
         this.addMarkers();
         this.centerMap();
-
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching fishing spots:', error);
-      }
-    );
+      },
+    });
+  }
+
+  redirectToBookForm() {
+    this.router.navigate(['/bookform'], { state: { spot: this.selectedSpot } });
+  }
+
+  closeModal() {
+    const modal = document.getElementById('customModal');
+    if (modal) {
+      const bootstrapModal = new bootstrap.Modal(modal);
+      bootstrapModal.dispose();
+    }
   }
 
   private initializeMap() {
@@ -68,8 +79,11 @@ export class MapComponent implements OnInit {
       marker.on('click', () => {
         this.selectedSpot = marker.spot;
         console.log('Marker clicked. Spot:', this.selectedSpot);
-        this.openCustomModal();
-        marker.openPopup();
+        const modal = document.getElementById('customModal');
+        if (modal) {
+          const bootstrapModal = new bootstrap.Modal(modal);
+          bootstrapModal.show();
+        }
       });
     });
   }
@@ -79,50 +93,7 @@ export class MapComponent implements OnInit {
     this.map.fitBounds(bounds);
   }
 
-  private openCustomModal() {
-    if (this.selectedSpot) {
-      const modalTitle = document.getElementById('customModalLabel');
-      const modalBody = document.querySelector('.modal-body');
-
-      if (modalTitle && modalBody) {
-        modalTitle.textContent = this.selectedSpot.id.toString()+". számú hely";
-
-        modalBody.innerHTML = `
-          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              ${this.selectedSpot.images
-            ?.map((image, index) => `
-                  <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="../../../assets/images/${image}" class="d-block w-100" alt="Kép ${index + 1}" style="height: 400px; width: 800px;">
-                  </div>
-                `)
-            .join('')}
-            </div>
-            <a class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-            <a class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only"></span>
-            </a>
-          </div>
-          <ul>
-            <li>Stég: ${this.trueOrFalse(this.selectedSpot.pier)}</li>
-            <li>Tűzrakóhely: ${this.trueOrFalse(this.selectedSpot.firepit)}</li>
-            <li>Beálló: ${this.trueOrFalse(this.selectedSpot.shelter)}</li>
-            <li>Leírás: ${this.selectedSpot.description}</li>
-            <li>Értékelés: ${this.selectedSpot.averageRating}</li>
-          </ul>
-        `;
-      }
-
-      const modal = new bootstrap.Modal(document.getElementById('customModal')!);
-      modal.show();
-    }
-  }
-
-  private trueOrFalse(data:boolean){
+  protected trueOrFalse(data:boolean|undefined){
     if(data==true){
       return "Van"
     }

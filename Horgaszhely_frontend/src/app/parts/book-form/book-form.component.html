@@ -1,16 +1,28 @@
-<div class="container">
+<div class="container" *ngIf="reservable; else reserved" >
     <img src="../../../assets/images/o_o.jpg" class="img-fluid mb-3" alt="Kép a lefoglalni kívánt helyről">
     <form action="/action_page.php">
         <div class="mb-3">
-            <label for="birthDate" class="form-label">Lefoglalni kívánt nap</label>
+            <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="this.id" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Lefoglalni kívánt időszak kezdete</label>
             <input type="date" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="fishers" class="form-label">Érkező vendégek száma</label>
+            <label for="endDate" class="form-label">Lefoglalni kívánt időszak vége</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="participants" class="form-label">Érkező vendégek száma</label>
             <input type="number" class="form-control" >
         </div>
     </form>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success mb-3" routerLink="/signup">Elküldöm</button>
+        <button type="button" class="btn btn-success mb-3">Elküldöm</button>
     </div>
 </div>
+<ng-template class="container" #reserved>
+  <h1>A hely az Ön által választott időszakban már le van foglalva, kérjük válasszon másikat.</h1>
+  <button type="button" class="btn btn-success mb-3" routerLink="/bookmain">Vissza a térképre</button>
+</ng-template>

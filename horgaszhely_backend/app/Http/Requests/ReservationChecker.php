@@ -28,7 +28,7 @@ class ReservationChecker extends FormRequest
         "fishingplace_id"=>"required",
         "reservationStart"=>"required",
         "reservationEnd"=>"required",
-        "actualRate"=>"required|min:1|max:5",
+        //"actualRate"=>"required|min:1|max:5",
         ];
     }
     public function messages(){
@@ -37,9 +37,9 @@ class ReservationChecker extends FormRequest
         "fishingplace_id.required"=>"elvárt mezö",
         "reservationStart.required"=>"elvárt mezö",
         "reservationEnd.required"=>"elvárt mezö",
-        "actualRate.required"=>"elvárt mezö",
-        "actualRate.min"=>"az erték min 1",
-        "actualRate.max"=>"az érték max 5"
+        // "actualRate.required"=>"elvárt mezö",
+        // "actualRate.min"=>"az erték min 1",
+        // "actualRate.max"=>"az érték max 5"
 
         ];
     }

@@ -1,19 +1,18 @@
 <div id="map"></div>
 
-<div id="customModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="customModalLabel"
-  aria-hidden="true">
+<div id="customModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="customModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="customModalLabel">Részletek a választott helyről</h5>
+        <h5 class="modal-title" id="customModalLabel">{{ selectedSpot?.id }}. számú hely</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item" *ngFor="let image of selectedSpot?.images; let first = first; let i = index"
-              [class.active]="first">
-              <img id="slideImage" [src]="image" class="d-block w-100" alt="Kép {{ i }}">
+                 [class.active]="first">
+              <img id="slideImage" [src]="'../../../assets/images/' + image" class="d-block w-100" alt="Kép {{ i }}">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
@@ -25,15 +24,18 @@
             <span class="visually-hidden"></span>
           </button>
           <ul>
-            <li>Stég: {{ selectedSpot?.pier }}</li>
-            <li>Tűzrakóhely: {{ selectedSpot?.firepit }}</li>
-            <li>Beálló: {{ selectedSpot?.shelter }}</li>
+            <li>Stég: {{ trueOrFalse(selectedSpot?.pier) }}</li>
+            <li>Tűzrakóhely: {{ trueOrFalse(selectedSpot?.firepit) }}</li>
+            <li>Beálló: {{ trueOrFalse(selectedSpot?.shelter) }}</li>
+            <li>Leírás: {{ selectedSpot?.description }}</li>
             <li>Értékelés: {{ selectedSpot?.averageRating }}</li>
           </ul>
         </div>
-        <div class="modal-footer">
-          <button type="button" class=" btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Bezárás</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="redirectToBookForm()" data-bs-dismiss="modal">Book Now</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
