@@ -18,7 +18,7 @@ export class LoginModalComponent {
   login(){
     
     this.auth.login(this.email, this.password).subscribe(
-      (loginResponse) => {
+{      next:(loginResponse:any) => {
         const domain = window.location.hostname;
         const path = window.location.pathname;
 
@@ -26,9 +26,9 @@ export class LoginModalComponent {
         this.auth.loggedIn=true
         this.auth.setCookie('userToken', loginResponse.token, 7, domain, path);
       },
-      (loginError) => {
+      error:(loginError) => {
         console.error('Login failed after registration', loginError);
-      }
+      }}
     );
   }
 }
