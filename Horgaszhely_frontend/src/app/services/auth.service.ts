@@ -43,7 +43,12 @@ export class AuthService {
         }
       };
 
-      return this.http.post(`${this.url}/userlogout`, {}, options);
+      return this.http.post(`${this.url}/userlogout`, {}, options).pipe(
+        tap(() => {
+          this.deleteCookie('userToken');
+          this.clearUserData();
+        })
+      );
     } else {
       console.warn('User is not logged in. Unable to logout.');
       return new Observable();
