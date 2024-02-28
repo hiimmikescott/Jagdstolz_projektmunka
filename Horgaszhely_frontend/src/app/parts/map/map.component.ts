@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.fishingSpotService.getFishingSpots().subscribe(
       (response) => {
-        const fishingSpots = response.data; // Assuming the fishing spots are under the 'data' key
+        const fishingSpots = response.data;
 
         this.markers = fishingSpots.map(
           (spot: any) => new CustomMarker([spot.latitude, spot.longitude], { spot, icon: reservable })
@@ -44,7 +44,7 @@ export class MapComponent implements OnInit {
         this.initializeMap();
         this.addMarkers();
         this.centerMap();
-        //console.log(response)
+
       },
       (error) => {
         console.error('Error fetching fishing spots:', error);
