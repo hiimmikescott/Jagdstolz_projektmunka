@@ -40,7 +40,7 @@ export class AuthService {
     return this.http.post(`${this.url}/userlogout`, {});
   }
 
-  private setCookie(name: string, value: string, days: number, domain: string, path: string): void {
+  setCookie(name: string, value: string, days: number, domain: string, path: string): void {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = `expires=${date.toUTCString()}`;

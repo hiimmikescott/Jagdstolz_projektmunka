@@ -20,6 +20,7 @@ export class LoginModalComponent {
       (loginResponse) => {
         this.router.navigate(['/home']);
         this.auth.loggedIn=true
+        this.auth.setCookie('userToken', loginResponse.token, 7, 'yourdomain.com', '/');
       },
       (loginError) => {
         console.error('Login failed after registration', loginError);
