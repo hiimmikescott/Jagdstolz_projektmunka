@@ -11,7 +11,7 @@ export class AuthService {
   private url = "http://127.0.0.1:8000/api";
   loggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(private http: HttpClient, public cookieService: CookieService) {
     this.loggedIn = this.cookieService.check('auth_token');
   }
 
