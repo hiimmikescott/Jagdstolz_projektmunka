@@ -32,17 +32,3 @@ export class LoginModalComponent {
     );
   }
 }
-
-{success: true, data: {…}, message: 'Sikeres bejelentkezés'}
-data
-: 
-{token: '9|ZXVzzfyIIV7OofyQL8OC2vO0YLozswMJPfw8SPQP9f7f6d72', name: 'Vitovszki Tamás'}
-message
-: 
-"Sikeres bejelentkezés"
-success
-: 
-true
-[[Prototype]]
-: 
-Object
