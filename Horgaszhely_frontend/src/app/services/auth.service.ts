@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,8 @@ export class AuthService {
   loggedIn: boolean = false;
   private userToken: string | null = null;
 
-  constructor(private http: HttpClient) {
-    const storedToken = this.getCookieValue('userToken');
-    if (storedToken) {
-      this.loggedIn = true;
-    }
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.loggedIn = this.cookieService.check('auth_token')
   }
 
   createUser(email: string, name: string, password: string, birthdate: Date): Observable<any> {
@@ -23,32 +20,20 @@ export class AuthService {
     return this.http.post(`${this.url}/userregister`, userData);
   }
 
-  login(email: string, password: string): Observable<any> {
-    const loginData = { email, password };
-    return this.http.post(`${this.url}/userlogin`, loginData).pipe(
-      tap((response: any) => {
-        if (response.token) {
-          this.setCookie('userToken', response.token, 7, 'yourdomain.com', '/'); // Adjust domain and path accordingly
-          this.loggedIn = true;
-        }
-      })
-    );
+  login(username: string, password: string): Observable<any> {
+    // Your login logic
+    // After successful login, set cookie
+    this.cookieService.set('auth_token', 'your_token_value');
+    this.loggedIn = true;
+    return this.http.post(`${this.url}/userlogin`, loginData)
   }
 
   logout(): Observable<any> {
-    const token = this.getCookieValue('token');
-
-    if (!token) {
-      console.error('Token not found in cookies.');
-    }
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.deleteCookie('token');
-
-    return this.http.post<any>(`${this.url}/userlogout`, {}, { headers });
+    // Your logout logic
+    // Remove the cookie and update loggedIn state
+    this.cookieService.delete('auth_token');
+    this.loggedIn = false;
+    return this.http.post('/api/logout', {}); // Logout API endpoint
   }
 
   isLoggedIn() {
