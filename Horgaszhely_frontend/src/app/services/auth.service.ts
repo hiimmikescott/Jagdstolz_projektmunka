@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, finalize } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-import { map } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = "http://127.0.0.1:8000/api";
+  private url = "http://127.0.0.1:8000/api";
   loggedIn: boolean = false;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
@@ -17,34 +17,35 @@ export class AuthService {
 
   createUser(email: string, name: string, password: string, birthdate: Date): Observable<any> {
     const userData = { email, name, password, birthdate };
-    return this.http.post(`${this.apiUrl}/userregister`, userData);
+    return this.http.post(`${this.url}/userregister`, userData);
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/userlogin`, { username, password })
-      .pipe(
-        map((response: any) => {
-          const authToken = response.token;
-          this.cookieService.set('auth_token', authToken);
-          this.loggedIn = true;
-          return response;
-        })
-      );
+    return this.http.post(`${this.url}/userlogin`, { username, password }).pipe(
+      map((response: any) => {
+        const token = response.token;
+        this.cookieService.set('auth_token', token);
+        this.loggedIn = true;
+        return response;
+      }),
+      catchError((error: any) => {
+        console.error('Login failed', error);
+        return throwError(error);
+      })
+    );
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/userlogout`, {})
-      .pipe(
-        finalize(() => {
-          this.cookieService.delete('auth_token');
-          this.loggedIn = false;
-        })
-      );
+    this.cookieService.delete('auth_token');
+    this.loggedIn = false;
+    return this.http.post(`${this.url}/userlogout`, {});
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn() {
     return this.loggedIn;
   }
+
+  clearUserData(): void {
+    this.loggedIn = false;
+  }
 }
-Argument of type 'unknown[]' is not assignable to parameter of type 'OperatorFunction<Object, any>'.
-  Type 'unknown[]' provides no match for the signature '(source: Observable<Object>): Observable<any>'.
