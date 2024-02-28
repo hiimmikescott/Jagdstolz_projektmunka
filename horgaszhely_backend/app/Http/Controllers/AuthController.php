@@ -48,11 +48,12 @@ class AuthController extends ResponseController
         }
     }
     public function userLogout(Request $request){
-
-        //---{  user logout  }----------------------------------------------------------
-
-        auth( "sanctum" )->user()->currentAccessToken()->delete();
-        return $this->sendResponse("Sikeres kijelentkezés",[]);
+        try {
+            auth("sanctum")->user()->currentAccessToken()->delete();
+            return $this->sendResponse("Sikeres kijelentkezés", []);
+        } catch (\Exception $e) {
+            return $this->sendError("Hiba történt a kijelentkezés közben.", [], 500);
+        }
     }
 
 }
