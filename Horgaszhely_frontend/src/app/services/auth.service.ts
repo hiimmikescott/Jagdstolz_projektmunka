@@ -46,3 +46,5 @@ export class AuthService {
     return this.loggedIn;
   }
 }
+Argument of type 'unknown[]' is not assignable to parameter of type 'OperatorFunction<Object, any>'.
+  Type 'unknown[]' provides no match for the signature '(source: Observable<Object>): Observable<any>'.
