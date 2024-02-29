@@ -1,19 +1,22 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" formControlName="email" class="form-control" required>
-    <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger">
-      Nem megfelelő email formátum
+<div class="container">
+  <form [formGroup]="loginForm " (ngSubmit)="onSubmit()">
+    <div class="form-group m-3">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control" required>
+      <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger">
+        Nem megfelelő email formátum
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="password">Jelszó:</label>
-    <input type="password" id="password" formControlName="password" class="form-control" required>
-    <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="text-danger">
-      Jelszó kötelező
+    <div class="form-group m-3">
+      <label for="password">Jelszó:</label>
+      <input type="password" id="password" formControlName="password" class="form-control" required>
+      <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+        class="text-danger">
+        Jelszó kötelező
+      </div>
     </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>
+    <button type="submit" class="btn btn-primary m-3">Bejelentkezek</button>
+    
+  </form>
+</div>

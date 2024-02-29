@@ -52,7 +52,13 @@ export class MapComponent implements OnInit {
   }
 
   redirectToBookForm() {
-    this.router.navigate(['/bookform'], { state: { spot: this.selectedSpot } });
+    if(sessionStorage.getItem("token")){
+      this.router.navigate(['/bookform'], { state: { spot: this.selectedSpot } });
+    }
+    else{
+      alert("Kérjük jelenkezzen be a foglaláshoz.")
+      this.router.navigateByUrl("/login")
+    }
   }
 
   closeModal() {
