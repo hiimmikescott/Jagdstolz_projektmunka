@@ -1,6 +1,6 @@
 <div class="container" *ngIf="reservable; else reserved" >
-    <img src="../../../assets/images/o_o.jpg" class="img-fluid mb-3" alt="Kép a lefoglalni kívánt helyről">
-    <form action="/action_page.php">
+    <img src="../../../assets/images/o_o.jpg" class="mb-3" alt="Kép a lefoglalni kívánt helyről">
+    <form>
         <div class="mb-3">
             <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
             <input type="text" class="form-control" readonly [(ngModel)]="this.fishingplace_id" [ngModelOptions]="{standalone: true}">

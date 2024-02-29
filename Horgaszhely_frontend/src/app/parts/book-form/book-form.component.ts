@@ -11,11 +11,14 @@ export class BookFormComponent {
   reservable:boolean = true
   fishingplace_id:any
   private user_id = sessionStorage.getItem("id")
-  startDate: any
+  startDate: any 
   endDate:any
   constructor(private route: ActivatedRoute, private base:BaseService) { }
 
   ngOnInit() {
+    this.startDate= new Date().toISOString().slice(0, 10)
+    let date1 = new Date();
+    this.endDate=new Date(date1.setDate(date1.getDate()+1)).toISOString().slice(0, 10)
     this.route.paramMap.subscribe((params) => {
       const spot = history.state.spot;
       this.fishingplace_id=spot.id
