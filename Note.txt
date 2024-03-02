@@ -1,2 +1,0 @@
-jelszó confirmation mint a drink_restapis szarban
-reservationhoz keruljon be az erkezo emberek szama is pls

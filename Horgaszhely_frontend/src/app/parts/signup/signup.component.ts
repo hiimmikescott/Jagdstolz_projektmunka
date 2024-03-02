@@ -12,9 +12,10 @@ export class SignupComponent {
   email: any
   name: any
   password: any
+  confirm_password:any
   birthdate: Date = new Date()
   signUp() {
-    this.auth.createUser(this.email, this.name, this.password, this.birthdate).subscribe(
+    this.auth.createUser(this.email, this.name, this.password, this.birthdate,this.confirm_password).subscribe(
       (response: any) => {
         console.log(response);
         const email = this.email;
