@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rules\Password;
 
 
 class UserRegisterChecker extends FormRequest
@@ -25,20 +26,30 @@ class UserRegisterChecker extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>"required|max:20",
-            "email"=>"required|email",
-            "password"=>"required|min:6",
+            "name"=>"required|max:20|unique:users",
+            "email"=>[
+                "required",
+                "regex:/(.+)@(.+)\.(.+)/i",
+                "unique:users",
+            ],
+            "password"=>["required",Password::min(6)->letters()->mixedCase()->numbers()->symbols(),"confirmed"],
+            "password_confirmation"=>["required"],
             "birthdate"=>"required|date"
         ];
     }
     public function messages(){
         return[
-            "name.required"=>"Név kötelező",
-            "name.max"=>"Név túl hosszú",
-            "email.required"=>"Email kötelező",
-            "email.email"=>"Valid email kötelező",
-            "password.required"=>"Jelszó kötelező",
-            "password.min"=>"Jelszó túl rövid",
+            "name.required" => "Név elvárt",
+            "name.max"=> "Túl hosszú név",
+            "email.required"=> "Email elvárt",
+            "email.email"=> "Invalid email cím",
+            "password.required" => "Jelszó elvárt",
+            "password.min" => "Túl rövid a jelszó",
+            "password.letters"=>"legyenek betűk",
+            "password.mixed"=>"mixed case",
+            "password.symbols"=>"Különleges karakter kell",
+            "confirm_password.required"=>"Hiányzó jelszó megerősítés",
+            "password_confirmation.required" => "Nem egyező jelszó",
             "birthdate.required"=>"Születési dátum kötelező"
 
         ];
