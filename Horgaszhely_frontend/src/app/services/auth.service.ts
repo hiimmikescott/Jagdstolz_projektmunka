@@ -16,8 +16,9 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  createUser(email: string, name: string, password: string, birthdate: Date,confirm_password:string): Observable<any> {
-    const userData = { email, name, password, birthdate, confirm_password };
+  createUser(email: any, name: any, password: any,password_confirmation:any, birthdate: any ): Observable<any> {
+    const userData = { email, name, password, password_confirmation, birthdate };
+    console.log(userData)
     return this.http.post(`${this.url}/userregister`, userData);
   }
 

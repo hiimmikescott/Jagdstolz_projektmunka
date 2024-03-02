@@ -12,10 +12,11 @@ export class SignupComponent {
   email: any
   name: any
   password: any
-  confirm_password:any
+  password_confirmation:any
   birthdate: Date = new Date()
   signUp() {
-    this.auth.createUser(this.email, this.name, this.password, this.birthdate,this.confirm_password).subscribe(
+    console.log(this.password, this.password_confirmation)
+    this.auth.createUser(this.email, this.name, this.password, this.password_confirmation, this.birthdate).subscribe(
       (response: any) => {
         console.log(response);
         const email = this.email;
@@ -24,6 +25,7 @@ export class SignupComponent {
           email,password
         }
         this.auth.login(loginObj).subscribe((res:any)=>{
+          console.log(res)
           if(res){
             sessionStorage.setItem("token",res.data.token)
             sessionStorage.setItem("id",res.data.id)

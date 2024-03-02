@@ -41,6 +41,6 @@ class UserLoginChecker extends FormRequest
             "message"=>"Adatbeviteli hiba",
             "data"=>$validator->errors()
         ]));
-        
+
     }
 }
