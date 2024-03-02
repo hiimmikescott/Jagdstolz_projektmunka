@@ -50,6 +50,7 @@ class ReservationController extends ResponseController
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
         //$reservation-> actualRate=$input["actualRate"];
+        $reservation-> guestNumber=$input["guestNumber"];
 
         //---{  success  }-------------
 
@@ -81,6 +82,7 @@ class ReservationController extends ResponseController
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
         //$reservation-> actualRate=$input["actualRate"];
+        $reservation-> guestNumber=$input["guestNumber"];
 
         $reservation->save();
 

@@ -15,6 +15,7 @@ class Reservation extends Model
         "reservationStart",
         "reservationEnd",
         //"actualRate"
+        "guestNumber"
     ];
     public function fishingplace(){
         return $this->belongsTo(FishingPlace::class);

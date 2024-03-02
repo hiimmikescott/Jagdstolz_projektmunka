@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date("reservationStart");
             $table->date("reservationEnd");
             //$table->tinyInteger("actualRate");
+            $table->Integer("guestNumber")->default(1);
             $table->timestamps();
         });
     }
