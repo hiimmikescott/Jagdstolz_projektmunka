@@ -14,8 +14,8 @@
             <input type="date" [(ngModel)]="this.endDate" class="form-control"[ngModelOptions]="{standalone: true}">
         </div>
         <div class="mb-3">
-            <label for="participants" class="form-label">Érkező vendégek száma</label>
-            <input type="number" class="form-control" >
+            <label for="guestnumber" class="form-label">Érkező vendégek száma</label>
+            <input type="number" class="form-control" [(ngModel)]="this.guestNumber" [ngModelOptions]="{standalone: true}">
         </div>
     </form>
     <div class="modal-footer">

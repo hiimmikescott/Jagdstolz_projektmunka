@@ -15,9 +15,9 @@ export class BaseService {
   getSpotInfo(id: number): Observable<any> {
     return this.http.get<any>(`${this.url}spots/${id}`);
   }
-  sendReservation(user_id:any,fishingplace_id:any,reservationStart:any,reservationEnd:any){
+  sendReservation(user_id:any,fishingplace_id:any,reservationStart:any,reservationEnd:any,guestNumber:any){
     const reservationData={
-      fishingplace_id,reservationEnd,reservationStart,user_id
+      fishingplace_id,reservationEnd,reservationStart,user_id,guestNumber
     }
     return this.http.post(`${this.url}addreservation`,reservationData)
   }

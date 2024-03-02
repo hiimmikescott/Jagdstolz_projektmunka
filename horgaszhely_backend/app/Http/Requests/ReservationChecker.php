@@ -29,6 +29,7 @@ class ReservationChecker extends FormRequest
         "reservationStart"=>"required",
         "reservationEnd"=>"required",
         //"actualRate"=>"required|min:1|max:5",
+        "guestNumber"=>"required|numeric|between:1,20"
         ];
     }
     public function messages(){
@@ -40,7 +41,9 @@ class ReservationChecker extends FormRequest
         // "actualRate.required"=>"elvárt mezö",
         // "actualRate.min"=>"az erték min 1",
         // "actualRate.max"=>"az érték max 5"
-
+        "guestNumber.numeric"=>"a mezö csak szám lehet",
+        "guestNumber.between:1,20"=>"enyi före nem lehet foglalni",
+        "guestNumber.required"=>"elvárt mezo"
         ];
     }
     public function failedValidation(Validator $validator){
