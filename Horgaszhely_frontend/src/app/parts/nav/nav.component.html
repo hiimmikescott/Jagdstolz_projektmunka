@@ -16,7 +16,7 @@
       </ul>
     </div>
   </div>
-  <button type="button" class="btn btn-success me-3" routerLink="/signup" *ngIf="!loggedin()">Regisztrálás</button>
-  <button type="button" class="btn btn-success me-3" routerLink="/login" *ngIf="!loggedin()">Bejelentkezés</button>
-  <button type="button" class="btn btn-success me-3" (click)="logout()" *ngIf="loggedin()">Kijelentkezés</button>
+  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/signup" *ngIf="!loggedin()">Regisztrálás</button>
+  <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedin()">Bejelentkezés</button>
+  <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedin()">Kijelentkezés</button>
 </nav>

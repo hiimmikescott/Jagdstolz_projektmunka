@@ -18,14 +18,12 @@ export class SignupComponent {
     console.log(this.password, this.password_confirmation)
     this.auth.createUser(this.email, this.name, this.password, this.password_confirmation, this.birthdate).subscribe(
       (response: any) => {
-        console.log(response);
         const email = this.email;
         const password = this.password;
         const loginObj= {
           email,password
         }
         this.auth.login(loginObj).subscribe((res:any)=>{
-          console.log(res)
           if(res){
             sessionStorage.setItem("token",res.data.token)
             sessionStorage.setItem("id",res.data.id)
