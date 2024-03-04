@@ -17,6 +17,8 @@ import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
 import { LoginComponent } from './parts/login/login.component';
+import { MatSnackBar} from '@angular/material/snack-bar';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { LoginComponent } from './parts/login/login.component';
     SignupComponent,
     MapComponent,
     LoginComponent,
+    MatSnackBar,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,9 @@ import { LoginComponent } from './parts/login/login.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

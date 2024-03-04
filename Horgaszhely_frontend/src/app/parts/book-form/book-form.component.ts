@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BaseService } from '../../services/base.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-form',
@@ -14,7 +15,7 @@ export class BookFormComponent {
   startDate: any
   endDate:any
   guestNumber:any
-  constructor(private route: ActivatedRoute, private base:BaseService) { }
+  constructor(private route: ActivatedRoute, private base:BaseService,private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.startDate= new Date().toISOString().slice(0, 10)
