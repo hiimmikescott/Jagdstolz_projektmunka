@@ -1,26 +1,31 @@
-<div class="container" *ngIf="reservable; else reserved" >
+<div class="container" *ngIf="reservable; else reserved">
     <img src="../../../assets/images/o_o.jpg" class="mb-3" alt="Kép a lefoglalni kívánt helyről">
-    <form>
+    <form #reservationForm="ngForm" (ngSubmit)="sendReservation()" novalidate>
         <div class="mb-3">
             <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
-            <input type="text" class="form-control" readonly [(ngModel)]="this.fishingplace_id" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" readonly [(ngModel)]="fishingplace_id" [ngModelOptions]="{ standalone: true }">
         </div>
         <div class="mb-3">
             <label for="startDate" class="form-label">Lefoglalni kívánt időszak kezdete</label>
-            <input type="date" [(ngModel)]="this.startDate"class="form-control"[ngModelOptions]="{standalone: true}">
+            <input type="date" [(ngModel)]="startDate" name="startDate" class="form-control" [ngModelOptions]="{ standalone: true }" required>
+            <small *ngIf="reservationForm.controls['startDate']?.invalid && reservationForm.controls['startDate']?.touched" class="text-danger">Kezdő dátum megadása kötelező</small>
         </div>
+        
         <div class="mb-3">
             <label for="endDate" class="form-label">Lefoglalni kívánt időszak vége</label>
-            <input type="date" [(ngModel)]="this.endDate" class="form-control"[ngModelOptions]="{standalone: true}">
+            <input type="date" [(ngModel)]="endDate" name="endDate" class="form-control" [ngModelOptions]="{ standalone: true }" required>
+            <small *ngIf="reservationForm.controls['endDate']?.invalid && reservationForm.controls['endDate']?.touched" class="text-danger">Végső dátum megadása kötelező</small>
         </div>
+        
         <div class="mb-3">
             <label for="guestnumber" class="form-label">Érkező vendégek száma</label>
-            <input type="number" class="form-control" [(ngModel)]="this.guestNumber" [ngModelOptions]="{standalone: true}">
+            <input type="number" [(ngModel)]="guestNumber" name="guestNumber" class="form-control" [ngModelOptions]="{ standalone: true }" required>
+            <small *ngIf="reservationForm.controls['guestNumber']?.invalid && reservationForm.controls['guestNumber']?.touched" class="text-danger">Érkező vendégek számának megadása kötelező</small>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success mb-3" [disabled]="!reservationForm.valid">Elküldöm</button>
         </div>
     </form>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-success mb-3" (click)="sendReservation()">Elküldöm</button>
-    </div>
 </div>
 <ng-template class="container" #reserved>
   <h1>A hely az Ön által választott időszakban már le van foglalva, kérjük válasszon másikat.</h1>

@@ -35,7 +35,7 @@ export class NavComponent {
       this.router.navigateByUrl("/home")
     }
     else{
-      alert("már ki vagy jelenkezve")
+      alert("Már ki vagy jelenkezve")
     }
   }
 }

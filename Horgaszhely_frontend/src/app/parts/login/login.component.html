@@ -1,3 +1,4 @@
+<h1 class="ms-3">Bejelentkezés</h1>
 <div class="container">
   <form [formGroup]="loginForm " (ngSubmit)="onSubmit()">
     <div class="form-group m-3">
@@ -17,6 +18,8 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary m-3">Bejelentkezek</button>
-    
+    <button type="button" class="btn btn-secondary m-3" routerLink="/signup">Még nincs fiókja?</button>
+
+    <button type="button" class="btn btn-danger m-3 float-end" routerLink="/home">Mégsem</button>
   </form>
 </div>

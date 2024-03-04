@@ -1,23 +1,29 @@
+<h1 class="ms-3">Regisztráció</h1>
 <div class="container">
     <div class="mb-3">
         <label for="name" class="form-label">Név</label>
-        <input type="text" class="form-control" [(ngModel)]="name">
+        <input type="text" class="form-control" [(ngModel)]="name" required>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email cím</label>
-        <input type="email" class="form-control" [(ngModel)]="email" aria-describedby="emailHelp">
+        <input type="email" class="form-control" [(ngModel)]="email" aria-describedby="emailHelp" required>
+        <small *ngIf="email && !isValidEmail(email)" class="text-danger">Érvénytelen email cím formátum</small>
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Jelszó</label>
-        <input type="password" class="form-control" [(ngModel)]="password">
+        <input type="password" class="form-control" [(ngModel)]="password" required minlength="6">
+        <small *ngIf="password && password.length < 6" class="text-danger">A jelszónak legalább 6 karakter hosszúnak kell lennie</small>
     </div>
     <div class="mb-3">
         <label for="confirm_password" class="form-label">Jelszó megerősítése</label>
-        <input type="password" class="form-control" [(ngModel)]="password_confirmation">
+        <input type="password" class="form-control" [(ngModel)]="password_confirmation" required>
+        <small *ngIf="password_confirmation && password_confirmation !== password" class="text-danger">A jelszavaknak meg kell egyezniük</small>
     </div>
     <div class="mb-3">
         <label for="birthDate" class="form-label">Születési dátum</label>
-        <input type="date" class="form-control" [(ngModel)]="birthdate">
+        <input type="date" class="form-control" [(ngModel)]="birthdate" required>
     </div>
-    <button type="register" class="btn btn-primary mb-3" (click)="signUp()">Regisztrálok!</button>
+    <button type="register" class="btn btn-primary mb-3 me-3" (click)="signUp()" [disabled]="!isFormValid()">Regisztrálok!</button>
+    <button class="btn btn-secondary mb-3 me-3" routerLink="/login">Már van fiókja?</button>
+    <button routerLink="/home" class="btn btn-danger mb-3 float-end">Mégsem</button>
 </div>
