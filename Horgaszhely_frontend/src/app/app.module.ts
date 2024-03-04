@@ -17,7 +17,7 @@ import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
 import { LoginComponent } from './parts/login/login.component';
-import { MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
@@ -35,7 +35,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     SignupComponent,
     MapComponent,
     LoginComponent,
-    MatSnackBar,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +43,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   providers: [
     provideAnimationsAsync()
