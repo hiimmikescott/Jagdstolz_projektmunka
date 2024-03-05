@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit{
           this.router.navigateByUrl("/home")
         }
         else{
-          alert("sikertelen bejelenkezés")
+          alert("Hibás jelszó vagy email")
         }
       })
     }

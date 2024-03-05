@@ -21,4 +21,17 @@ export class BaseService {
     }
     return this.http.post(`${this.url}addreservation`,reservationData)
   }
-}
+  updateProfile(birthdate:Date,name:string,email:string): Observable<any> {
+    const id = sessionStorage.getItem("id")
+    const user = {
+      id,birthdate,name,email
+    }
+    return this.http.put(`${this.url}modifyuser`, user);
+  }
+  getUserData(id:any): Observable<any>{
+    return this.http.get(`${this.url}getuser?id=${id}`)
+  }
+  deleteUser(id:any){
+    return this.http.delete(`${this.url}deleteuser?id=${id}`)
+  }
+} 

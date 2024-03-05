@@ -1,2 +1,21 @@
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum a suscipit, ad sit officia doloremque ea omnis tempora non quos accusantium, aperiam repellat, nostrum eaque neque ducimus! In, iusto distinctio!
-
+<div class="container">
+    <form (ngSubmit)="updateProfile()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <div class="mb-3">
+        <label for="birthdate" class="form-label">Birthdate</label>
+        <input type="date" id="birthdate" class="form-control" [(ngModel)]="birthdate" required [ngModelOptions]="{standalone: true}">
+      </div>
+  
+      <button type="submit" class="btn btn-primary mb-3">Frissítések mentése</button>
+      <button type="submit" class="btn btn-danger mb-3 float-end" (click)="tryDeleteUser()">Fiók törlése</button>
+    </form>
+  </div>    

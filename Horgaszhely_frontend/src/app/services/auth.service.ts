@@ -18,7 +18,6 @@ export class AuthService {
 
   createUser(email: any, name: any, password: any,password_confirmation:any, birthdate: any ): Observable<any> {
     const userData = { email, name, password, password_confirmation, birthdate };
-    console.log(userData)
     return this.http.post(`${this.url}/userregister`, userData);
   }
 
@@ -31,4 +30,12 @@ export class AuthService {
     this.http.post(`${this.url}/userlogout`,{headers})
   }
 
+  isLoggedIn(){
+    if(sessionStorage.getItem("token")){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 }
