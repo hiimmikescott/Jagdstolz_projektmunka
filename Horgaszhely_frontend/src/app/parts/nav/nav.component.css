@@ -1,5 +1,6 @@
 .selected{
     background-color: mediumspringgreen !important;
+    border-radius: 30px;
 }
 #active:hover{
     background-color:rgba(0, 250, 154, 0.312) !important;
