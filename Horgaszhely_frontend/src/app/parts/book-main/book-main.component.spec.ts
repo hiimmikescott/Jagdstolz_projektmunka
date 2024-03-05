@@ -11,7 +11,7 @@ describe('BookMainComponent', () => {
       declarations: [BookMainComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(BookMainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
