@@ -62,7 +62,7 @@ export class ProfileComponent {
   }
 
   closeModal() {
-    const modal = document.getElementById('customModal');
+    const modal = document.getElementById('exampleModal');
     if (modal) {
       const bootstrapModal = new bootstrap.Modal(modal);
       bootstrapModal.dispose();

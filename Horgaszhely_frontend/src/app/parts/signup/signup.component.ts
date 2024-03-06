@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private _snackBar: MatSnackBar) { }
   email: any
   name: any
   password: any
@@ -43,6 +44,7 @@ export class SignupComponent {
           }
           this.auth.login(loginObj).subscribe((res: any) => {
             if (res) {
+              this.showSuccessMessage()
               sessionStorage.setItem("token", res.data.token)
               sessionStorage.setItem("id", res.data.id)
               this.router.navigateByUrl("/home")
@@ -60,5 +62,13 @@ export class SignupComponent {
     } else {
       console.error('Form is not valid. Please check the entered information.');
     }
+  }
+  showSuccessMessage() {
+    let message = "Sikeres regisztráció!"
+    this._snackBar.open(message, 'OK', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }
