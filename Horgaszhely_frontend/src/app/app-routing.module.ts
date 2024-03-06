@@ -12,6 +12,7 @@ import { AdminComponent } from './parts/admin/admin.component';
 import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
 import { SpotsComponent } from './parts/admin/spots/spots.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent},
   { path: "signup", component: SignupComponent},
   { path: "bookmain", component: BookMainComponent },
-  { path: "bookform", component: BookFormComponent },
+  { path: "bookform", component: BookFormComponent, canActivate: [AuthGuard] },
   { path: "galery", component: GalleryComponent },
   { path: "login", component: LoginComponent },
   { path: "admin", component: AdminComponent },
