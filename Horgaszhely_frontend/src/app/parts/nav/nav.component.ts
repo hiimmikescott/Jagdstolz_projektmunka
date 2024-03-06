@@ -38,5 +38,13 @@ export class NavComponent {
       alert("Már ki vagy jelenkezve")
     }
   }
+  isAdmin(){
+    if(sessionStorage.getItem("admin")=="true"){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 }
 

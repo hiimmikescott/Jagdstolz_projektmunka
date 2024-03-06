@@ -19,6 +19,10 @@ import { MapComponent } from './parts/map/map.component';
 import { LoginComponent } from './parts/login/login.component';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AdminComponent } from './parts/admin/admin.component';
+import { UsersComponent } from './parts/admin/users/users.component';
+import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
+import { SpotsComponent } from './parts/admin/spots/spots.component';
 
 
 @NgModule({
@@ -35,6 +39,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     SignupComponent,
     MapComponent,
     LoginComponent,
+    AdminComponent,
+    UsersComponent,
+    ReservationsComponent,
+    SpotsComponent,
   ],
   imports: [
     BrowserModule,

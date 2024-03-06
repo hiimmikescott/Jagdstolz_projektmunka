@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit{
   private url = "http://127.0.0.1:8000/api";
   loginForm!: FormGroup;
+  admin = "true"
   constructor(private formBuilder: FormBuilder, private http:HttpClient, private router:Router, private auth:AuthService){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit{
       }
       this.auth.login(loginObj).subscribe((res:any)=>{
         if(res){
+          sessionStorage.setItem("admin",this.admin)
           sessionStorage.setItem("token",res.data.token)
           sessionStorage.setItem("id",res.data.id)
           this.router.navigateByUrl("/home")

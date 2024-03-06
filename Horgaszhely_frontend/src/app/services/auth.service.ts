@@ -7,13 +7,12 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<any>(null);
-  currentUser: Observable<any>;
+
   loggedIn: boolean = false;
   private url = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {
-    this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   createUser(email: any, name: any, password: any,password_confirmation:any, birthdate: any ): Observable<any> {

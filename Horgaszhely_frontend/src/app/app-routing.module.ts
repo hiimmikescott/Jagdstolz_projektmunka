@@ -8,6 +8,10 @@ import { BookMainComponent } from './parts/book-main/book-main.component';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { GalleryComponent } from './parts/gallery/gallery.component';
 import { LoginComponent } from './parts/login/login.component';
+import { AdminComponent } from './parts/admin/admin.component';
+import { UsersComponent } from './parts/admin/users/users.component';
+import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
+import { SpotsComponent } from './parts/admin/spots/spots.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -18,6 +22,10 @@ const routes: Routes = [
   { path: "bookform", component: BookFormComponent },
   { path: "galery", component: GalleryComponent },
   { path: "login", component: LoginComponent },
+  { path: "admin", component: AdminComponent },
+  { path: "users", component: UsersComponent },
+  { path: "reservations", component: ReservationsComponent },
+  { path: "spots", component: SpotsComponent },
 
   { path: " ", component: HomeComponent },
   { path: "**", component: HomeComponent },
