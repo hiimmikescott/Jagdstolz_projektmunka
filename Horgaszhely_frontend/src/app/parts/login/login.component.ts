@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { BaseService } from '../../services/base.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit{
   private url = "http://127.0.0.1:8000/api";
   loginForm!: FormGroup;
-  admin = "true"
-  constructor(private formBuilder: FormBuilder, private http:HttpClient, private router:Router, private auth:AuthService){}
+  constructor(private formBuilder: FormBuilder, private router:Router, private auth:AuthService,private base : BaseService){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,10 +30,23 @@ export class LoginComponent implements OnInit{
       }
       this.auth.login(loginObj).subscribe((res:any)=>{
         if(res){
-          sessionStorage.setItem("admin",this.admin)
-          sessionStorage.setItem("token",res.data.token)
-          sessionStorage.setItem("id",res.data.id)
-          this.router.navigateByUrl("/home")
+          this.base.getUserData(res.data.id).subscribe((result)=>{
+            if(result.data.userlevel=="5"){
+              let role = "admin"
+              sessionStorage.setItem("role",role)
+              sessionStorage.setItem("token",res.data.token)
+              sessionStorage.setItem("id",res.data.id)
+              this.auth.updateRolesAfterLogin();
+              this.router.navigateByUrl("/home")
+            }else{
+              let role = "user"
+              sessionStorage.setItem("role",role)
+              sessionStorage.setItem("token",res.data.token)
+              sessionStorage.setItem("id",res.data.id)
+              this.auth.updateRolesAfterLogin();
+              this.router.navigateByUrl("/home")
+            }
+          })
         }
         else{
           alert("Hibás jelszó vagy email")

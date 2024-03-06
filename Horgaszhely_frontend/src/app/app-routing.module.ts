@@ -12,21 +12,21 @@ import { AdminComponent } from './parts/admin/admin.component';
 import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
 import { SpotsComponent } from './parts/admin/spots/spots.component';
-import { AuthGuard } from './services/auth.guard';
+import { RoleGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "info", component: InfoComponent },
-  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard], data: { roles: ['user', 'admin', 'superadmin'] }},
+  { path: "profile", component: ProfileComponent},
   { path: "signup", component: SignupComponent},
   { path: "bookmain", component: BookMainComponent },
-  { path: "bookform", component: BookFormComponent, canActivate: [AuthGuard], data: { roles: ['user', 'admin', 'superadmin'] } },
+  { path: "bookform", component: BookFormComponent },
   { path: "galery", component: GalleryComponent },
   { path: "login", component: LoginComponent },
-  { path: "admin", component: AdminComponent, canActivate: [AuthGuard], data: { roles: [ 'admin', 'superadmin'] }  },
-  { path: "users", component: UsersComponent, canActivate: [AuthGuard], data: { roles: [ 'admin', 'superadmin'] }  },
-  { path: "reservations", component: ReservationsComponent, canActivate: [AuthGuard], data: { roles: [ 'admin', 'superadmin'] }  },
-  { path: "spots", component: SpotsComponent, canActivate: [AuthGuard], data: { roles: [ 'admin', 'superadmin'] }  },
+  { path: "admin", component: AdminComponent, canActivate: [RoleGuard], data: { roles: ['admin'] } },
+  { path: "users", component: UsersComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
+  { path: "reservations", component: ReservationsComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
+  { path: "spots", component: SpotsComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
 
   { path: " ", component: HomeComponent },
   { path: "**", component: HomeComponent },
@@ -36,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { } 
+export class AppRoutingModule { }

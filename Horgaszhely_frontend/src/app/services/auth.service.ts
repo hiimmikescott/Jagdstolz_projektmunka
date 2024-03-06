@@ -1,10 +1,9 @@
 // auth.service.ts
 
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseService } from './base.service';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,20 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthService {
 
   private url = "http://127.0.0.1:8000/api";
+  private userRoles: string[] = [];
+  constructor(private http: HttpClient,private base: BaseService) {
+    this.fetchUserRoles();
+  }
 
-  constructor(private http: HttpClient, private baseService: BaseService) {}
+  private fetchUserRoles(): void {
+    const rolesFromSession = sessionStorage.getItem('role');
+
+    if (rolesFromSession) {
+      // Assign the roles directly to this.userRoles
+      this.userRoles = [rolesFromSession];
+    }
+  }
+
 
   createUser(email: any, name: any, password: any, password_confirmation: any, birthdate: any): Observable<any> {
     const userData = { email, name, password, password_confirmation, birthdate };
@@ -33,26 +44,11 @@ export class AuthService {
     return !!sessionStorage.getItem("token");
   }
 
-  isAdmin(): Observable<boolean> {
-    const userId = sessionStorage.getItem("id");
-
-    if (userId) {
-      return this.baseService.getUserData(userId).pipe(
-        map((res: any) => {
-          return res.data.userlevel === 5;
-        }),
-        catchError(() => of(false))
-      );
-    } else {
-      return of(false);
-    }
-  }
-  hasAnyRole(expectedRoles: string[]): boolean {
-    const userRoles = this.getUserRolesFromService();
-    return expectedRoles.some(role => userRoles.includes(role));
+  isAdmin(): boolean {
+    return this.userRoles.includes('admin');
   }
 
-  private getUserRolesFromService(): string[] {
-    return ['user'];
+  updateRolesAfterLogin(): void {
+    this.fetchUserRoles();
   }
 }
