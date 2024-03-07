@@ -15,7 +15,7 @@ return new class extends Migration
             //$table->string("profilepicture");
             $table->boolean("validated")->default(0);
             $table->date("birthdate");
-            $table->tinyInteger("userlevel")->default(0); 
+            $table->boolean("userlevel")->default(0); 
         });
     }
 
