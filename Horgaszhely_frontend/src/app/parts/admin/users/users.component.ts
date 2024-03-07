@@ -56,7 +56,7 @@ export class UsersComponent {
         this.getUsers()
       }
       else {
-        console.error('Error updating profile: ',res.message);
+        console.error('Hiba a profil frissítése közben: ',res.message);
       }
     }
     );

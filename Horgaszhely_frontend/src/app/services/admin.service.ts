@@ -23,5 +23,20 @@ export class AdminService {
     return this.http.put<any>(`${this.url}/modifyuser`,user);
   }
   // ---------------------------------------------------------reservations--------------------------------------------------------------
+  getReservations():Observable<any[]>{
+    return this.http.get<any[]>(`${this.url}/getreservations`)
+  }
+  getReservation(id:any): Observable<any>{
+    return this.http.get(`${this.url}/getreservation?id=${id}`)
+  }
+  updateReservation(id:number,user_id:number,fishingplace_id:number,reservationStart:Date,reservationEnd:Date,guestNumber:number): Observable<any> {
+    const reservation ={
+      id,user_id,fishingplace_id,reservationStart,reservationEnd,guestNumber
+    }
+    return this.http.put<any>(`${this.url}/modifyreservation`,reservation);
+  }
+  deleteReservation(userId: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/deletereservation?id=${userId}`);
+  }
 }
   

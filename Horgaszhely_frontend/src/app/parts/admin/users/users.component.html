@@ -1,11 +1,18 @@
 <div class="container">
-    <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
+  <div class="row">
+    <div class="col-11">
+      <h1>Felhasználók</h1>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
+    </div>
+  </div>
     <div *ngFor="let user of users" class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">{{ user.name }}</h5>
         <p class="card-text">{{ user.email }}</p>
-        <button type="button" (click)="updateUserData(user)" class="btn btn-warning">Modify</button>
-        <button (click)="deleteUser(user.id)" class="btn btn-danger float-end">Delete</button>
+        <button type="button" (click)="updateUserData(user)" class="btn btn-warning">Szerkesztés</button>
+        <button (click)="deleteUser(user.id)" class="btn btn-danger float-end">Törlés</button>
       </div>
     </div>
     <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
@@ -24,7 +31,7 @@
               <input type="text" id="name" class="form-control" [(ngModel)]="id" name="id" required readonly>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
+              <label for="name" class="form-label">Név</label>
               <input type="text" id="name" class="form-control" [(ngModel)]="name" name="name" required>
             </div>
             <div class="mb-3">
@@ -32,14 +39,14 @@
               <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required>
             </div>
             <div class="mb-3">
-              <label for="birthdate" class="form-label">Birthdate</label>
+              <label for="birthdate" class="form-label">Születési dátum</label>
               <input type="date" id="birthdate" class="form-control" [(ngModel)]="birthdate" name="birthdate" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="updateUser()" data-bs-dismiss="modal">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
         </div>
       </div>
     </div>
