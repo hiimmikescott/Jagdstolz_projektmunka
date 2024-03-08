@@ -37,6 +37,21 @@ class ReservationController extends ResponseController
         return  $this->sendResponse($reservation,"egy  foglalás");
 
     }
+    public function getUserReservations(Request $request){
+        $user_id = $request["user_id"];
+        $reservations = Reservation::where("user_id",$user_id)->get();
+
+        //---{  error  }---------------
+
+        if(is_null($reservations)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+
+        //---{  success  }-------------
+
+        return  $this->sendResponse($reservations,"egy  foglalás");
+
+    }
 
     //---{  add reservation  }-----------------------------------
 
@@ -90,11 +105,69 @@ class ReservationController extends ResponseController
 
     }
 
+    //---{  user reservation modify}
+
+    public function modifyUserReservation(ReservationChecker $request){
+        $request->validated();
+        $input = $request->all();
+        $id = $input["id"];
+        $user_id = $input["user_id"];
+
+        $reservations = Reservation::where("user_id",$user_id)->get();
+
+        $reservation = Reservation::where("id",$id)->first();
+
+        //---{  error 1 }---------------
+
+        if(is_null($reservation)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+
+        //---{  success  }-------------
+
+        $reservation-> user_id=$input["user_id"];
+        $reservation-> fishingplace_id=$input["fishingplace_id"];
+        $reservation-> reservationStart=$input["reservationStart"];
+        $reservation-> reservationEnd=$input["reservationEnd"];
+        //$reservation-> actualRate=$input["actualRate"];
+        $reservation-> guestNumber=$input["guestNumber"];
+
+        $reservation->save();
+
+        return  $this->sendResponse($reservation,"foglalás modositva");
+
+    }
+
     //---{  delete reservation  }---------------------------------
 
     public function deleteReservation(Request $request){
         $input=$request->all();
         $id = $input["id"];
+
+        $reservation = Reservation::find($id);
+
+        //---{  error  }---------------
+
+        if(is_null($reservation)){
+            return $this->sendError("nincs ilyen foglalás");
+        }
+
+        //---{  success  }-------------
+
+        $reservation->delete();
+
+        return  $this->sendResponse($reservation,"foglalás törölve");
+
+    }
+
+    //---{  delete user reservation  }---------------------------------
+
+    public function deleteUserReservation(Request $request){
+        $input=$request->all();
+        $id = $input["id"];
+        $user_id = $input["user_id"];
+
+        $reservation = Reservation::where("user_id",$user_id)->get();
 
         $reservation = Reservation::find($id);
 

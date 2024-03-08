@@ -38,6 +38,13 @@ Route::post("/addreservation",[ReservationController::class , "addReservation"])
 Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
 Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
 
+//---{  user reservation routes}
+
+Route::get("/getuserreservations",[ReservationController::class , "getUserReservations"]);
+Route::put("/modifyuserreservation",[ReservationController::class , "modifyUserReservation"]);
+Route::delete("/deleteuserreservation",[ReservationController::class , "deleteUserReservation"]);
+
+
 //---{  user routes }--------------------------------------------------------------------------------
 
 Route::get("/getusers",[UserController::class , "getUsers"]);
