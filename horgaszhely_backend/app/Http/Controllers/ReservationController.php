@@ -37,6 +37,9 @@ class ReservationController extends ResponseController
         return  $this->sendResponse($reservation,"egy  foglalás");
 
     }
+
+    //---{  user reservation  }-----------------------------------
+
     public function getUserReservations(Request $request){
         $user_id = $request["user_id"];
         $reservations = Reservation::where("user_id",$user_id)->get();
