@@ -11,7 +11,10 @@
           <a class="nav-link " routerLink="/info" routerLinkActive="selected" id="active">Rólunk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedin()">Saját profil</a>
+          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedin()">Saját profilom</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/reservation" routerLinkActive="selected" id="active" *ngIf="loggedin()">Foglalásaim</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/admin" routerLinkActive="selected" id="active" *ngIf="admin()&&loggedin()">Admin</a>

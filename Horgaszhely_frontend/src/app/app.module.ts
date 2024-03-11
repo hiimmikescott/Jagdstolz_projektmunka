@@ -23,6 +23,7 @@ import { AdminComponent } from './parts/admin/admin.component';
 import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
 import { SpotsComponent } from './parts/admin/spots/spots.component';
+import { ReservationComponent } from './parts/reservation/reservation.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { SpotsComponent } from './parts/admin/spots/spots.component';
     UsersComponent,
     ReservationsComponent,
     SpotsComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,

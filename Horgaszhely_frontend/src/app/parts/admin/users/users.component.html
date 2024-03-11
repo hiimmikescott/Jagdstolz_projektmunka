@@ -28,7 +28,7 @@
             <!-- ... Other form controls ... -->
             <div class="mb-3">
               <label for="name" class="form-label">Id</label>
-              <input type="text" id="name" class="form-control" [(ngModel)]="id" name="id" required readonly>
+              <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" required readonly>
             </div>
             <div class="mb-3">
               <label for="name" class="form-label">Név</label>
@@ -46,7 +46,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
+          <button type="submit" class="btn btn-primary" (click)="updateUser()" data-bs-dismiss="modal">Mentés</button>
         </div>
       </div>
     </div>

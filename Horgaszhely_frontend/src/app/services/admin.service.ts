@@ -38,5 +38,27 @@ export class AdminService {
   deleteReservation(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/deletereservation?id=${userId}`);
   }
+  // ---------------------------------------------------------fishingspots--------------------------------------------------------------
+  getFishingspots():Observable<any[]>{
+    return this.http.get<any[]>(`${this.url}/fishingplaces`)
+  }
+  getFishingspot(id:any): Observable<any>{
+    return this.http.get(`${this.url}/fishingplace?id=${id}`)
+  }
+  addFishingplace(id:number,reservable:boolean,pier:boolean,firepit:boolean,shelter:boolean,description:string,longitude:number,latitude:number): Observable<any>{
+    const fishingplace ={
+      id,reservable,pier,firepit,shelter,description,longitude,latitude
+    }
+    return this.http.post<any>(`${this.url}/addfishingplace`,fishingplace);
+  }
+  updateFishingspot(id:number,reservable:boolean,pier:boolean,firepit:boolean,shelter:boolean,description:string,longitude:number,latitude:number): Observable<any> {
+    const fishingplace ={
+      id,reservable,pier,firepit,shelter,description,longitude,latitude
+    }
+    return this.http.put<any>(`${this.url}/modifyfishingplace`,fishingplace);
+  }
+  deleteFishingspot(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/deletefishingplace?id=${id}`);
+  }
 }
   

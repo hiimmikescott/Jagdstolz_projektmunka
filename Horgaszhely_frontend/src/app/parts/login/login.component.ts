@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
       this.auth.login(loginObj).subscribe((res:any)=>{
         if(res){
           this.base.getUserData(res.data.id).subscribe((result)=>{
-            if(result.data.userlevel=="5"){
+            if(result.data.userlevel){
               let role = "admin"
               sessionStorage.setItem("role",role)
               sessionStorage.setItem("token",res.data.token)

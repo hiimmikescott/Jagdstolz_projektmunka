@@ -13,6 +13,7 @@ import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
 import { SpotsComponent } from './parts/admin/spots/spots.component';
 import { RoleGuard } from './services/auth.guard';
+import { ReservationComponent } from './parts/reservation/reservation.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "bookform", component: BookFormComponent },
   { path: "galery", component: GalleryComponent },
   { path: "login", component: LoginComponent },
+  { path: "reservation", component: ReservationComponent },
   { path: "admin", component: AdminComponent, canActivate: [RoleGuard], data: { roles: ['admin'] } },
   { path: "users", component: UsersComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
   { path: "reservations", component: ReservationsComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},

@@ -34,6 +34,7 @@ Route::delete("/deletefishingplace",[FishingPlaceController::class , "deleteFish
 
 Route::get("/getreservations",[ReservationController::class , "getReservations"]);
 Route::get("/getreservation",[ReservationController::class , "getReservation"]);
+Route::get("/getuserreservation",[ReservationController::class , "getUserReservation"]);
 Route::post("/addreservation",[ReservationController::class , "addReservation"]);
 Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
 Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);

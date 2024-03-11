@@ -50,7 +50,7 @@ class FishingPlaceController extends ResponseController
         $fishingplace->pier=$input["pier"];
         $fishingplace->firepit=$input["firepit"];
         $fishingplace->shelter=$input["shelter"];
-        $fishingplace->averageRating=$input["averageRating"];
+        // $fishingplace->averageRating=$input["averageRating"];
         $fishingplace->description=$input["description"];
         $fishingplace->longitude=$input["longitude"];
         $fishingplace->latitude=$input["latitude"];
@@ -84,7 +84,7 @@ class FishingPlaceController extends ResponseController
         $fishingplace->pier=$input["pier"];
         $fishingplace->firepit=$input["firepit"];
         $fishingplace->shelter=$input["shelter"];
-        $fishingplace->averageRating=$input["averageRating"];
+        //$fishingplace->averageRating=$input["averageRating"];
         $fishingplace->description=$input["description"];
         $fishingplace->longitude=$input["longitude"];
         $fishingplace->latitude=$input["latitude"];

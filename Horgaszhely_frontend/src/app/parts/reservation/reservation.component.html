@@ -1,16 +1,13 @@
+
 <div class="container">
     <div class="row">
         <div class="col-11">
           <h1>Foglalások</h1>
         </div>
-        <div class="col">
-          <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
-        </div>
       </div>
     <div *ngFor="let reservation of reservations" class="card mb-3">
         <div class="card-body">
             <h5 class="card-title">{{ reservation.fishingplace_id }}. számú hely</h5>
-            <p>{{this.name}}</p>
             <button type="button" (click)="updateReservationData(reservation)"
                 class="btn btn-warning">Szerkesztés</button>
             <button (click)="deleteReservation(reservation.id)" class="btn btn-danger float-end">Törlés</button>
