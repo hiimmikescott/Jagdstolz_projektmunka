@@ -30,7 +30,7 @@
                 <form (ngSubmit)="updateFishingplace()" #updateFishingplaceForm="ngForm">
                     <!-- ... Other form controls ... -->
                     <div class="mb-3">
-                        <label for="id" class="form-label">Id</label>
+                        <label for="id" class="form-label">Hely száma</label>
                         <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" readonly>
                     </div>
                     <div class="mb-3">
@@ -38,12 +38,12 @@
                         <div class="form-check">
                             <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier"
                                 [value]="true">
-                            <label class="form-check-label" for="pierTrue">True</label>
+                            <label class="form-check-label" for="pierTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
                                 [value]="false">
-                            <label class="form-check-label" for="pierFalse">False</label>
+                            <label class="form-check-label" for="pierFalse">Nincs</label>
                         </div>
                     </div>
 
@@ -52,26 +52,26 @@
                         <div class="form-check">
                             <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit"
                                 name="firepit" [value]="true" required>
-                            <label class="form-check-label" for="firepitTrue">True</label>
+                            <label class="form-check-label" for="firepitTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit"
                                 name="firepit" [value]="false" required>
-                            <label class="form-check-label" for="firepitFalse">False</label>
+                            <label class="form-check-label" for="firepitFalse">Nincs</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="shelter" class="form-label">Szanetli</label>
+                        <label for="shelter" class="form-label">Beálló</label>
                         <div class="form-check">
                             <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter"
                                 name="shelter" [value]="true" required>
-                            <label class="form-check-label" for="shelterTrue">True</label>
+                            <label class="form-check-label" for="shelterTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter"
                                 name="shelter" [value]="false" required>
-                            <label class="form-check-label" for="shelterFalse">False</label>
+                            <label class="form-check-label" for="shelterFalse">Nincs</label>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -111,12 +111,12 @@
                         <div class="form-check">
                             <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier"
                                 [value]="true">
-                            <label class="form-check-label" for="pierTrue">True</label>
+                            <label class="form-check-label" for="pierTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
                                 [value]="false">
-                            <label class="form-check-label" for="pierFalse">False</label>
+                            <label class="form-check-label" for="pierFalse">Nincs</label>
                         </div>
                     </div>
 
@@ -125,26 +125,26 @@
                         <div class="form-check">
                             <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit"
                                 name="firepit" [value]="true" required>
-                            <label class="form-check-label" for="firepitTrue">True</label>
+                            <label class="form-check-label" for="firepitTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit"
                                 name="firepit" [value]="false" required>
-                            <label class="form-check-label" for="firepitFalse">False</label>
+                            <label class="form-check-label" for="firepitFalse">Nincs</label>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="shelter" class="form-label">Szanetli</label>
+                        <label for="shelter" class="form-label">Beálló</label>
                         <div class="form-check">
                             <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter"
                                 name="shelter" [value]="true" required>
-                            <label class="form-check-label" for="shelterTrue">True</label>
+                            <label class="form-check-label" for="shelterTrue">Van</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter"
                                 name="shelter" [value]="false" required>
-                            <label class="form-check-label" for="shelterFalse">False</label>
+                            <label class="form-check-label" for="shelterFalse">Nincs</label>
                         </div>
                     </div>
                     <div class="mb-3">
