@@ -6,6 +6,7 @@ use App\Http\Controllers\FishingPlaceController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post("/userlogin",[AuthController::class , "userLogin"])->middleware("throttle:100, 43200");
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Fetch all images
+Route::get('/images', [ImageController::class, 'index']);
+
+// Upload an image
+Route::post('/images/upload', [ImageController::class, 'upload']);
+
+// Delete an image
+Route::delete('/images/delete/{id}', [ImageController::class, 'delete']);
+
+// Modify image description
+Route::put('/images/modify/{id}', [ImageController::class, 'modify']);
