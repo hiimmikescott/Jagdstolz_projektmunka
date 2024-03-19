@@ -18,6 +18,7 @@ export class ReservationsComponent {
   reservationEnd: Date = new Date()
   guestNumber:any
   name:any
+  names: string[] = [];
 
   constructor(private adm : AdminService, private _snackBar: MatSnackBar,private base:BaseService){}
   ngOnInit() {
@@ -25,11 +26,12 @@ export class ReservationsComponent {
   }
   getReservations() {
     this.adm.getReservations().subscribe((res: any) => {
+      console.log(res)
       if (res.success) {
         this.reservations = res.data;
         for (let i = 0; i < this.reservations.length; i++) {
           const reservation = this.reservations[i];
-          this.getUser(reservation.user_id)
+          this.getUserByIndex(reservation.user_id, i)
         }
       }
     });
@@ -47,7 +49,7 @@ export class ReservationsComponent {
   }
   openModal() {
     const modalElement = document.getElementById('exampleModal');
-  
+
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();
@@ -84,6 +86,16 @@ export class ReservationsComponent {
     this.base.getUserData(id).subscribe((res)=>{
       if(res){
         this.name=res.data.name
+      }
+      else{
+        console.log("Hiba a név lekérésében",res.message)
+      }
+    })
+  }
+  getUserByIndex(id:any,index: number){
+    this.base.getUserData(id).subscribe((res)=>{
+      if(res){
+        this.names[index] = res.data.name;
       }
       else{
         console.log("Hiba a név lekérésében",res.message)
