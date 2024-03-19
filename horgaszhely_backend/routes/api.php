@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-//+++{  admin user routes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++{  admin user dsadasdasdasroutes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     //---{  fishingplace routes  }---------------------------------------------------------------------
     Route::post("/addfishingplace",[FishingPlaceController::class , "addFishingPlace" ]);
