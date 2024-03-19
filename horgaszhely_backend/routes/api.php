@@ -22,39 +22,59 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//---{  fishingplace routes  }-----------------------------------------------------------------
 
-Route::get("/fishingplaces",[FishingPlaceController::class , "getFishingPlaces" ]);
-Route::get("/fishingplace",[FishingPlaceController::class , "getFishingPlace" ]);
-Route::post("/addfishingplace",[FishingPlaceController::class , "addFishingPlace" ]);
-Route::put("/modifyfishingplace",[FishingPlaceController::class , "modifyFishingPlace" ]);
-Route::delete("/deletefishingplace",[FishingPlaceController::class , "deleteFishingPlace" ]);
-
-//---{  reservation routes  }------------------------------------------------------------------
-
-Route::get("/getreservations",[ReservationController::class , "getReservations"]);
-Route::get("/getreservation",[ReservationController::class , "getReservation"]);
-Route::get("/getuserreservation",[ReservationController::class , "getUserReservation"]);
-Route::post("/addreservation",[ReservationController::class , "addReservation"]);
-Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
-Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
-
-//---{  user reservation routes}
-
-Route::get("/getuserreservations",[ReservationController::class , "getUserReservations"]);
-Route::put("/modifyuserreservation",[ReservationController::class , "modifyUserReservation"]);
-Route::delete("/deleteuserreservation",[ReservationController::class , "deleteUserReservation"]);
+//+++{  loged in user routes }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-//---{  user routes }--------------------------------------------------------------------------------
 
-Route::get("/getusers",[UserController::class , "getUsers"]);
-Route::get("/getuser",[UserController::class , "getUser"]);
-Route::put("/modifyuser",[UserController::class , "modifyUser"]);
-Route::delete("/deleteuser",[UserController::class , "deleteUser"]);
+    Route::get("/getuser",[UserController::class , "getUser"]);
+    Route::delete("/deleteuser",[UserController::class , "deleteUser"]);
+    Route::put("/modifyuser",[UserController::class , "modifyUser"]);
 
-//---{  userAuth routes  }---------------------------------------------------------------------------
+    //---{  user reservation routes}-------------------------------------------------------------------
+    Route::get("/getuserreservations",[ReservationController::class , "getUserReservations"]);
+    Route::put("/modifyuserreservation",[ReservationController::class , "modifyUserReservation"]);
+    Route::delete("/deleteuserreservation",[ReservationController::class , "deleteUserReservation"]);
 
-Route::post("/userregister",[AuthController::class , "userRegister"]);
-Route::post("/userlogin",[AuthController::class , "userLogin"]);
-Route::post("/userlogout",[AuthController::class , "userLogout"]);
+    //---{  reservation routes  }----------------------------------------------------------------------
+    Route::get("/getuserreservation",[ReservationController::class , "getUserReservation"]);
+    Route::post("/addreservation",[ReservationController::class , "addReservation"]);
+    Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
+    Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
+
+    //---{  userAuth routes  }-------------------------------------------------------------------------
+    Route::post("/userlogout",[AuthController::class , "userLogout"]);
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+//+++{  admin user routes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    //---{  fishingplace routes  }---------------------------------------------------------------------
+    Route::post("/addfishingplace",[FishingPlaceController::class , "addFishingPlace" ]);
+    Route::put("/modifyfishingplace",[FishingPlaceController::class , "modifyFishingPlace" ]);
+    Route::delete("/deletefishingplace",[FishingPlaceController::class , "deleteFishingPlace" ]);
+
+    //---{  reservation routes  }----------------------------------------------------------------------
+    Route::get("/getreservations",[ReservationController::class , "getReservations"]);
+    Route::get("/getreservation",[ReservationController::class , "getReservation"]);
+
+    //---{  user routes }------------------------------------------------------------------------------
+    Route::get("/getusers",[UserController::class , "getUsers"]);
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+//+++{ not loged in routes  }++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    //---{  fishingplace routes  }---------------------------------------------------------------------
+    Route::get("/fishingplaces",[FishingPlaceController::class , "getFishingPlaces" ]);
+    Route::get("/fishingplace",[FishingPlaceController::class , "getFishingPlace" ]);
+
+    //---{  userAuth routes  }-------------------------------------------------------------------------
+    Route::post("/userregister",[AuthController::class , "userRegister"])->middleware("throttle:100, 43200");
+    Route::post("/userlogin",[AuthController::class , "userLogin"])->middleware("throttle:100, 43200");
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
