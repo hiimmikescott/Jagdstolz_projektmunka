@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: "signup", component: SignupComponent},
   { path: "bookmain", component: BookMainComponent },
   { path: "bookform", component: BookFormComponent },
-  { path: "galery", component: GalleryComponent },
+  { path: "gallery", component: GalleryComponent },
   { path: "login", component: LoginComponent },
   { path: "reservation", component: ReservationComponent },
   { path: "admin", component: AdminComponent, canActivate: [RoleGuard], data: { roles: ['admin'] } },

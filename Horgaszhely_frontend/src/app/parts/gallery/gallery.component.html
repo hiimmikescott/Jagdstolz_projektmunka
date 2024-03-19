@@ -1,1 +1,75 @@
-<p>gallery works!</p>
+<div class="container">
+  <!-- Button trigger modal for image upload -->
+  <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#uploadModal">
+    Kép feltöltés
+  </button>
+
+  <!-- Image upload modal -->
+  <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Kép feltöltés</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Image upload form -->
+          <form (submit)="onSubmit()">
+            <div class="mb-3">
+              <label for="image" class="form-label">Kép</label>
+              <input type="file" class="form-control" id="image" accept="image/*" (change)="onFileSelected($event)" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Kép leírása</label>
+              <input type="text" class="form-control" id="description" [(ngModel)]="description" name="description" required>
+            </div>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Mégsem</button>
+            <button type="submit" class="btn btn-success float-end" data-bs-dismiss="modal">Feltöltés</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery section -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let image of images">
+      <div class="card">
+        <h5 class="card-title m-1">{{ image.uploadedBy }}</h5>
+        <img class="card-img-center" [src]="image.url" alt="{{ image.description }}">
+        <div class="card-body">
+          <p class="card-text">{{ image.description }}</p>
+          <div *ngIf="canModifyOrDelete(image)">
+            <button type="button" class="btn btn-danger btn-sm " (click)="deleteImage(image.id)">Törlés</button>
+            <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#editModal" (click)="openEditModal(image)">Szerkesztés</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit image description modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Poszt szerkesztése</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Image description edit form -->
+        <form (submit)="onEditSubmit()">
+          <div class="mb-3">
+            <label for="newDescription" class="form-label">Új leírás</label>
+            <input type="text" class="form-control" id="newDescription" [(ngModel)]="newDescription" name="newDescription" required>
+          </div>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Mégsem</button>
+          <button type="submit" class="btn btn-success float-end" data-bs-dismiss="modal">Mentés</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
