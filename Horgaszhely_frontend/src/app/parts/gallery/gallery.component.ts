@@ -17,7 +17,7 @@ export class GalleryComponent {
   newDescription: string = '';
   editingImage: any;
   @ViewChild('editModal') editModal!: ElementRef;
-  constructor(private _snackBar: MatSnackBar, private imageService: ImageService,private base : BaseService) { }
+  constructor(private _snackBar: MatSnackBar, private imageService: ImageService, private base: BaseService) { }
 
   ngOnInit(): void {
     this.fetchImages();
@@ -26,11 +26,10 @@ export class GalleryComponent {
   fetchImages() {
     this.imageService.getImages().subscribe(
       (images: any[]) => {
-        // For each image, fetch user information and set card titles
         for (const image of images) {
           this.base.getUserData(image.user_id).subscribe(
             (user: any) => {
-              image.uploadedBy = user.data.name; // Assuming the user object has a 'name' property
+              image.uploadedBy = user.data.name;
             },
             error => {
               console.error('Error fetching user:', error);
@@ -46,10 +45,10 @@ export class GalleryComponent {
   }
 
   canModifyOrDelete(image: any): boolean {
-    if(this.loggedInUserId == image.user_id || sessionStorage.getItem("role")=="admin"){
+    if (this.loggedInUserId == image.user_id || sessionStorage.getItem("role") == "admin") {
       return true
     }
-    else{
+    else {
       return false
     }
   }
@@ -72,11 +71,11 @@ export class GalleryComponent {
     formData.append('description', this.description);
 
     const id = sessionStorage.getItem("id");
-    if (id) { // Check if id is not null
+    if (id) {
       formData.append('user_id', id);
     } else {
       console.error('User id is null');
-      return; // Exit the function if id is null
+      return;
     }
 
     this.imageService.uploadImage(formData).subscribe(
@@ -85,9 +84,7 @@ export class GalleryComponent {
         this._snackBar.open('Kép sikeresen feltöltve', 'Bezárás', {
           duration: 3000,
         });
-        // Refresh images after successful upload
         this.fetchImages();
-        // Clear form fields after successful upload
         this.description = '';
         this.selectedFile = null;
       },
@@ -143,7 +140,6 @@ export class GalleryComponent {
 
   onEditSubmit(): void {
     if (this.editingImage) {
-      // Call the modifyImageDescription method with the newDescription value
       this.modifyImageDescription(this.editingImage, this.newDescription);
     }
   }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->boolean("pier")->default(0);
             $table->boolean("firepit")->default(0);
             $table->boolean("shelter")->default(0);
-            $table->integer("averageRating");
+            // $table->integer("averageRating");
             $table->string("description");
             $table->string("longitude");
             $table->string("latitude");

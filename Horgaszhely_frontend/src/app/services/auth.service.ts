@@ -20,7 +20,6 @@ export class AuthService {
     const rolesFromSession = sessionStorage.getItem('role');
 
     if (rolesFromSession) {
-      // Assign the roles directly to this.userRoles
       this.userRoles = [rolesFromSession];
     }
   }

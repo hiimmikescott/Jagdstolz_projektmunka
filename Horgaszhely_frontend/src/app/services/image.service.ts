@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 
@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ImageService {
-  private url="http://127.0.0.1:8000/api/"
+  private url = "http://127.0.0.1:8000/api/"
   constructor(private http: HttpClient) { }
 
   uploadImage(formData: FormData) {
@@ -29,9 +29,9 @@ export class ImageService {
       })
     );
   }
-deleteImage(imageId: number): Observable<any> {
-  return this.http.delete<void>(`${this.url}images/delete/${imageId}`);
-}
+  deleteImage(imageId: number): Observable<any> {
+    return this.http.delete<void>(`${this.url}images/delete/${imageId}`);
+  }
   modifyImage(imageId: number, description: string): Observable<any> {
     return this.http.put<any>(this.url + 'images/modify/' + imageId, { description });
   }
