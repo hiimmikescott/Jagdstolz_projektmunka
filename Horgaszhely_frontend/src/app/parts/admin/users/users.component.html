@@ -28,10 +28,6 @@
         <form (ngSubmit)="updateUser()" #userForm="ngForm">
           <!-- ... Other form controls ... -->
           <div class="mb-3">
-            <label for="name" class="form-label">Id</label>
-            <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" required readonly>
-          </div>
-          <div class="mb-3">
             <label for="name" class="form-label">Név</label>
             <input type="text" id="name" class="form-control" [(ngModel)]="name" name="name" required>
           </div>

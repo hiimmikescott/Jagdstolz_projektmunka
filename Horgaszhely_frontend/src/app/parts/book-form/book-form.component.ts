@@ -26,8 +26,11 @@ export class BookFormComponent {
     this.guestNumber = 1;
     this.route.paramMap.subscribe((params) => {
       const spot = history.state.spot;
-      this.fishingplace_id = spot.id;
-      this.reservable = spot.reservable;
+      console.log(spot)
+      if (spot) {
+        this.fishingplace_id = spot.id;
+        this.reservable = spot.reservable;
+      }
     });
   }
 

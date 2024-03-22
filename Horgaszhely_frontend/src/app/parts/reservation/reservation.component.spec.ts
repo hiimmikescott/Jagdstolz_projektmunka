@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReservationComponent } from './reservation.component';
+import { BaseService } from '../../services/base.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('ReservationComponent', () => {
   let component: ReservationComponent;
@@ -8,10 +10,14 @@ describe('ReservationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReservationComponent]
+      declarations: [ReservationComponent],
+      providers: [BaseService],
+      imports: [HttpClientModule,FormsModule]
     })
     .compileComponents();
-    
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(ReservationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +26,5 @@ describe('ReservationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

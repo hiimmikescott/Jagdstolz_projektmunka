@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" id="nav">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home" id="active">Dány Horgásztelep</a>
+    <a class="navbar-brand p-2 rounded-pill" routerLinkActive="selected" routerLink="/home" id="active"><img src="../../../favicon.ico" alt="icon">Dányi horgásztelep</a>
     <button (click)="open()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,21 +8,21 @@
     <div [ngbCollapse]="close" class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/info" routerLinkActive="selected" id="active">Rólunk</a>
+          <a class="nav-link rounded-pill" routerLink="/info" routerLinkActive="selected" id="active">Rólunk</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Saját profilom</a>
+          <a class="nav-link rounded-pill" routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Saját profilom</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/reservation" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Foglalásaim</a>
+          <a class="nav-link rounded-pill" routerLink="/reservation" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Foglalásaim</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/admin" routerLinkActive="selected" id="active" *ngIf="isAdmin()&&loggedIn()">Admin</a>
+          <a class="nav-link rounded-pill" routerLink="/admin" routerLinkActive="selected" id="active" *ngIf="isAdmin()&&loggedIn()">Admin</a>
         </li>
       </ul>
     </div>
   </div>
-  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/signup" *ngIf="!loggedIn()">Regisztráció</button>
+  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/register" *ngIf="!loggedIn()">Regisztráció</button>
   <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedIn()">Bejelentkezés</button>
   <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedIn()">Kijelentkezés</button>
 </nav>

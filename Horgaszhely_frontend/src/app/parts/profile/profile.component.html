@@ -2,7 +2,7 @@
 <div class="container">
   <form (ngSubmit)="updateProfile()">
     <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label">Teljes név</label>
       <input type="text" id="name" class="form-control" [(ngModel)]="name" required
         [ngModelOptions]="{standalone: true}">
     </div>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="birthdate" class="form-label">Birthdate</label>
+      <label for="birthdate" class="form-label">Születési dátum</label>
       <input type="date" id="birthdate" class="form-control" [(ngModel)]="birthdate" required
         [ngModelOptions]="{standalone: true}">
     </div>

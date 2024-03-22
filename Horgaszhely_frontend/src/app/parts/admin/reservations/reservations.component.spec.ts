@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { ReservationsComponent } from './reservations.component';
 
@@ -8,10 +10,11 @@ describe('ReservationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReservationsComponent]
+      declarations: [ReservationsComponent],
+      imports: [HttpClientModule, FormsModule]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ReservationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

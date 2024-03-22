@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { BookMainComponent } from './book-main.component';
 import { MapComponent } from '../map/map.component';
 
@@ -9,6 +10,7 @@ describe('BookMainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ BookMainComponent, MapComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });
@@ -22,6 +24,5 @@ describe('BookMainComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
 });

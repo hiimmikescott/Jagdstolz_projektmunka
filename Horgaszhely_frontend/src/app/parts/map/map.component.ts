@@ -52,14 +52,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-  redirectToBookForm() {
-    if (sessionStorage.getItem("token")) {
-      this.router.navigate(['/bookform'], { state: { spot: this.selectedSpot } });
-    } else {
-      alert("Kérjük jelentkezzen be a foglaláshoz.");
-      this.router.navigateByUrl("/login");
-    }
-  }
 
   closeModal() {
     const modal = document.getElementById('customModal');
