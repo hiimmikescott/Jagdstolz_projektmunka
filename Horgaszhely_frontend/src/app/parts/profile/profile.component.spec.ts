@@ -28,7 +28,7 @@ describe('ProfileComponent', () => {
         { provide: MatDialog, useValue: dialogMock },
         { provide: Router, useValue: routerMock }
       ],
-      imports: [FormsModule] // Include FormsModule in imports array
+      imports: [FormsModule]
     })
     .compileComponents();
 
@@ -48,5 +48,4 @@ describe('ProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // Add more test cases here...
 });

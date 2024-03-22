@@ -1,75 +1,63 @@
-<!-- 
-File: reservation.component.ts/css/html
-Author: Vitovszki Tamás
-Copyright: 2024, Vitovszki Tamás
-Group: Szoft II
-Date: 2024
-Github: https://github.com/Tomasman05
-Licenc: GNU GPL 
--->
-
 <div class="container">
   <div class="row">
-      <div class="col-11">
-          <h1>Foglalások</h1>
-      </div>
-      <div class="col">
-          <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
-      </div>
+    <div class="col-11">
+      <h1>Foglalások</h1>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
+    </div>
   </div>
   <div *ngFor="let reservation of reservations; let i = index" class="card mb-3">
-      <div class="card-body">
-          <h5 class="card-title">{{ reservation.fishingplace_id }}. számú hely</h5>
-          <p>{{ names[i] }}</p> <!-- Use names[i] instead of this.name -->
-          <button type="button" (click)="updateReservationData(reservation)"
-              class="btn btn-warning">Szerkesztés</button>
-          <button (click)="deleteReservation(reservation.id)" class="btn btn-danger float-end">Törlés</button>
-      </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ reservation.fishingplace_id }}. számú hely</h5>
+      <p>{{ names[i] }}</p> <!-- Use names[i] instead of this.name -->
+      <button type="button" (click)="updateReservationData(reservation)" class="btn btn-warning">Szerkesztés</button>
+      <button (click)="deleteReservation(reservation.id)" class="btn btn-danger float-end">Törlés</button>
+    </div>
   </div>
   <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
 </div>
 <div class="modal fade" #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog">
-      <div class="modal-content">
-          <!-- ... Modal content ... -->
-          <div class="modal-body">
-              <form (ngSubmit)="updateReservation()" #reservationForm="ngForm">
-                  <!-- ... Other form controls ... -->
-                  <div class="mb-3">
-                      <label for="id" class="form-label">Id</label>
-                      <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" readonly>
-                  </div>
-                  <div class="mb-3">
-                      <label for="name" class="form-label">Név</label>
-                      <input type="text" id="name" class="form-control" [ngModel]="name" name="name" readonly>
-                  </div>
-                  <div class="mb-3">
-                      <label for="guestNumber" class="form-label">Vendégek száma</label>
-                      <input type="text" id="guestNumber" class="form-control" [(ngModel)]="guestNumber"
-                          name="guestNumber" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="placeId" class="form-label">Hely száma</label>
-                      <input type="text" id="placeId" class="form-control" [(ngModel)]="fishingplace_id"
-                          name="placeId" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="reservationStart" class="form-label">Foglalás kezdete</label>
-                      <input type="date" id="reservationStart" class="form-control" [(ngModel)]="reservationStart"
-                          name="reservationStart" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="reservationEnd" class="form-label">Foglalás vége</label>
-                      <input type="date" id="reservationEnd" class="form-control" [(ngModel)]="reservationEnd"
-                          name="reservationEnd" required>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
-                  </div>
-              </form>
+    <div class="modal-content">
+      <!-- ... Modal content ... -->
+      <div class="modal-body">
+        <form (ngSubmit)="updateReservation()" #reservationForm="ngForm">
+          <!-- ... Other form controls ... -->
+          <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" readonly>
           </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Név</label>
+            <input type="text" id="name" class="form-control" [ngModel]="name" name="name" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="guestNumber" class="form-label">Vendégek száma</label>
+            <input type="text" id="guestNumber" class="form-control" [(ngModel)]="guestNumber" name="guestNumber"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="placeId" class="form-label">Hely száma</label>
+            <input type="text" id="placeId" class="form-control" [(ngModel)]="fishingplace_id" name="placeId" required>
+          </div>
+          <div class="mb-3">
+            <label for="reservationStart" class="form-label">Foglalás kezdete</label>
+            <input type="date" id="reservationStart" class="form-control" [(ngModel)]="reservationStart"
+              name="reservationStart" required>
+          </div>
+          <div class="mb-3">
+            <label for="reservationEnd" class="form-label">Foglalás vége</label>
+            <input type="date" id="reservationEnd" class="form-control" [(ngModel)]="reservationEnd"
+              name="reservationEnd" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
+          </div>
+        </form>
       </div>
+    </div>
   </div>
 </div>

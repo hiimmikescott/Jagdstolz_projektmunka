@@ -14,7 +14,7 @@ import { BookMainComponent } from './parts/book-main/book-main.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { GalleryComponent } from './parts/gallery/gallery.component';
 import { HomeComponent } from './parts/home/home.component';
-import { InfoComponent } from './parts/info/info.component';
+import { AboutUsComponent } from './parts/about-us/about-us.component';
 import { NavComponent } from './parts/nav/nav.component';
 import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
@@ -35,7 +35,7 @@ import { ReservationComponent } from './parts/reservation/reservation.component'
     FooterComponent,
     GalleryComponent,
     HomeComponent,
-    InfoComponent,
+    AboutUsComponent,
     NavComponent,
     ProfileComponent,
     SignupComponent,

@@ -1,184 +1,164 @@
-
-<!-- 
-File: spots.component.ts/css/html
-Author: Vitovszki Tamás
-Copyright: 2024, Vitovszki Tamás
-Group: Szoft II
-Date: 2024
-Github: https://github.com/Tomasman05
-Licenc: GNU GPL 
--->
-
 <div class="container">
-    <div class="row">
-        <div class="col-11">
-            <h1>Horgászhelyek</h1>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-primary mb-3 mt-3" button type="button"
-                (click)="addFishingplaceData()">Hozzáadás</button>
-        </div>
+  <div class="row">
+    <div class="col-11">
+      <h1>Horgászhelyek</h1>
     </div>
-    <div *ngFor="let fishingplace of fishingplaces" class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">{{ fishingplace.id }}. számú hely</h5>
-            <button type="button" (click)="updateFishingplaceData(fishingplace)"
-                class="btn btn-warning">Szerkesztés</button>
-            <button (click)="deleteFishingplace(fishingplace.id)" class="btn btn-danger float-end">Törlés</button>
-        </div>
+    <div class="col">
+      <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
     </div>
-    <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
+    <div class="col">
+      <button class="btn btn-primary mb-3 mt-3" button type="button" (click)="addFishingplaceData()">Hozzáadás</button>
+    </div>
+  </div>
+  <div *ngFor="let fishingplace of fishingplaces" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ fishingplace.id }}. számú hely</h5>
+      <button type="button" (click)="updateFishingplaceData(fishingplace)" class="btn btn-warning">Szerkesztés</button>
+      <button (click)="deleteFishingplace(fishingplace.id)" class="btn btn-danger float-end">Törlés</button>
+    </div>
+  </div>
+  <button class="btn btn-primary mb-3 mt-3" routerLink="/admin">Vissza</button>
 </div>
 <div class="modal fade" #exampleModal id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- ... Modal content ... -->
-            <div class="modal-body">
-                <form (ngSubmit)="updateFishingplace()" #updateFishingplaceForm="ngForm">
-                    <!-- ... Other form controls ... -->
-                    <div class="mb-3">
-                        <label for="id" class="form-label">Hely száma</label>
-                        <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pier" class="form-label">Stég</label>
-                        <div class="form-check">
-                            <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier"
-                                [value]="true">
-                            <label class="form-check-label" for="pierTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
-                                [value]="false">
-                            <label class="form-check-label" for="pierFalse">Nincs</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="firepit" class="form-label">Tűzrakó</label>
-                        <div class="form-check">
-                            <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit"
-                                name="firepit" [value]="true" required>
-                            <label class="form-check-label" for="firepitTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit"
-                                name="firepit" [value]="false" required>
-                            <label class="form-check-label" for="firepitFalse">Nincs</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="shelter" class="form-label">Beálló</label>
-                        <div class="form-check">
-                            <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter"
-                                name="shelter" [value]="true" required>
-                            <label class="form-check-label" for="shelterTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter"
-                                name="shelter" [value]="false" required>
-                            <label class="form-check-label" for="shelterFalse">Nincs</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Leírás</label>
-                        <input type="text" id="description" class="form-control" [(ngModel)]="description"
-                            name="description" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="longitude" class="form-label">Hosszúság</label>
-                        <input type="number" id="longitude" class="form-control" [(ngModel)]="longitude"
-                            name="longitude" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="latitude" class="form-label">Szélesség</label>
-                        <input type="number" id="latitude" class="form-control" [(ngModel)]="latitude" name="latitude"
-                            required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
-                    </div>
-                </form>
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- ... Modal content ... -->
+      <div class="modal-body">
+        <form (ngSubmit)="updateFishingplace()" #updateFishingplaceForm="ngForm">
+          <!-- ... Other form controls ... -->
+          <div class="mb-3">
+            <label for="id" class="form-label">Hely száma</label>
+            <input type="text" id="id" class="form-control" [(ngModel)]="id" name="id" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="pier" class="form-label">Stég</label>
+            <div class="form-check">
+              <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier" [value]="true">
+              <label class="form-check-label" for="pierTrue">Van</label>
             </div>
-        </div>
+            <div class="form-check">
+              <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
+                [value]="false">
+              <label class="form-check-label" for="pierFalse">Nincs</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="firepit" class="form-label">Tűzrakó</label>
+            <div class="form-check">
+              <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit" name="firepit"
+                [value]="true" required>
+              <label class="form-check-label" for="firepitTrue">Van</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit" name="firepit"
+                [value]="false" required>
+              <label class="form-check-label" for="firepitFalse">Nincs</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="shelter" class="form-label">Beálló</label>
+            <div class="form-check">
+              <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter" name="shelter"
+                [value]="true" required>
+              <label class="form-check-label" for="shelterTrue">Van</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter" name="shelter"
+                [value]="false" required>
+              <label class="form-check-label" for="shelterFalse">Nincs</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Leírás</label>
+            <input type="text" id="description" class="form-control" [(ngModel)]="description" name="description"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="longitude" class="form-label">Hosszúság</label>
+            <input type="number" id="longitude" class="form-control" [(ngModel)]="longitude" name="longitude" required>
+          </div>
+          <div class="mb-3">
+            <label for="latitude" class="form-label">Szélesség</label>
+            <input type="number" id="latitude" class="form-control" [(ngModel)]="latitude" name="latitude" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
-<div class="modal fade" #exampleModal id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- ... Modal content ... -->
-            <div class="modal-body">
-                <form (ngSubmit)="addFishingplace()" #addFishingplaceForm="ngForm">
-                    <!-- ... Other form controls ... -->
-                    <div class="mb-3">
-                        <label for="pier" class="form-label">Stég</label>
-                        <div class="form-check">
-                            <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier"
-                                [value]="true">
-                            <label class="form-check-label" for="pierTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
-                                [value]="false">
-                            <label class="form-check-label" for="pierFalse">Nincs</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="firepit" class="form-label">Tűzrakó</label>
-                        <div class="form-check">
-                            <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit"
-                                name="firepit" [value]="true" required>
-                            <label class="form-check-label" for="firepitTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit"
-                                name="firepit" [value]="false" required>
-                            <label class="form-check-label" for="firepitFalse">Nincs</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="shelter" class="form-label">Beálló</label>
-                        <div class="form-check">
-                            <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter"
-                                name="shelter" [value]="true" required>
-                            <label class="form-check-label" for="shelterTrue">Van</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter"
-                                name="shelter" [value]="false" required>
-                            <label class="form-check-label" for="shelterFalse">Nincs</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Leírás</label>
-                        <input type="text" id="description" class="form-control" [(ngModel)]="description"
-                            name="description" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="latitude" class="form-label">Szélesség</label>
-                        <input type="number" id="latitude" class="form-control" [(ngModel)]="latitude" name="latitude"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="longitude" class="form-label">Hosszúság</label>
-                        <input type="number" id="longitude" class="form-control" [(ngModel)]="longitude"
-                            name="longitude" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
-                    </div>
-                </form>
+<div class="modal fade" #exampleModal id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- ... Modal content ... -->
+      <div class="modal-body">
+        <form (ngSubmit)="addFishingplace()" #addFishingplaceForm="ngForm">
+          <!-- ... Other form controls ... -->
+          <div class="mb-3">
+            <label for="pier" class="form-label">Stég</label>
+            <div class="form-check">
+              <input type="radio" id="pierTrue" class="form-check-input" [(ngModel)]="pier" name="pier" [value]="true">
+              <label class="form-check-label" for="pierTrue">Van</label>
             </div>
-        </div>
+            <div class="form-check">
+              <input type="radio" id="pierFalse" class="form-check-input" [(ngModel)]="pier" name="pier"
+                [value]="false">
+              <label class="form-check-label" for="pierFalse">Nincs</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="firepit" class="form-label">Tűzrakó</label>
+            <div class="form-check">
+              <input type="radio" id="firepitTrue" class="form-check-input" [(ngModel)]="firepit" name="firepit"
+                [value]="true" required>
+              <label class="form-check-label" for="firepitTrue">Van</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="firepitFalse" class="form-check-input" [(ngModel)]="firepit" name="firepit"
+                [value]="false" required>
+              <label class="form-check-label" for="firepitFalse">Nincs</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="shelter" class="form-label">Beálló</label>
+            <div class="form-check">
+              <input type="radio" id="shelterTrue" class="form-check-input" [(ngModel)]="shelter" name="shelter"
+                [value]="true" required>
+              <label class="form-check-label" for="shelterTrue">Van</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="shelterFalse" class="form-check-input" [(ngModel)]="shelter" name="shelter"
+                [value]="false" required>
+              <label class="form-check-label" for="shelterFalse">Nincs</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Leírás</label>
+            <input type="text" id="description" class="form-control" [(ngModel)]="description" name="description"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="latitude" class="form-label">Szélesség</label>
+            <input type="number" id="latitude" class="form-control" [(ngModel)]="latitude" name="latitude" required>
+          </div>
+          <div class="mb-3">
+            <label for="longitude" class="form-label">Hosszúság</label>
+            <input type="number" id="longitude" class="form-control" [(ngModel)]="longitude" name="longitude" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Mentés</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

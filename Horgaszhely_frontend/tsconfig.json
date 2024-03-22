@@ -1,4 +1,3 @@
-
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -23,9 +22,8 @@
       "ES2022",
       "dom"
     ],
-    "types":[
+    "types": [
       "jquery",
-      "mocha",
       "jasmine"
     ]
   },

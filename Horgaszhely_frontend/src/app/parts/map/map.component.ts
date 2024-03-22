@@ -1,3 +1,4 @@
+
 class CustomMarker extends L.Marker {
   spot: Fishingspot;
 

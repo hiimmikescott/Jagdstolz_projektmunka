@@ -1,90 +1,78 @@
-<!-- 
-File: home.component.ts/css/html
-Author: Vitovszki Tamás
-Copyright: 2024, Vitovszki Tamás
-Group: Szoft II
-Date: 2024
-Github: https://github.com/Tomasman05
-Licenc: GNU GPL
- -->
-
 <div class="container">
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="5000">
-              <img src="../../../assets/images/671.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-              <img src="../../../assets/images/khaby.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
-          </div>
-          <div class="carousel-item">
-              <img src="../../../assets/images/o_o.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
-          </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img src="../../../assets/images/671.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Előző</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Következő</span>
-      </button>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="../../../assets/images/khaby.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
+      </div>
+      <div class="carousel-item">
+        <img src="../../../assets/images/o_o.jpg" class="d-block w-100" alt="..." style="max-height: 400px;">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Előző</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Következő</span>
+    </button>
   </div>
 
   <div class="home-text">
-      <p>Üdvözöljük a Dányi Horgásztelep weboldalán! Élvezze ki a nyugalmat és a természet szépségét a Dányi tó
-          körül, ahol kiváló horgászati élmények várnak Önre. A tó tiszta vizében bőséges halállomány található, amely
-          ideális lehetőséget kínál a horgászat szerelmeseinek a pihentető időtöltésre és a jó fogások elérésére.</p>
-      <p>A Dányi Horgásztelep gondoskodik a kényelméről és biztonságáról, biztosítva, hogy minden horgászat egyedi és
-          emlékezetes legyen. A telep területén számos kényelmi szolgáltatás áll rendelkezésére, beleértve a kényelmes
-          horgászhelyeket, modern felszereléseket, és a barátságos személyzet segítségét.</p>
-      <p>Fedezze fel a változatos horgászhelyeket, ahol mindenki megtalálja a számára tökéletes helyet a tó partján.
-          Legyen szó csendes kikapcsolódásról egyedül, vagy baráti horgászversenyekről, a Dányi Horgásztelep minden
-          igényt
-          kielégít. Ne hagyja ki a lehetőséget, és foglalja le már ma a kívánt horgászhelyet az élmények gazdag
-          világában!
-      </p>
+    <p>Üdvözöljük a Dányi Horgásztelep weboldalán! Élvezze ki a nyugalmat és a természet szépségét a Dányi tó
+      körül, ahol kiváló horgászati élmények várnak Önre. A tó tiszta vizében bőséges halállomány található, amely
+      ideális lehetőséget kínál a horgászat szerelmeseinek a pihentető időtöltésre és a jó fogások elérésére.</p>
+    <p>A Dányi Horgásztelep gondoskodik a kényelméről és biztonságáról, biztosítva, hogy minden horgászat egyedi és
+      emlékezetes legyen. A telep területén számos kényelmi szolgáltatás áll rendelkezésére, beleértve a kényelmes
+      horgászhelyeket, modern felszereléseket, és a barátságos személyzet segítségét.</p>
+    <p>Fedezze fel a változatos horgászhelyeket, ahol mindenki megtalálja a számára tökéletes helyet a tó partján.
+      Legyen szó csendes kikapcsolódásról egyedül, vagy baráti horgászversenyekről, a Dányi Horgásztelep minden
+      igényt
+      kielégít. Ne hagyja ki a lehetőséget, és foglalja le már ma a kívánt horgászhelyet az élmények gazdag
+      világában!
+    </p>
   </div>
 
   <div class="row mb-3">
-      <div class="col-md">
-          <div class="card h-100">
-              <img src="../../../assets/images/booking.png" class="card-img-top mt-3" alt="Foglalás kép"
-                  style="max-height: 200px; max-width: 200px; margin: 0 auto;">
-              <div class="card-body">
-                  <h5 class="card-title">Foglalás</h5>
-                  <p class="card-text">Itt megtekintheti a horgásztelep elérhető helyeit, valamint le is
-                      foglalhatja azokat. Minden állásról kép, és információ is itt található.</p>
-              </div>
-              <div class="card-footer">
-                  <a routerLink="/bookmain" class="btn btn-success">Tovább</a>
-              </div>
-          </div>
+    <div class="col-md">
+      <div class="card h-100">
+        <img src="../../../assets/images/booking.png" class="card-img-top mt-3" alt="Foglalás kép"
+          style="max-height: 200px; max-width: 200px; margin: 0 auto;">
+        <div class="card-body">
+          <h5 class="card-title">Foglalás</h5>
+          <p class="card-text">Itt megtekintheti a horgásztelep elérhető helyeit, valamint le is
+            foglalhatja azokat. Minden állásról kép, és információ is itt található.</p>
+        </div>
+        <div class="card-footer">
+          <a routerLink="/bookmain" class="btn btn-success">Tovább</a>
+        </div>
       </div>
-      <div class="col-md">
-          <div class="card h-100">
-              <img src="../../../assets/images/gallery.png" class="card-img-top" alt="Galéria kép"
-                  style="max-height: 200px; max-width: 200px; margin: 0 auto;">
-              <div class="card-body mt-3">
-                  <h5 class="card-title">Galéria</h5>
-                  <p class="card-text">Itt található a galériánk amelybe Ön is feltöltheti, élményeit, és legendás
-                      fogásait.</p>
-              </div>
-              <div class="card-footer">
-                  <a routerLink="/gallery" class="btn btn-success">Tovább</a>
-              </div>
-          </div>
+    </div>
+    <div class="col-md">
+      <div class="card h-100">
+        <img src="../../../assets/images/gallery.png" class="card-img-top" alt="Galéria kép"
+          style="max-height: 200px; max-width: 200px; margin: 0 auto;">
+        <div class="card-body mt-3">
+          <h5 class="card-title">Galéria</h5>
+          <p class="card-text">Itt található a galériánk amelybe Ön is feltöltheti, élményeit, és legendás
+            fogásait.</p>
+        </div>
+        <div class="card-footer">
+          <a routerLink="/gallery" class="btn btn-success">Tovább</a>
+        </div>
       </div>
+    </div>
   </div>
 
   <div class="home-text pb-3">
-      <p>Fedezze fel a horgászat varázsát a Dányi Horgásztelepen, ahol minden részletre odafigyelünk annak érdekében,
-          hogy
-          Önnek felejthetetlen élményekben legyen része. Győződjön meg a Dányi tó változatos horgászhelyeiről, és
-          foglalja
-          le a kedvencét még ma!
-      </p>
+    <p>Fedezze fel a horgászat varázsát a Dányi Horgásztelepen, ahol minden részletre odafigyelünk annak érdekében,
+      hogy
+      Önnek felejthetetlen élményekben legyen része. Győződjön meg a Dányi tó változatos horgászhelyeiről, és
+      foglalja
+      le a kedvencét még ma!
+    </p>
   </div>
 </div>

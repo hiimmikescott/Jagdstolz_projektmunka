@@ -1,12 +1,4 @@
-/*
-* File: users.component.ts/css/html
-* Author: Vitovszki Tamás
-* Copyright: 2024, Vitovszki Tamás
-* Group: Szoft II
-* Date: 2024
-* Github: https://github.com/Tomasman05
-* Licenc: GNU GPL
-*/
+
 import { Component } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +10,7 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  constructor(private adm: AdminService, private _snackBar: MatSnackBar) {}
+  constructor(private adm: AdminService, private _snackBar: MatSnackBar) { }
 
   users: any[] = [];
   id: any;

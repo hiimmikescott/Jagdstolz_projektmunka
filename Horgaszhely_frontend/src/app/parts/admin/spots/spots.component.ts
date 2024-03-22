@@ -1,12 +1,4 @@
-/*
-* File: spots.component.ts/css/html
-* Author: Vitovszki Tamás
-* Copyright: 2024, Vitovszki Tamás
-* Group: Szoft II
-* Date: 2024
-* Github: https://github.com/Tomasman05
-* Licenc: GNU GPL
-*/
+
 import { Component } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,7 +21,7 @@ export class SpotsComponent {
   longitude: number = 0;
   latitude: number = 0;
 
-  constructor(private adm: AdminService, private _snackBar: MatSnackBar, private base: BaseService) {}
+  constructor(private adm: AdminService, private _snackBar: MatSnackBar, private base: BaseService) { }
 
   ngOnInit() {
     this.getFishingplaces();

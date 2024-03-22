@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BookMainComponent } from './book-main.component';
-import { MapComponent } from '../map/map.component'; // Import the component containing 'app-map'
+import { MapComponent } from '../map/map.component';
 
 describe('BookMainComponent', () => {
   let component: BookMainComponent;
@@ -8,7 +8,7 @@ describe('BookMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookMainComponent, MapComponent ], // Include MapComponent in declarations
+      declarations: [ BookMainComponent, MapComponent ],
     })
     .compileComponents();
   });
@@ -23,5 +23,5 @@ describe('BookMainComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // Add more test cases here...
+
 });
