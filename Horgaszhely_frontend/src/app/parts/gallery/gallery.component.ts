@@ -1,3 +1,12 @@
+/*
+* File: gallery.component.ts/css/html
+* Author: Vitovszki Tamás
+* Copyright: 2024, Vitovszki Tamás
+* Group: Szoft II
+* Date: 2024
+* Github: https://github.com/Tomasman05
+* Licenc: GNU GPL
+*/
 
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ImageService } from '../../services/image.service';
@@ -7,16 +16,17 @@ import { BaseService } from '../../services/base.service';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.css'
+  styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent {
   description: string = '';
   selectedFile: File | null = null;
   images: any[] = [];
-  loggedInUserId = sessionStorage.getItem("id")
+  loggedInUserId = sessionStorage.getItem("id");
   newDescription: string = '';
   editingImage: any;
   @ViewChild('editModal') editModal!: ElementRef;
+
   constructor(private _snackBar: MatSnackBar, private imageService: ImageService, private base: BaseService) { }
 
   ngOnInit(): void {
@@ -46,10 +56,9 @@ export class GalleryComponent {
 
   canModifyOrDelete(image: any): boolean {
     if (this.loggedInUserId == image.user_id || sessionStorage.getItem("role") == "admin") {
-      return true
-    }
-    else {
-      return false
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -11,18 +11,18 @@
           <a class="nav-link " routerLink="/info" routerLinkActive="selected" id="active">Rólunk</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedin()">Saját profilom</a>
+          <a class="nav-link " routerLink="/profile" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Saját profilom</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/reservation" routerLinkActive="selected" id="active" *ngIf="loggedin()">Foglalásaim</a>
+          <a class="nav-link " routerLink="/reservation" routerLinkActive="selected" id="active" *ngIf="loggedIn()">Foglalásaim</a>
         </li>
         <li class="nav-item p-2">
-          <a class="nav-link " routerLink="/admin" routerLinkActive="selected" id="active" *ngIf="admin()&&loggedin()">Admin</a>
+          <a class="nav-link " routerLink="/admin" routerLinkActive="selected" id="active" *ngIf="isAdmin()&&loggedIn()">Admin</a>
         </li>
       </ul>
     </div>
   </div>
-  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/signup" *ngIf="!loggedin()">Regisztráció</button>
-  <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedin()">Bejelentkezés</button>
-  <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedin()">Kijelentkezés</button>
+  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/signup" *ngIf="!loggedIn()">Regisztráció</button>
+  <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedIn()">Bejelentkezés</button>
+  <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedIn()">Kijelentkezés</button>
 </nav>

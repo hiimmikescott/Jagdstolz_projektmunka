@@ -52,12 +52,11 @@ export class MapComponent implements OnInit {
   }
 
   redirectToBookForm() {
-    if(sessionStorage.getItem("token")){
+    if (sessionStorage.getItem("token")) {
       this.router.navigate(['/bookform'], { state: { spot: this.selectedSpot } });
-    }
-    else{
-      alert("Kérjük jelenkezzen be a foglaláshoz.")
-      this.router.navigateByUrl("/login")
+    } else {
+      alert("Kérjük jelentkezzen be a foglaláshoz.");
+      this.router.navigateByUrl("/login");
     }
   }
 
@@ -99,10 +98,10 @@ export class MapComponent implements OnInit {
     this.map.fitBounds(bounds);
   }
 
-  protected trueOrFalse(data:boolean|undefined){
-    if(data==true){
-      return "Van"
+  protected trueOrFalse(data: boolean | undefined) {
+    if (data == true) {
+      return "Van";
     }
-    return "Nincs"
+    return "Nincs";
   }
 }

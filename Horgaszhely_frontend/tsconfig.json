@@ -24,7 +24,9 @@
       "dom"
     ],
     "types":[
-      "jquery"
+      "jquery",
+      "mocha",
+      "jasmine"
     ]
   },
   "angularCompilerOptions": {

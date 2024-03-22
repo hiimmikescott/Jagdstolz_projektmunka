@@ -12,9 +12,12 @@ export class AuthService {
 
   private url = "http://127.0.0.1:8000/api";
   private userRoles: string[] = [];
+
   constructor(private http: HttpClient,private base: BaseService) {
     this.fetchUserRoles();
   }
+
+  // ---------------------------------------------------------user authentication--------------------------------------------------------------
 
   private fetchUserRoles(): void {
     const rolesFromSession = sessionStorage.getItem('role');
@@ -23,7 +26,6 @@ export class AuthService {
       this.userRoles = [rolesFromSession];
     }
   }
-
 
   createUser(email: any, name: any, password: any, password_confirmation: any, birthdate: any): Observable<any> {
     const userData = { email, name, password, password_confirmation, birthdate };

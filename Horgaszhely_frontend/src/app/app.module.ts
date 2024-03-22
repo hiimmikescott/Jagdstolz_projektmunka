@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFormComponent } from './parts/book-form/book-form.component';
 import { BookMainComponent } from './parts/book-main/book-main.component';
 import { FooterComponent } from './parts/footer/footer.component';
@@ -17,8 +20,6 @@ import { ProfileComponent } from './parts/profile/profile.component';
 import { SignupComponent } from './parts/signup/signup.component';
 import { MapComponent } from './parts/map/map.component';
 import { LoginComponent } from './parts/login/login.component';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AdminComponent } from './parts/admin/admin.component';
 import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';

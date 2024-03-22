@@ -1,3 +1,5 @@
+// fishing-spot.service.ts
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,21 +12,22 @@ export class FishingSpotService {
 
   constructor(private http: HttpClient) { }
 
+  // ---------------------------------------------------------fishingspots--------------------------------------------------------------
+
   getFishingSpots(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/fishingplaces`);
   }
-
-
 }
-export interface Fishingspot{
-  id:number
-  reservable:boolean
-  pier:boolean
-  firepit:boolean
-  shelter:boolean
-  averageRating:number
-  description:string
-  longitude:number
-  latitude:number
-  images?:string[]|null
+
+export interface Fishingspot {
+  id: number;
+  reservable: boolean;
+  pier: boolean;
+  firepit: boolean;
+  shelter: boolean;
+  averageRating: number;
+  description: string;
+  longitude: number;
+  latitude: number;
+  images?: string[] | null;
 }

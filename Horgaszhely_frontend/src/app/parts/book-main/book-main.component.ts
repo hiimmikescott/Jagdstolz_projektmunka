@@ -1,7 +1,14 @@
-import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import * as L from 'leaflet';
+/*
+* File: book-main.component.ts/css/html
+* Author: Vitovszki Tamás
+* Copyright: 2024, Vitovszki Tamás
+* Group: Szoft II
+* Date: 2024
+* Github: https://github.com/Tomasman05
+* Licenc: GNU GPL
+*/
+
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-book-main',

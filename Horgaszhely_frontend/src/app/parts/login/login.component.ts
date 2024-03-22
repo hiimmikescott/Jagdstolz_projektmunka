@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth.service';
 import { BaseService } from '../../services/base.service';
 
@@ -12,7 +12,7 @@ import { BaseService } from '../../services/base.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, private auth: AuthService, private base: BaseService, private snackBar: MatSnackBar) { } // Inject MatSnackBar
+  constructor(private formBuilder: FormBuilder, private router: Router, private auth: AuthService, private base: BaseService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -27,38 +27,36 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.value.password;
       const loginObj = {
         email, password
-      }
+      };
       this.auth.login(loginObj).subscribe((res: any) => {
-        console.log(res)
-        if (res && !!res.success==true) {
+        console.log(res);
+        if (res && !!res.success == true) {
           this.base.getUserData(res.data.id).subscribe((result) => {
-            if (!!result.data.userlevel==true) {
-              let role = "admin"
-              sessionStorage.setItem("role", role)
-              sessionStorage.setItem("token", res.data.token)
-              sessionStorage.setItem("id", res.data.id)
+            if (!!result.data.userlevel == true) {
+              let role = "admin";
+              sessionStorage.setItem("role", role);
+              sessionStorage.setItem("token", res.data.token);
+              sessionStorage.setItem("id", res.data.id);
               this.auth.updateRolesAfterLogin();
-              this.router.navigateByUrl("/home")
+              this.router.navigateByUrl("/home");
               this.openSnackBar('Sikeres bejelentkezés', 'Bezárás');
             } else {
-              let role = "user"
-              sessionStorage.setItem("role", role)
-              sessionStorage.setItem("token", res.data.token)
-              sessionStorage.setItem("id", res.data.id)
+              let role = "user";
+              sessionStorage.setItem("role", role);
+              sessionStorage.setItem("token", res.data.token);
+              sessionStorage.setItem("id", res.data.id);
               this.auth.updateRolesAfterLogin();
-              this.router.navigateByUrl("/home")
+              this.router.navigateByUrl("/home");
               this.openSnackBar('Sikeres bejelentkezés', 'Bezárás');
             }
-          })
-        }
-        else {
+          });
+        } else {
           this.openSnackBar('Hibás jelszó vagy email', 'Bezárás');
         }
       }, error => {
         this.openSnackBar("Email cím vagy jelszó nem megfelelő.", 'Bezárás');
-      })
-    }
-    else {
+      });
+    } else {
       this.openSnackBar('Kérjük töltse ki a mezőket.', 'Bezárás');
     }
   }
