@@ -75,8 +75,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get("/fishingplace",[FishingPlaceController::class , "getFishingPlace" ]);
 
     //---{  userAuth routes  }-------------------------------------------------------------------------
-    Route::post("/userregister",[AuthController::class , "userRegister"])->middleware("throttle:100, 43200");
-    Route::post("/userlogin",[AuthController::class , "userLogin"])->middleware("throttle:100, 43200");
+    Route::post("/userregister",[AuthController::class , "userRegister"]);
+    Route::post("/userlogin",[AuthController::class , "userLogin"]);
     Route::put("/useremailyverify",[AuthController::class , "emailverify"]);
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
