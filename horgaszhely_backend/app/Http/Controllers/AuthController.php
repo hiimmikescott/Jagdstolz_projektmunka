@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\emailController;
 use App\Models\User;
 use App\Http\Requests\UserRegisterChecker;
 use App\Http\Requests\UserLoginChecker;
@@ -23,6 +24,7 @@ class AuthController extends ResponseController
         $input = $request->all();
         $input["password"]=bcrypt($input["password"]);
         $emailcode = $this->genEmailCode();
+        (new emailController)->sendEmailCode($emailCode , $code);
         $input["verifycode"]=$emailcode;
         $user = User::create($input);
 
