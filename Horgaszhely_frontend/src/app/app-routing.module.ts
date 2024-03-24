@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: "bookform", component: BookFormComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "gallery", component: GalleryComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "login", component: LoginComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
-  { path: "reservation", component: ReservationComponent },
+  { path: "reservation", component: ReservationComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] } },
   { path: "admin", component: AdminComponent, canActivate: [RoleGuard], data: { roles: ['admin'] } },
   { path: "users", component: UsersComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
   { path: "reservations", component: ReservationsComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as bootstrap from 'bootstrap';
+
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +18,7 @@ export class SignupComponent {
   password: any;
   password_confirmation: any;
   birthdate: Date = new Date();
+  code: number = 0;
 
   isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -40,21 +43,23 @@ export class SignupComponent {
   signUp() {
     if (this.isFormValid()) {
       this.auth.createUser(this.email, this.name, this.password, this.password_confirmation, this.birthdate).subscribe(
-        (response: any) => {
+        (res: any) => {
           const email = this.email;
           const password = this.password;
           const loginObj = { email, password };
+          console.log(res)
 
-          this.auth.login(loginObj).subscribe((res: any) => {
-            if (res) {
-              this.showSuccessMessage();
-              sessionStorage.setItem("token", res.data.token);
-              sessionStorage.setItem("id", res.data.id);
-              this.router.navigateByUrl("/home");
-            } else {
-              alert("Sikertelen bejelentkezés");
-            }
-          });
+
+        //   this.auth.login(loginObj).subscribe((res: any) => {
+        //     if (res) {
+        //       this.showSuccessMessage();
+        //       sessionStorage.setItem("token", res.data.token);
+        //       sessionStorage.setItem("id", res.data.id);
+        //       this.router.navigateByUrl("/home");
+        //     } else {
+        //       alert("Sikertelen bejelentkezés");
+        //     }
+        //   });
         },
         (error: any) => {
           console.error('Sign-up error:', error);
@@ -73,5 +78,23 @@ export class SignupComponent {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
+  }
+  verifyUser() {
+    this.auth.verifyEmail(this.code).subscribe(
+      (res) => {
+        console.log(res)
+      })
+  }
+
+  openModal() {
+    this.signUp()
+    const modalElement = document.getElementById('verificationModal');
+
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    } else {
+      console.error('Modális ablak nem található');
+    }
   }
 }

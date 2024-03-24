@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate {
     const routePath = state.url;
 
     if (!userRole) {
-      if (routePath !== '/register' && routePath !== '/profile') {
+      if (routePath !== '/reservation' && routePath !== '/profile') {
         return true;
       } else {
         this.snackBar.open('A funkcióhoz kérem jelentkezzen be.', 'Bezár', {

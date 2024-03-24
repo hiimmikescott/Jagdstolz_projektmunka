@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
   markers: CustomMarker[] = [];
   selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService, private router: Router) { }
+  constructor(private fishingSpotService: FishingSpotService) { }
 
   ngOnInit() {
     this.fishingSpotService.getFishingSpots().subscribe({

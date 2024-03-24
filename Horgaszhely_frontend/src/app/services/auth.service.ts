@@ -52,4 +52,7 @@ export class AuthService {
   updateRolesAfterLogin(): void {
     this.fetchUserRoles();
   }
+  verifyEmail(code:number): Observable<any>{
+    return this.http.post(`${this.url}/useremailyverify`, code);
+  }
 }
