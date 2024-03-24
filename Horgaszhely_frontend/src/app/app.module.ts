@@ -26,6 +26,7 @@ import { UsersComponent } from './parts/admin/users/users.component';
 import { ReservationsComponent } from './parts/admin/reservations/reservations.component';
 import { SpotsComponent } from './parts/admin/spots/spots.component';
 import { ReservationComponent } from './parts/reservation/reservation.component';
+import { VerifyEmailComponent } from './parts/verify-email/verify-email.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ReservationComponent } from './parts/reservation/reservation.component'
     ReservationsComponent,
     SpotsComponent,
     ReservationComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,

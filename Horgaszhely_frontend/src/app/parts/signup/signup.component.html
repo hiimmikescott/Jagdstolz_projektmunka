@@ -31,26 +31,5 @@
   <button routerLink="/home" class="btn btn-danger mb-3 float-end">Mégsem</button>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="verificationModalLabel">Profil visszaigazolása</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- One-line bootstrap form for verification code -->
-        <form (submit)="submitVerificationCode()">
-          <div class="mb-3">
-            <label for="verificationCode" class="form-label">Verifikációs kód</label>
-            <input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="Adja meg a verifikációs kódot" [(ngModel)]="code">
-          </div>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Küldés</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 

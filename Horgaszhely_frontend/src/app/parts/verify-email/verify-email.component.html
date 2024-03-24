@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="pt-3 ms-3">Erősítse meg email címét</h1>
+  <form (submit)="verifyEmail()">
+    <div class="mb-3" id="form">
+      <label for="verificationCode" class="form-label mt-3"><h5>Adja meg a megerősítő kódot, amelyet elküldtünk email címére</h5></label>
+      <input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="Megerősítő kód" [(ngModel)]="code">
+    </div>
+    <button type="submit" class="btn btn-primary">Küldés</button>
+  </form>
+</div>

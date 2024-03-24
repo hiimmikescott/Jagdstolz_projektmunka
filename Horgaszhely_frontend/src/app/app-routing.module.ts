@@ -14,6 +14,7 @@ import { ReservationsComponent } from './parts/admin/reservations/reservations.c
 import { SpotsComponent } from './parts/admin/spots/spots.component';
 import { RoleGuard } from './services/auth.guard';
 import { ReservationComponent } from './parts/reservation/reservation.component';
+import { VerifyEmailComponent } from './parts/verify-email/verify-email.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "register", component: SignupComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "bookmain", component: BookMainComponent },
+  { path: "verifyEmail", component: VerifyEmailComponent },
   { path: "bookform", component: BookFormComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "gallery", component: GalleryComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "login", component: LoginComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
