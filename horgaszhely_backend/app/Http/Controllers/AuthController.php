@@ -26,7 +26,7 @@ class AuthController extends ResponseController
         $email=$input["email"];
         $emailCode = $this->genEmailCode();
         (new emailController)->sendEmailCode($emailCode,$email);
-        $input["verifycode"]=$emailcode;
+        $input["verifycode"]=$emailCode;
         $user = User::create($input);
 
         //---{  success  }---------------------------

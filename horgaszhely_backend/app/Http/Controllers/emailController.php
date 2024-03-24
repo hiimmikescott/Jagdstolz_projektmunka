@@ -9,10 +9,10 @@ use App\Mail\Email;
 
 class emailController extends Controller
 {
-    public function sendEmailCode ($code,$email){
+    public function sendEmailCode ($emailCode,$email){
         $content = [
             "title" => "viszaigazolokod",
-            "code" => $code
+            "code" => $emailCode
         ];
         Mail::to($email)->send(new Email($content));
     }
