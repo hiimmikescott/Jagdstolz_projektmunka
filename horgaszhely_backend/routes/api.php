@@ -77,6 +77,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //---{  userAuth routes  }-------------------------------------------------------------------------
     Route::post("/userregister",[AuthController::class , "userRegister"])->middleware("throttle:100, 43200");
     Route::post("/userlogin",[AuthController::class , "userLogin"])->middleware("throttle:100, 43200");
+    Route::put("/useremailyverify",[AuthController::class , "emailverify"]);
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
