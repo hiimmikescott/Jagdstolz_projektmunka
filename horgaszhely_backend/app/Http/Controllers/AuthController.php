@@ -35,14 +35,21 @@ class AuthController extends ResponseController
     }
 
     public function emailverify (Request $request){
+
+        //---{  email verifycation  }-----------------------------------------------
+
         $code = $request->all();
         $user = User::where("verifycode",$code)->first();
+
         if (!empty($user)) {
+            //---{  success  }---------------------------
             $time = date("Y-m-d", time());
             $user-> email_verified_at = $time;
             $user ->save();
             return $this->sendResponse($time,"sikeres viszaigazolás");
+
         } else {
+            //---{  error  }--------------------------------------------------------
             return $this->sendError("hibás viszaigazolokod");
         }
     }
@@ -68,10 +75,12 @@ class AuthController extends ResponseController
                 return $this->sendResponse($success,"Sikeres bejelentkezés");
             
             } else {
+                //---{  error  }--------------------------------------------------------
                 return $this->sendError("bejelentkezési hiba, felhasználoi fiok még nincs visza igazolva");    
             }
         }
         else{
+            //---{  error  }--------------------------------------------------------
             return $this->sendError("Adatbeviteli hiba, hibás email vagy jelszó");
         }
     }
