@@ -37,7 +37,7 @@ export class RoleGuard implements CanActivate {
         return false;
       }
     } else {
-      if (routePath === '/register') {
+      if (routePath === '/register' || routePath === '/verifyEmail') {
         this.snackBar.open('A regisztrációhoz nincs jogosultsága.', 'Bezár', {
           duration: 5000,
           horizontalPosition: 'center',

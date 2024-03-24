@@ -19,14 +19,16 @@ import { VerifyEmailComponent } from './parts/verify-email/verify-email.componen
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "info", component: AboutUsComponent },
+  { path: "bookmain", component: BookMainComponent },
+
   { path: "profile", component: ProfileComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "register", component: SignupComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
-  { path: "bookmain", component: BookMainComponent },
-  { path: "verifyEmail", component: VerifyEmailComponent },
+  { path: "verifyEmail", component: VerifyEmailComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] } },
   { path: "bookform", component: BookFormComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "gallery", component: GalleryComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "login", component: LoginComponent , canActivate: [RoleGuard], data: { roles: ['admin',"user"] }},
   { path: "reservation", component: ReservationComponent, canActivate: [RoleGuard], data: { roles: ['admin',"user"] } },
+
   { path: "admin", component: AdminComponent, canActivate: [RoleGuard], data: { roles: ['admin'] } },
   { path: "users", component: UsersComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
   { path: "reservations", component: ReservationsComponent, canActivate: [RoleGuard], data: { roles: ['admin'] }},
