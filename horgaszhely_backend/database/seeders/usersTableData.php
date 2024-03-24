@@ -23,7 +23,6 @@ class usersTableData extends Seeder
                 'name'=>$faker->name(),
                 'email'=>$faker->email(),
                 'password'=> Hash::make($faker->password()),
-                'validated'=>$faker->numberBetween(0,1),
                 'birthdate'=>$faker->dateTime(),
                 'userlevel'=>5
             ]);
