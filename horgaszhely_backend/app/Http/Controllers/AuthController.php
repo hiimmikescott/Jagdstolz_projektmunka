@@ -35,25 +35,24 @@ class AuthController extends ResponseController
          return $this->sendResponse($success,"sikeres regisztrácio");
     }
 
-    public function emailverify (Request $request){
+    public function emailverify(Request $request) {
+        //---{  email verification  }-----------------------------------------------
 
-        //---{  email verifycation  }-----------------------------------------------
+        $code = $request->input('verifycode'); // Retrieve the value of the 'verifycode' parameter
+        $user = User::where('verifycode', $code)->first();
 
-        $code = $request->all();
-        $user = User::where("verifycode",$code)->first();
-
-        if (!empty($user)) {
+        if ($user) {
             //---{  success  }---------------------------
             $time = date("Y-m-d", time());
-            $user-> email_verified_at = $time;
-            $user ->save();
-            return $this->sendResponse($time,"viszaigazolkod elküldve");
-
+            $user->email_verified_at = $time;
+            $user->save();
+            return $this->sendResponse($time, "Viszaigazolkod elküldve");
         } else {
             //---{  error  }--------------------------------------------------------
-            return $this->sendError("hibás viszaigazolokod");
+            return $this->sendError("Hibás viszaigazolokod");
         }
     }
+
 
 
     public function userLogin(UserLoginChecker $request){
