@@ -9,8 +9,8 @@ use App\Mail\Email;
 
 class emailController extends Controller
 {
-    public function sendEmailCode ($emailCode , $code){
-        $contet = [
+    public function sendEmailCode ($code,$email){
+        $content = [
             "title" => "viszaigazolokod",
             "code" => $code
         ];

@@ -23,8 +23,9 @@ class AuthController extends ResponseController
         $request->validated();
         $input = $request->all();
         $input["password"]=bcrypt($input["password"]);
-        $emailcode = $this->genEmailCode();
-        (new emailController)->sendEmailCode($emailCode , $code);
+        $email=$input["email"];
+        $emailCode = $this->genEmailCode();
+        (new emailController)->sendEmailCode($emailCode,$email);
         $input["verifycode"]=$emailcode;
         $user = User::create($input);
 
@@ -61,11 +62,11 @@ class AuthController extends ResponseController
 
         $request->validated();
         if(Auth::attempt(["email"=>$request->email,"password"=>$request->password])){
-            
+
             $user = Auth::user();
-            
+
             if (!empty($user->email_verified_at)) {
-                
+
 
                 //---{  success  }--------------------------
 
@@ -73,10 +74,10 @@ class AuthController extends ResponseController
                 $success["name"]=$user->name;
                 $success["id"]=$user->id;
                 return $this->sendResponse($success,"Sikeres bejelentkezés");
-            
+
             } else {
                 //---{  error  }--------------------------------------------------------
-                return $this->sendError("bejelentkezési hiba, felhasználoi fiok még nincs visza igazolva");    
+                return $this->sendError("bejelentkezési hiba, felhasználoi fiok még nincs visza igazolva");
             }
         }
         else{
@@ -93,7 +94,7 @@ class AuthController extends ResponseController
         return $this->sendResponse("Sikeres kijelentkezés",[]);
     }
 
-    //---{  email verify code generator  }----------------------------------------------  
+    //---{  email verify code generator  }----------------------------------------------
 
     private function genEmailCode(){
         return Random::generate(5,"0-9");
