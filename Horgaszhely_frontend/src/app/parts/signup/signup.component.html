@@ -25,7 +25,7 @@
     <label for="birthDate" class="form-label">Születési dátum</label>
     <input type="date" class="form-control" [(ngModel)]="birthdate" required>
   </div>
-  <button type="button" class="btn btn-primary mb-3 me-3" (click)="openModal()"
+  <button type="button" class="btn btn-primary mb-3 me-3" (click)="signUp()"
     [disabled]="!isFormValid()">Regisztrálok!</button>
   <button class="btn btn-secondary mb-3 me-3" routerLink="/login">Már van fiókja?</button>
   <button routerLink="/home" class="btn btn-danger mb-3 float-end">Mégsem</button>
@@ -42,14 +42,15 @@
       </div>
       <div class="modal-body">
         <!-- One-line bootstrap form for verification code -->
-        <form>
+        <form (submit)="submitVerificationCode()">
           <div class="mb-3">
             <label for="verificationCode" class="form-label">Verifikációs kód</label>
             <input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="Adja meg a verifikációs kódot" [(ngModel)]="code">
           </div>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" (click)="verifyUser()">Küldés</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Küldés</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+

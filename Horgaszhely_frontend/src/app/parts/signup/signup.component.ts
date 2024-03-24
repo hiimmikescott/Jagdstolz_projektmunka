@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as bootstrap from 'bootstrap';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -19,6 +18,17 @@ export class SignupComponent {
   password_confirmation: any;
   birthdate: Date = new Date();
   code: number = 0;
+
+  async submitVerificationCode() {
+    try {
+      const isVerified = await this.verifyUser(this.code);
+      if (isVerified) {
+        this.closeModal();
+      }
+    } catch (error) {
+      console.error('Verification error:', error);
+    }
+  }
 
   isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -40,35 +50,45 @@ export class SignupComponent {
     );
   }
 
-  signUp() {
+  async signUp() {
+    this.openModal();
     if (this.isFormValid()) {
-      this.auth.createUser(this.email, this.name, this.password, this.password_confirmation, this.birthdate).subscribe(
-        (res: any) => {
-          const email = this.email;
-          const password = this.password;
-          const loginObj = { email, password };
+      try {
+        const res = await this.auth.createUser(this.email, this.name, this.password, this.password_confirmation, this.birthdate).subscribe((res)=>{
           console.log(res)
+        });
+        const email = this.email;
+        const password = this.password;
+        const loginObj = { email, password };
 
+        const isVerified = await this.verifyUser(this.code);
 
-        //   this.auth.login(loginObj).subscribe((res: any) => {
-        //     if (res) {
-        //       this.showSuccessMessage();
-        //       sessionStorage.setItem("token", res.data.token);
-        //       sessionStorage.setItem("id", res.data.id);
-        //       this.router.navigateByUrl("/home");
-        //     } else {
-        //       alert("Sikertelen bejelentkezés");
-        //     }
-        //   });
-        },
-        (error: any) => {
-          console.error('Sign-up error:', error);
-          alert('A megadott email cím már regisztrálva van.');
+        if (isVerified) {
+          const loginRes = await this.auth.login(loginObj).toPromise();
+          if (loginRes) {
+            this.showSuccessMessage();
+            sessionStorage.setItem("token", loginRes.data.token);
+            sessionStorage.setItem("id", loginRes.data.id);
+            this.router.navigateByUrl("/home");
+          } else {
+            this.showErrorMessage("Sikertelen bejelentkezés visszaigazolás hiánya miatt");
+          }
+        } else {
+          this.showErrorMessage("Sikertelen fiók visszaigazolás!");
         }
-      );
+      } catch (error) {
+        console.error('Regisztrációs hiba:', error);
+        this.showErrorMessage('A megadott email cím már regisztrálva van.');
+      }
     } else {
-      console.error('Form is not valid. Please check the entered information.');
+      this.showErrorMessage('Az űrlap nem érvényes. Kérjük, ellenőrizze a megadott információkat.');
     }
+  }
+
+  showErrorMessage(message: string) {
+    this._snackBar.open(message, 'Bezárás', {
+      duration: 3000,
+    });
   }
 
   showSuccessMessage() {
@@ -79,15 +99,22 @@ export class SignupComponent {
       verticalPosition: 'bottom',
     });
   }
-  verifyUser() {
-    this.auth.verifyEmail(this.code).subscribe(
-      (res) => {
-        console.log(res)
-      })
+
+  verifyUser(code:number) {
+    let resp
+   this.auth.verifyEmail(code).subscribe((res)=>{
+     console.log(res)
+    if(res.success==true){
+      resp=true
+    }
+    else{
+      resp=false
+    }
+   })
+   return resp
   }
 
   openModal() {
-    this.signUp()
     const modalElement = document.getElementById('verificationModal');
 
     if (modalElement) {
@@ -97,4 +124,19 @@ export class SignupComponent {
       console.error('Modális ablak nem található');
     }
   }
+
+  closeModal() {
+    const modalElement = document.getElementById('verificationModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      if (modal) {
+        modal.hide();
+      } else {
+        console.error('Modal instance not found');
+      }
+    } else {
+      console.error('Modal element not found');
+    }
+  }
+
 }

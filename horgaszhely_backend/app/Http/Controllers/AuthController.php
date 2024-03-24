@@ -44,9 +44,16 @@ class AuthController extends ResponseController
         if ($user) {
             //---{  success  }---------------------------
             $time = date("Y-m-d", time());
+<<<<<<< HEAD
             $user->email_verified_at = $time;
             $user->save();
             return $this->sendResponse($time, "Viszaigazolkod elküldve");
+=======
+            $user-> email_verified_at = $time;
+            $user ->save();
+            return $this->sendResponse($time,"sikeres viszaigazolás");
+
+>>>>>>> 1a06fc0ed67090d078d2a0b84536e73cdf29a94f
         } else {
             //---{  error  }--------------------------------------------------------
             return $this->sendError("Hibás viszaigazolokod");
