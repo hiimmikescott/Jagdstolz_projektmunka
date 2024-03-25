@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
   markers: CustomMarker[] = [];
   selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService) { }
+  constructor(private fishingSpotService: FishingSpotService, private router: Router) { }
 
   ngOnInit() {
     this.fishingSpotService.getFishingSpots().subscribe({
@@ -96,5 +96,13 @@ export class MapComponent implements OnInit {
       return "Van";
     }
     return "Nincs";
+  }
+  navigate(){
+    this.router.navigate(['/bookform'], {
+      queryParams: {
+        id: this.selectedSpot?.id,
+        reservable: this.selectedSpot?.reservable
+      }
+    });
   }
 }

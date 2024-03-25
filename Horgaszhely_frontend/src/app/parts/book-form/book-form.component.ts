@@ -24,13 +24,9 @@ export class BookFormComponent {
     let date1 = new Date();
     this.endDate = new Date(date1.setDate(date1.getDate() + 1)).toISOString().slice(0, 10);
     this.guestNumber = 1;
-    this.route.paramMap.subscribe((params) => {
-      const spot = history.state.spot;
-      console.log(spot)
-      if (spot) {
-        this.fishingplace_id = spot.id;
-        this.reservable = spot.reservable;
-      }
+    this.route.queryParams.subscribe(params => {
+      this.fishingplace_id = params['id'];
+      this.reservable = params['reservable'];
     });
   }
 
