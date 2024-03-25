@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent {
-  reservable: boolean = true;
+  reservable!: boolean;
   fishingplace_id: any;
   private user_id = sessionStorage.getItem("id");
   startDate: any;
@@ -26,7 +26,7 @@ export class BookFormComponent {
     this.guestNumber = 1;
     this.route.queryParams.subscribe(params => {
       this.fishingplace_id = params['id'];
-      this.reservable = !!params['reservable'];
+      this.reservable = params['reservable'];
       console.log(this.reservable)
     });
   }

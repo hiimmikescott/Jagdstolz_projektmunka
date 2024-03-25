@@ -1,4 +1,4 @@
-<div class="container" *ngIf="reservable; else reserved">
+<div class="container" *ngIf="reservable==true; else reserved">
   <img src="../../../assets/images/o_o.jpg" class="mb-3" alt="Kép a lefoglalni kívánt helyről">
   <form #reservationForm="ngForm" (ngSubmit)="sendReservation()" novalidate>
     <div class="mb-3">
@@ -36,6 +36,6 @@
   </form>
 </div>
 <ng-template class="container" #reserved>
-  <h1>A hely az Ön által választott időszakban már le van foglalva, kérjük válasszon másikat.</h1>
-  <button type="button" class="btn btn-success mb-3" routerLink="/bookmain">Vissza a térképre</button>
+  <h1 class="p-3">A hely az Ön által választott időszakban már le van foglalva, kérjük válasszon másikat.</h1>
+  <button type="button" class="btn btn-success mb-3 ms-3" routerLink="/bookmain">Vissza a térképre</button>
 </ng-template>
