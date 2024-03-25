@@ -26,7 +26,8 @@ export class BookFormComponent {
     this.guestNumber = 1;
     this.route.queryParams.subscribe(params => {
       this.fishingplace_id = params['id'];
-      this.reservable = params['reservable'];
+      this.reservable = !!params['reservable'];
+      console.log(this.reservable)
     });
   }
 
