@@ -19,6 +19,8 @@ export class VerifyEmailComponent {
     this.route.queryParams.subscribe(params => {
       this.email = params['email'];
       this.password = params['password'];
+
+      console.log(this.email,this.password)
     });
   }
 

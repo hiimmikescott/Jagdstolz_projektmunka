@@ -20,6 +20,7 @@ import * as L from 'leaflet';
 import { FishingSpotService, Fishingspot } from '../../services/fishing-spot.service';
 import { Router } from '@angular/router';
 import * as bootstrap from 'bootstrap';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-map',
@@ -32,7 +33,7 @@ export class MapComponent implements OnInit {
   markers: CustomMarker[] = [];
   selectedSpot: Fishingspot | null = null;
 
-  constructor(private fishingSpotService: FishingSpotService, private router: Router) { }
+  constructor(private fishingSpotService: FishingSpotService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.fishingSpotService.getFishingSpots().subscribe({
@@ -97,12 +98,30 @@ export class MapComponent implements OnInit {
     }
     return "Nincs";
   }
-  navigate(){
-    this.router.navigate(['/bookform'], {
-      queryParams: {
-        id: this.selectedSpot!.id,
-        reservable: !!this.selectedSpot!.reservable
-      }
+
+  navigate() {
+    if (this.loggedIn()) {
+      this.router.navigate(['/bookform'], {
+        queryParams: {
+          id: this.selectedSpot!.id,
+          reservable: !!this.selectedSpot!.reservable
+        }
+      });
+    }
+    else {
+      this.openSnackBar("A foglaláshoz kérjük jelentkezzen be.","Bejelentkezek")
+      this.router.navigateByUrl("/login")
+    }
+  }
+
+  loggedIn() {
+    let token = sessionStorage.getItem("token");
+    return !!token;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 }

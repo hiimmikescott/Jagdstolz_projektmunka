@@ -20,11 +20,11 @@ describe('BookFormComponent', () => {
           useValue: {
             snapshot: {
               paramMap: {
-                get: () => 'mockParam' // Provide a mock value for the route parameter
+                get: () => 'mockParam' 
               }
             },
             paramMap: of({
-              get: (key: string) => 'mockParam' // Provide a mock value for paramMap as an observable
+              get: (key: string) => 'mockParam' 
             })
           }
         }
