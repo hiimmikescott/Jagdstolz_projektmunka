@@ -92,3 +92,8 @@ Route::delete('/images/delete/{id}', [ImageController::class, 'delete']);
 
 // Modify image description
 Route::put('/images/modify/{id}', [ImageController::class, 'modify']);
+
+//test
+Route::put("/test", [reservationController::class, "test"]);
+
+

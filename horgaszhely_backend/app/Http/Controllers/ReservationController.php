@@ -187,4 +187,30 @@ class ReservationController extends ResponseController
         return  $this->sendResponse($reservation,"foglalás törölve");
 
     }
+
+    //---{ test  }----------------------
+
+    public function test(Request $request){
+        
+        $available =  true ;
+        
+        $input=$request->all();
+        $fishingplace_id = $input ["fishingplace_id"];
+        $reservations = Reservation::where("fishingplace_id",$fishingplace_id)->get();
+
+
+        foreach ($reservations as $reservation ) {
+            $test= gettype($reservation -> reservationStart);
+            $startDate = date('Y-m-d', strtotime($reservation -> reservationStart));
+            $endDate = date('Y-m-d', strtotime($reservation -> reservationEnd));
+
+            // if (($currentDate >= $startDate) && ($currentDate <= $endDate)){
+            //     return "Current date is between two dates";
+            // }else{
+            //     return "Current date is not between two dates";
+            // }
+        }
+        
+        return gettype($startDate);
+    }
 }
