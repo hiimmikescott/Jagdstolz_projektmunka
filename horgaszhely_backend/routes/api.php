@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //+++{  loged in user routes }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+//Route::group(["middleware" => ["auth:sanctum"]], function() {
 
     Route::get("/getuser",[UserController::class , "getUser"]);
     Route::delete("/deleteuser",[UserController::class , "deleteUser"]);
@@ -47,7 +47,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post("/userlogout",[AuthController::class , "userLogout"]);
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+//});
 
 
 //+++{  admin user dsadasdasdasroutes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
