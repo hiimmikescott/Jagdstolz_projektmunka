@@ -26,8 +26,8 @@ class ReservationChecker extends FormRequest
         return [
         "user_id"=>"required",
         "fishingplace_id"=>"required",
-        "reservationStart"=>"required",
-        "reservationEnd"=>"required",
+        "reservationStart"=>"required|date|after:today",
+        "reservationEnd"=>"required|date|after:reservationStart",
         //"actualRate"=>"required|min:1|max:5",
         "guestNumber"=>"required|numeric|between:1,20"
         ];
@@ -37,7 +37,11 @@ class ReservationChecker extends FormRequest
         "user_id.required"=>"elvárt mezö",
         "fishingplace_id.required"=>"elvárt mezö",
         "reservationStart.required"=>"elvárt mezö",
+        "reservationStart.date"=>"nem dátum",
+        "reservationStart.after"=>"tegnapra már nem tudsz idöpontot foglalni",
         "reservationEnd.required"=>"elvárt mezö",
+        "reservationEnd.date"=>"nem dátum",
+        "reservationStart.after"=>"a kezdeti dátum nak korában kell lennie ",
         // "actualRate.required"=>"elvárt mezö",
         // "actualRate.min"=>"az erték min 1",
         // "actualRate.max"=>"az érték max 5"
