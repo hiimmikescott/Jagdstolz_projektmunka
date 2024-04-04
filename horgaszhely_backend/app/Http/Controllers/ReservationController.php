@@ -62,20 +62,25 @@ class ReservationController extends ResponseController
         $request->validated();
         $input = $request->all();
 
-        $reservation = new Reservation;
-        $reservation-> user_id=$input["user_id"];
-        $reservation-> fishingplace_id=$input["fishingplace_id"];
-        $reservation-> reservationStart=$input["reservationStart"];
-        $reservation-> reservationEnd=$input["reservationEnd"];
-        //$reservation-> actualRate=$input["actualRate"];
-        $reservation-> guestNumber=$input["guestNumber"];
 
-        //---{  success  }-------------
 
-        $reservation->save();
-
-        return  $this->sendResponse($reservation,"foglalás hozáadva");
-
+        if ($this->testDate($input)) {
+            $reservation = new Reservation;
+            $reservation-> user_id=$input["user_id"];
+            $reservation-> fishingplace_id=$input["fishingplace_id"];
+            $reservation-> reservationStart=$input["reservationStart"];
+            $reservation-> reservationEnd=$input["reservationEnd"];
+            //$reservation-> actualRate=$input["actualRate"];
+            $reservation-> guestNumber=$input["guestNumber"];
+    
+            //---{  success  }-------------
+    
+            $reservation->save();
+    
+            return  $this->sendResponse($reservation,"foglalás hozáadva");
+        }else{
+            return  $this->sendError("erre az idöre már foglalt a hely");
+        }
     }
 
     //---{ modify reservation  }---------------------------------
@@ -190,27 +195,47 @@ class ReservationController extends ResponseController
 
     //---{ test  }----------------------
 
-    public function test(Request $request){
+    public function testDate($input){
         
-        $available =  true ;
-        
-        $input=$request->all();
+
+        $available =  true;
+
+        $newreservationstart = $input["reservationStart"];
+        $newreservationend = $input["reservationEnd"];
+
+        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d', strtotime($currentDate));
+
         $fishingplace_id = $input ["fishingplace_id"];
         $reservations = Reservation::where("fishingplace_id",$fishingplace_id)->get();
 
 
         foreach ($reservations as $reservation ) {
-            $test= gettype($reservation -> reservationStart);
+            
             $startDate = date('Y-m-d', strtotime($reservation -> reservationStart));
             $endDate = date('Y-m-d', strtotime($reservation -> reservationEnd));
 
-            // if (($currentDate >= $startDate) && ($currentDate <= $endDate)){
-            //     return "Current date is between two dates";
-            // }else{
-            //     return "Current date is not between two dates";
-            // }
+            if (($newreservationstart >= $startDate) && ($newreservationstart <= $endDate)){
+                $available = false;
+            }
+
+            if (($newreservationend >= $startDate) && ($newreservationend <= $endDate)){
+                $available = false;
+            }
+
+            if (($newreservationstart <= $startDate) && ($newreservationend >= $endDate)){
+                $available = false;
+            }
+
+            if (($newreservationstart < $currentDate)){
+                $available = false;
+            }
+
+            if (($newreservationstart > $newreservationend)){
+                $available = false;
+            }
         }
-        
-        return gettype($startDate);
+
+        return $available; 
     }
 }
