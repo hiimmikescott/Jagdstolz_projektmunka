@@ -16,7 +16,7 @@ class adminUserTableData extends Seeder
     public function run(): void
     {
         DB::table("users")->insert([ 
-            "name" =>"vitovszki tomi", 
+            "name" =>"Vitovszki Tomi", 
             "email" =>"tomin@gmail.com",
             "email_verified_at"=>"2001-09-23" , 
             "password" =>bcrypt("Aa123."), 
@@ -25,7 +25,7 @@ class adminUserTableData extends Seeder
             "userlevel"=>"1"
         ]); 
         DB::table("users")->insert([ 
-            "name" =>"plesovszki istván", 
+            "name" =>"Plesovszki István", 
             "email" =>"istvan@gmail.com",
             "email_verified_at"=>"2001-09-23" ,  
             "password" =>bcrypt("Aa123."), 
