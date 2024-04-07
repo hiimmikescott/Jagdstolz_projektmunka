@@ -17,16 +17,18 @@ class adminUserTableData extends Seeder
     {
         DB::table("users")->insert([ 
             "name" =>"vitovszki tomi", 
-            "email" =>"tomin@gmail.com",  
-            "password" =>Hash::make("Aa123."), 
+            "email" =>"tomin@gmail.com",
+            "email_verified_at"=>"2001-09-23" , 
+            "password" =>bcrypt("Aa123."), 
             "verifycode" =>"67891", 
             "birthdate"=>"2001.07.23", 
             "userlevel"=>"1"
         ]); 
         DB::table("users")->insert([ 
             "name" =>"plesovszki istván", 
-            "email" =>"istvan@gmail.com",  
-            "password" =>Hash::make("Aa123."), 
+            "email" =>"istvan@gmail.com",
+            "email_verified_at"=>"2001-09-23" ,  
+            "password" =>bcrypt("Aa123."), 
             "verifycode" =>"12345", 
             "birthdate"=>"2001.07.23", 
             "userlevel"=>"0"
