@@ -24,7 +24,7 @@ class usersTableData extends Seeder
                 'email'=>$faker->email(),
                 'password'=> Hash::make($faker->password()),
                 'birthdate'=>$faker->dateTime(),
-                'userlevel'=>5
+                'userlevel'=>0
             ]);
         }
     }

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            adminUserTableData::class,
             fishingPlaceTableData::class,
             usersTableData::class
         ]);
