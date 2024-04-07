@@ -8,33 +8,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let image of selectedSpot?.images; let first = first; let i = index"
-              [class.active]="first">
-              <img id="slideImage" [src]="'../../../assets/images/' + image" class="d-block w-100" alt="Kép {{ i }}">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"></span>
-          </button>
-          <ul>
-            <li>Stég: {{ trueOrFalse(selectedSpot?.pier) }}</li>
-            <li>Tűzrakóhely: {{ trueOrFalse(selectedSpot?.firepit) }}</li>
-            <li>Beálló: {{ trueOrFalse(selectedSpot?.shelter) }}</li>
-            <li>Leírás: {{ selectedSpot?.description }}</li>
-            <li>Értékelés: {{ selectedSpot?.averageRating }}</li>
-          </ul>
-        </div>
+
+        <ul>
+          <li>Stég: {{ trueOrFalse(selectedSpot?.pier) }}</li>
+          <li>Tűzrakóhely: {{ trueOrFalse(selectedSpot?.firepit) }}</li>
+          <li>Beálló: {{ trueOrFalse(selectedSpot?.shelter) }}</li>
+          <li>Leírás: {{ selectedSpot?.description }}</li>
+        </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="navigate()"
-          data-bs-dismiss="modal">Lefoglalom</button>
+        <button type="button" class="btn btn-primary" (click)="navigate()" data-bs-dismiss="modal">Lefoglalom</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
       </div>
     </div>
