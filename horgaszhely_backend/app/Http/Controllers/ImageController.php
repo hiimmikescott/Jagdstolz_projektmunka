@@ -10,6 +10,8 @@ class ImageController extends Controller
 {
     public function index()
     {
+        //---{ picture collection for the view}
+        
         $images = Image::latest()->get();
 
         $baseUrl = public_path('images');
