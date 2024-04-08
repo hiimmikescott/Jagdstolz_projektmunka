@@ -70,7 +70,6 @@ class ReservationController extends ResponseController
             $reservation-> fishingplace_id=$input["fishingplace_id"];
             $reservation-> reservationStart=$input["reservationStart"];
             $reservation-> reservationEnd=$input["reservationEnd"];
-            //$reservation-> actualRate=$input["actualRate"];
             $reservation-> guestNumber=$input["guestNumber"];
     
             //---{  success  }-------------
@@ -104,7 +103,7 @@ class ReservationController extends ResponseController
         $reservation-> fishingplace_id=$input["fishingplace_id"];
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
-        //$reservation-> actualRate=$input["actualRate"];
+
         $reservation-> guestNumber=$input["guestNumber"];
 
         $reservation->save();
@@ -137,7 +136,6 @@ class ReservationController extends ResponseController
         $reservation-> fishingplace_id=$input["fishingplace_id"];
         $reservation-> reservationStart=$input["reservationStart"];
         $reservation-> reservationEnd=$input["reservationEnd"];
-        //$reservation-> actualRate=$input["actualRate"];
         $reservation-> guestNumber=$input["guestNumber"];
 
         $reservation->save();
@@ -193,7 +191,7 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{ test  }----------------------
+    //---{ reservation date validation }----------------------
 
     public function testDate($input){
         
@@ -209,13 +207,16 @@ class ReservationController extends ResponseController
         $fishingplace_id = $input ["fishingplace_id"];
         $reservations = Reservation::where("fishingplace_id",$fishingplace_id)->get();
 
+//---{ time validation }--------------------------------------------------------------------
 
         foreach ($reservations as $reservation ) {
             
             $startDate = date('Y-m-d', strtotime($reservation -> reservationStart));
             $endDate = date('Y-m-d', strtotime($reservation -> reservationEnd));
 
-            if (($newreservationstart >= $startDate) && ($newreservationstart <= $endDate)){
+            //---{ date available? }-----------------------------------
+
+            if (($newreservationstart >= $startDate) && ($newreservationstart <= $endDate)){ 
                 $available = false;
             }
 
@@ -227,9 +228,13 @@ class ReservationController extends ResponseController
                 $available = false;
             }
 
-            if (($newreservationstart < $currentDate)){
+            //---{ yesterday part }-----------------------------
+
+            if (($newreservationstart <= $currentDate)){
                 $available = false;
             }
+
+            //---{ end after start }----------------------------
 
             if (($newreservationstart > $newreservationend)){
                 $available = false;

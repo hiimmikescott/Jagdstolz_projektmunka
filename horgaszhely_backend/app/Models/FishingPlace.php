@@ -12,11 +12,10 @@ class FishingPlace extends Model
     public $timestamps = false;
 
     protected $fillable =[
-        "reservable",
+       
         "pier",
         "firepit",
         "shelter",
-        "averageRating",
         "description",
         "longitude",
         "latitude",

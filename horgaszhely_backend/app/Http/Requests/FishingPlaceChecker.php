@@ -24,11 +24,9 @@ class FishingPlaceChecker extends FormRequest
     public function rules(): array
     {
         return [
-        "reservable"=>"required",
         "pier"=>"required",
         "firepit"=>"required",
         "shelter"=>"required",
-        //"averageRating"=>"required|between:1,5",
         "description"=>"required",
         "longitude"=>"required|numeric|between:-180.0,180.0",
         "latitude"=>"required||numeric|between:-90.0,90.0"
@@ -36,12 +34,9 @@ class FishingPlaceChecker extends FormRequest
     }
     public function messages(){
         return[
-            "reservable.required"=>"elvárt mezö",
             "pier.required"=>"elvárt mezö",
             "firepit.required"=>"elvárt mezö",
             "shelter.required"=>"elvárt mezö",
-            //"averageRating.required"=>"elvárt mezö",
-            //"averageRating.between"=>"csak 1 és 5 közti értékelést tudsz meg adni",
             "description.required"=>"elvárt mezö",
             "longitude.required"=>"elvárt mezö",
             "latitude.required"=>"elvárt mezö",

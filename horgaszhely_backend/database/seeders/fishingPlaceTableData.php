@@ -13,12 +13,12 @@ class fishingPlaceTableData extends Seeder
      */
     public function run(): void
     {
-        DB::select("INSERT INTO fishing_places (reservable, pier, firepit, shelter, description, longitude, latitude) VALUES
-        (TRUE, TRUE, TRUE, TRUE, 'Gyönyörű tó tiszta vízzel és bőséges halállománnyal.', 19.572352, 47.536311),
-        (TRUE, FALSE, TRUE, TRUE, 'Festői folyópart nyugodt hangulattal.', 19.572169, 47.534790),
-        (FALSE, TRUE, FALSE, FALSE, 'Bársonyos növényzettel körülvett hangulatos tavacska.', 19.570300, 47.535814),
-        (TRUE, TRUE, TRUE, TRUE, 'Csendes tó, karbantartott horgászlétesítményekkel.', 19.567223, 47.537463),
-        (TRUE, FALSE, TRUE, FALSE, 'Nyugodt folyóparti hely rusztikus tűzhellyel.', 19.566816, 47.538346),
-        (FALSE, FALSE, TRUE, TRUE, 'Nyugalmas tavacska fedett menedékkel a pihenéshez.', 19.574025, 47.535666);");
+        DB::select("INSERT INTO fishing_places ( pier, firepit, shelter, description, longitude, latitude) VALUES
+        ( TRUE, TRUE, TRUE, 'Gyönyörű tó tiszta vízzel és bőséges halállománnyal.', 19.572352, 47.536311),
+        ( FALSE, TRUE, TRUE, 'Festői folyópart nyugodt hangulattal.', 19.572169, 47.534790),
+        ( TRUE, FALSE, FALSE, 'Bársonyos növényzettel körülvett hangulatos tavacska.', 19.570300, 47.535814),
+        ( TRUE, TRUE, TRUE, 'Csendes tó, karbantartott horgászlétesítményekkel.', 19.567223, 47.537463),
+        ( FALSE, TRUE, FALSE, 'Nyugodt folyóparti hely rusztikus tűzhellyel.', 19.566816, 47.538346),
+        ( FALSE, TRUE, TRUE, 'Nyugalmas tavacska fedett menedékkel a pihenéshez.', 19.574025, 47.535666);");
     }
 }
