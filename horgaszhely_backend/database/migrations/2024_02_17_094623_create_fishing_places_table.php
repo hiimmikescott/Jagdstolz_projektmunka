@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('fishing_places', function (Blueprint $table) {
             $table->id();
-            $table->boolean("reservable")->default(0);
             $table->boolean("pier")->default(0);
             $table->boolean("firepit")->default(0);
             $table->boolean("shelter")->default(0);
-            // $table->integer("averageRating");
             $table->string("description");
             $table->string("longitude");
             $table->string("latitude");
