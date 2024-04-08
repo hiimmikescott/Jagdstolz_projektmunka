@@ -104,7 +104,6 @@ export class MapComponent implements OnInit {
       this.router.navigate(['/bookform'], {
         queryParams: {
           id: this.selectedSpot!.id,
-          reservable: !!this.selectedSpot!.reservable
         }
       });
     }

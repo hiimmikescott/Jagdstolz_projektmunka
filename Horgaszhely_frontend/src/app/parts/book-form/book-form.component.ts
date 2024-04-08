@@ -10,12 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent {
-  reservable!: boolean;
   fishingplace_id: any;
   private user_id = sessionStorage.getItem("id");
   startDate: any;
   endDate: any;
   guestNumber: any;
+  showAlert: any;
+  customAlertMessage: string = '';
+  errMessage:any;
+
 
   constructor(private route: ActivatedRoute, private base: BaseService, private _snackBar: MatSnackBar, private router: Router) { }
 
@@ -26,8 +29,6 @@ export class BookFormComponent {
     this.guestNumber = 1;
     this.route.queryParams.subscribe(params => {
       this.fishingplace_id = params['id'];
-      this.reservable = params['reservable'];
-      console.log(this.reservable)
     });
   }
 
@@ -40,15 +41,50 @@ export class BookFormComponent {
     });
   }
 
+  showErrorMessage(message: string) {
+    this._snackBar.open(message, 'Bezárás', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
+  }
+
+  showCustomAlert(message:string) {
+    this.errMessage=message;
+    this.showAlert = true;
+  }
+  hideCustomAlert() {
+    this.showAlert = false;
+  }
+
   sendReservation() {
     const spotId = this.fishingplace_id;
     const user_id = this.user_id;
     const reservationStar = this.startDate;
     const reservationEnd = this.endDate;
     const guestNumber = this.guestNumber;
-    this.base.sendReservation(user_id, spotId, reservationStar, reservationEnd, guestNumber).subscribe((res) => {
-      this.showSuccessMessage();
-      this.router.navigateByUrl("/home");
-    });
+
+    this.base.sendReservation(user_id, spotId, reservationStar, reservationEnd, guestNumber)
+      .subscribe((res) => {
+
+        if (res && res.success == true) {
+          console.log('Success response:', res);
+          this.showSuccessMessage();
+          this.router.navigateByUrl("/home");
+        }
+        else{
+          this.showCustomAlert("Adatbeviteli hiba, kérjük ellenőrizze foglalás adatait.");
+        }
+      },
+        (error) => {
+          if (error.error.message=="erre az idöre már foglalt a hely") {
+            this.showCustomAlert("Ez az időpont már foglalt, kérjük válasszon egy másikat!");
+          }
+
+        }
+      );
   }
+
+
+
 }

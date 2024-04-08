@@ -46,7 +46,7 @@ export class BaseService {
 
   // ---------------------------------------------------------reservations--------------------------------------------------------------
 
-  sendReservation(user_id: any, fishingplace_id: any, reservationStart: any, reservationEnd: any, guestNumber: any) {
+  sendReservation(user_id: any, fishingplace_id: any, reservationStart: any, reservationEnd: any, guestNumber: any): Observable<any> {
     const reservationData = {
       fishingplace_id,
       reservationEnd,

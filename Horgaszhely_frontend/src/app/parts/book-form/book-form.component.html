@@ -1,6 +1,6 @@
 <div class="container">
   <img src="../../../assets/images/o_o.jpg" class="mb-3" alt="Kép a lefoglalni kívánt helyről">
-  <form #reservationForm="ngForm" (ngSubmit)="sendReservation()" novalidate>
+  <form #reservationForm="ngForm" novalidate>
     <div class="mb-3">
       <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
       <input type="text" class="form-control" readonly [(ngModel)]="fishingplace_id"
@@ -31,7 +31,13 @@
         class="text-danger">Érkező vendégek számának megadása kötelező</small>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success mb-3" [disabled]="!reservationForm.valid">Elküldöm</button>
+      <button type="button" (click)="sendReservation()" class="btn btn-success mb-3" [disabled]="!reservationForm.valid">Elküldöm</button>
     </div>
   </form>
+</div>
+<div *ngIf="this.showAlert" class="alert alert-warning" role="alert" id="alert">
+    <h4 class="alert-heading">Hiba</h4>
+    <p>{{errMessage}}</p>
+    <hr>
+    <button type="button" class="btn btn-warning" (click)="hideCustomAlert()">Bezárás</button>
 </div>
