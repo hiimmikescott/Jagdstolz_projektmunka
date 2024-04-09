@@ -54,8 +54,8 @@
         *ngIf="reservationForm.controls['guestNumber']?.invalid && reservationForm.controls['guestNumber']?.touched"
         class="text-danger">Érkező vendégek számának megadása kötelező</small>
     </div>
-    <div class="modal-footer">
-      <button type="button" routerLink="/bookform" class="btn btn-secondary mb-3 float-start">Vissza</button>
+    <div class="modal-footer" style="width: 100%;">
+      <button type="button" routerLink="/bookmain" class="btn btn-secondary mb-3 me-5 float-start">Vissza</button>
       <button type="button" (click)="sendReservation()" class="btn btn-success mb-3"
       [disabled]="!reservationForm.valid">Elküldöm</button>
     </div>

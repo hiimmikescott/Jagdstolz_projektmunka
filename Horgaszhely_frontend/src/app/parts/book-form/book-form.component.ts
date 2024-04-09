@@ -1,5 +1,5 @@
 
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../services/base.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,6 +28,7 @@ export class BookFormComponent {
     '6': ['image6_1.jpg', 'image6_2.jpg', 'image6_3.jpg']
   };
   @ViewChild('carousel') carousel!: ElementRef;
+  @ViewChildren('carouselImage') carouselImages!: QueryList<ElementRef>;
 
   constructor(private route: ActivatedRoute, private base: BaseService, private _snackBar: MatSnackBar, private router: Router) { }
   
@@ -40,18 +41,39 @@ export class BookFormComponent {
     this.route.queryParams.subscribe(params => {
       this.fishingplace_id = params['id'];
     });
+    if (this.carouselImages) {
+      this.carouselImages.forEach(image => {
+        image.nativeElement.onload = () => {
+          if (this.allImagesLoaded()) {
+            this.startCarousel();
+          }
+        };
+      });
+    }
   }
 
   getImageUrl(fishingplace_id: string, filename: string): string {
     return `../../assets/images/${fishingplace_id}/${filename}`;
   }
 
+  ngAfterViewInit(): void {
+    $(this.carousel.nativeElement).carousel('cycle');
+  }
+
+  private allImagesLoaded(): boolean {
+    return this.carouselImages.toArray().every(image => image.nativeElement.complete);
+  }
+
+  private startCarousel(): void {
+    $('#carouselExampleIndicators').carousel('cycle');
+  }
+
   prevSlide(): void {
-    $(this.carousel.nativeElement).carousel('prev');
+    $('#carouselExampleIndicators').carousel('prev');
   }
 
   nextSlide(): void {
-    $(this.carousel.nativeElement).carousel('next');
+    $('#carouselExampleIndicators').carousel('next');
   }
   
   showSuccessMessage() {
