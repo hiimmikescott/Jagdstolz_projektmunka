@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["middleware" => ["auth:sanctum"]], function() {
 
+    //---{ user routes }-------------------------------------------------------------------------------
     Route::get("/getuser",[UserController::class , "getUser"]);
     Route::delete("/deleteuser",[UserController::class , "deleteUser"]);
     Route::put("/modifyuser",[UserController::class , "modifyUser"]);
@@ -38,7 +39,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     Route::delete("/deleteuserreservation",[ReservationController::class , "deleteUserReservation"]);
 
     //---{  reservation routes  }----------------------------------------------------------------------
-    Route::get("/getuserreservation",[ReservationController::class , "getUserReservation"]);
+    Route::get("/getuserreservation",[ReservationController::class , "getReservations"]);
     Route::post("/addreservation",[ReservationController::class , "addReservation"]);
     Route::put("/modifyreservation",[ReservationController::class , "modifyReservation"]);
     Route::delete("/deletereservation",[ReservationController::class , "deleteReservation"]);
@@ -50,7 +51,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
 });
 
 
-//+++{  admin user dsadasdasdasroutes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++{  admin user routes  }+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     //---{  fishingplace routes  }---------------------------------------------------------------------
     Route::post("/addfishingplace",[FishingPlaceController::class , "addFishingPlace" ]);

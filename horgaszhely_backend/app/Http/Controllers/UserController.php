@@ -25,6 +25,10 @@ class UserController extends ResponseController
     //---{  one user  }----------------------------------------------------------
 
     public function getUser(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $id = $request["id"];
         $user = User::where("id",$id)->first();
 
@@ -42,6 +46,10 @@ class UserController extends ResponseController
     //---{  modify user  }-------------------------------------------------------
 
     public function modifyUser(UserChecker $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $request->validated();
         $input=$request->all();
         $id = $input["id"];
@@ -69,6 +77,10 @@ class UserController extends ResponseController
     //---{  delete user  }--------------------------------------------------------
 
     public function deleteUser(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+        
         $input=$request->all();
         $id = $input["id"];
 

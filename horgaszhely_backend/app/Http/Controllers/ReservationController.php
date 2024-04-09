@@ -15,6 +15,10 @@ class ReservationController extends ResponseController
     //---{ all reservation  }------------------------------------
 
     public function getReservations(){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+        
         $reservations = Reservation::all();
 
         return $this->sendResponse($reservations,"öszes foglalás");
@@ -23,6 +27,10 @@ class ReservationController extends ResponseController
     //---{ one reservation  }------------------------------------
 
     public function getReservation(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+        
         $id = $request["id"];
         $reservation = Reservation::where("id",$id)->first();
 
@@ -38,9 +46,13 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{  user reservation  }-----------------------------------
+//---{  user reservation  }--------------------------------------------------
 
     public function getUserReservations(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $user_id = $request["user_id"];
         $reservations = Reservation::where("user_id",$user_id)->get();
 
@@ -59,10 +71,12 @@ class ReservationController extends ResponseController
     //---{  add reservation  }-----------------------------------
 
     public function addReservation(ReservationChecker $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $request->validated();
         $input = $request->all();
-
-
 
         if ($this->testDate($input)) {
             $reservation = new Reservation;
@@ -82,9 +96,13 @@ class ReservationController extends ResponseController
         }
     }
 
-    //---{ modify reservation  }---------------------------------
+//---{ modify reservation  }--------------------------------------------
 
     public function modifyReservation(ReservationChecker $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $request->validated();
         $input = $request->all();
         $id = $input["id"];
@@ -112,9 +130,13 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{  user reservation modify}
+//---{ modify user reservation }---------------------------------------------
 
     public function modifyUserReservation(ReservationChecker $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $request->validated();
         $input = $request->all();
         $id = $input["id"];
@@ -144,9 +166,15 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{  delete reservation  }---------------------------------
+
+
+//---{  delete reservation  }---------------------------------
 
     public function deleteReservation(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $input=$request->all();
         $id = $input["id"];
 
@@ -166,9 +194,13 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{  delete user reservation  }---------------------------------
+//---{  delete user reservation  }---------------------------------
 
     public function deleteUserReservation(Request $request){
+
+        //---{ user auth }-----------------
+        auth( "sanctum" )->user();
+
         $input=$request->all();
         $id = $input["id"];
         $user_id = $input["user_id"];
@@ -191,7 +223,7 @@ class ReservationController extends ResponseController
 
     }
 
-    //---{ reservation date validation }----------------------
+//---{ reservation date validation }---------------------------------------------------------
 
     public function testDate($input){
         
