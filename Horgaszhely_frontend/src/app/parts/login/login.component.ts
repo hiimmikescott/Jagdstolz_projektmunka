@@ -30,11 +30,9 @@ export class LoginComponent implements OnInit {
         email, password
       };
       this.auth.login(loginObj).subscribe((res: any) => {
-        console.log(res);
         if (res && !!res.success == true) {
           sessionStorage.setItem("token", res.data.token);
           sessionStorage.setItem("id", res.data.id);
-        setTimeout(() => {
           this.base.getUserData(res.data.id).subscribe((result) => {
             if (!!result.data.userlevel == true) {
               let role = "admin";
@@ -50,7 +48,6 @@ export class LoginComponent implements OnInit {
               this.openSnackBar('Sikeres bejelentkezés', 'Bezárás');
             }
           });
-        }, 2000)
         } else {
           this.openSnackBar('Hibás jelszó vagy email', 'Bezárás');
         }

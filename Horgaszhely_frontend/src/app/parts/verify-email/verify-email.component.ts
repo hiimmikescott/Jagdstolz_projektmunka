@@ -20,13 +20,11 @@ export class VerifyEmailComponent {
       this.email = params['email'];
       this.password = params['password'];
 
-      console.log(this.email,this.password)
     });
   }
 
   verifyEmail() {
     this.auth.verifyEmail(this.code).subscribe((res) => {
-      console.log(res)
       if(res.success==true){
         this.login()
       }

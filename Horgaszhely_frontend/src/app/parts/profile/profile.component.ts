@@ -56,7 +56,7 @@ export class ProfileComponent {
       console.error('User ID is missing');
       return;
     }
-    
+
     this.userHandling.getUserData(id).subscribe({
       next: (userData: any) => {
         if (userData && userData.data) {
@@ -72,8 +72,8 @@ export class ProfileComponent {
       }
     });
   }
-  
-  
+
+
 
   closeModal() {
     const modal = document.getElementById('exampleModal');
@@ -90,6 +90,7 @@ export class ProfileComponent {
         console.log(res);
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("id");
+        sessionStorage.removeItem("role");
         this.router.navigateByUrl("/home");
         this.closeModal();
         this.showDeleteMessage();

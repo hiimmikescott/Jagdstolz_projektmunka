@@ -12,14 +12,14 @@
     <div class="form-group m-3">
       <label for="password">Jelszó:</label>
       <input type="password" id="password" formControlName="password" class="form-control" required>
+      <button type="button" class="btn btn-primary mt-3" routerLink="/verifyEmail">Email cím megerősítése</button>
       <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
         class="text-danger">
         Jelszó kötelező
       </div>
     </div>
-    <button type="submit" class="btn btn-primary m-3">Bejelentkezek</button>
+    <button type="submit" class="btn btn-success m-3">Bejelentkezek</button>
     <button type="button" class="btn btn-secondary m-3" routerLink="/register">Még nincs fiókja?</button>
-
     <button type="button" class="btn btn-danger m-3 float-end" routerLink="/home">Mégsem</button>
   </form>
 </div>
