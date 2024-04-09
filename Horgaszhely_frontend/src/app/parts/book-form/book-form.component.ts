@@ -1,8 +1,9 @@
 
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../services/base.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+declare var $: any;
 
 @Component({
   selector: 'app-book-form',
@@ -18,9 +19,18 @@ export class BookFormComponent {
   showAlert: any;
   customAlertMessage: string = '';
   errMessage:any;
-
+  fishingPlaceImageNames: { [key: string]: string[] } = {
+    '1': ['image1_1.jpg', 'image1_2.jpg', 'image1_3.jpg'],
+    '2': ['image2_1.jpg', 'image2_2.jpg', 'image2_3.jpg'],
+    '3': ['image3_1.jpg', 'image3_2.jpg', 'image3_3.jpg'],
+    '4': ['image4_1.jpg', 'image4_2.jpg', 'image4_3.jpg'],
+    '5': ['image5_1.jpg', 'image5_2.jpg', 'image5_3.jpg'],
+    '6': ['image6_1.jpg', 'image6_2.jpg', 'image6_3.jpg']
+  };
+  @ViewChild('carousel') carousel!: ElementRef;
 
   constructor(private route: ActivatedRoute, private base: BaseService, private _snackBar: MatSnackBar, private router: Router) { }
+  
 
   ngOnInit() {
     this.startDate = new Date().toISOString().slice(0, 10);
@@ -32,6 +42,18 @@ export class BookFormComponent {
     });
   }
 
+  getImageUrl(fishingplace_id: string, filename: string): string {
+    return `../../assets/images/${fishingplace_id}/${filename}`;
+  }
+
+  prevSlide(): void {
+    $(this.carousel.nativeElement).carousel('prev');
+  }
+
+  nextSlide(): void {
+    $(this.carousel.nativeElement).carousel('next');
+  }
+  
   showSuccessMessage() {
     let message = "Sikeres foglalás!";
     this._snackBar.open(message, 'OK', {

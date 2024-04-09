@@ -32,25 +32,25 @@ export class LoginComponent implements OnInit {
       this.auth.login(loginObj).subscribe((res: any) => {
         console.log(res);
         if (res && !!res.success == true) {
+          sessionStorage.setItem("token", res.data.token);
+          sessionStorage.setItem("id", res.data.id);
+        setTimeout(() => {
           this.base.getUserData(res.data.id).subscribe((result) => {
             if (!!result.data.userlevel == true) {
               let role = "admin";
               sessionStorage.setItem("role", role);
-              sessionStorage.setItem("token", res.data.token);
-              sessionStorage.setItem("id", res.data.id);
               this.auth.updateRolesAfterLogin();
               this.router.navigateByUrl("/home");
               this.openSnackBar('Sikeres bejelentkezés', 'Bezárás');
             } else {
               let role = "user";
               sessionStorage.setItem("role", role);
-              sessionStorage.setItem("token", res.data.token);
-              sessionStorage.setItem("id", res.data.id);
               this.auth.updateRolesAfterLogin();
               this.router.navigateByUrl("/home");
               this.openSnackBar('Sikeres bejelentkezés', 'Bezárás');
             }
           });
+        }, 2000)
         } else {
           this.openSnackBar('Hibás jelszó vagy email', 'Bezárás');
         }
@@ -60,6 +60,9 @@ export class LoginComponent implements OnInit {
     } else {
       this.openSnackBar('Kérjük töltse ki a mezőket.', 'Bezárás');
     }
+  }
+  getRole(id:any){
+
   }
 
   openSnackBar(message: string, action: string) {

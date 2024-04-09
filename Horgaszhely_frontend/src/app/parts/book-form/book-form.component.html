@@ -1,5 +1,29 @@
 <div class="container">
-  <img src="../../../assets/images/o_o.jpg" class="mb-3" alt="Kép a lefoglalni kívánt helyről">
+  <h2>A Kiválasztott hely képei</h2>
+  <div #carousel id="carouselExampleIndicators" class="carousel slide mb-3 pt-3" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ getImageUrl(fishingplace_id, fishingPlaceImageNames[fishingplace_id][0]) }}" class="d-block w-100"
+          alt="Image 1" style="height: 600px;">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ getImageUrl(fishingplace_id, fishingPlaceImageNames[fishingplace_id][1]) }}" class="d-block w-100"
+          alt="Image 2" style="height: 600px;">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ getImageUrl(fishingplace_id, fishingPlaceImageNames[fishingplace_id][2]) }}" class="d-block w-100"
+          alt="Image 3" style="height: 600px;">
+      </div>
+    </div>
+    <a class="carousel-control-prev" role="button" data-slide="prev" (click)="prevSlide()">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+    <a class="carousel-control-next" role="button" data-slide="next" (click)="nextSlide()">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+  </div>  
   <form #reservationForm="ngForm" novalidate>
     <div class="mb-3">
       <label for="spotNumber" class="form-label">A kiválasztott hely száma:</label>
@@ -31,13 +55,15 @@
         class="text-danger">Érkező vendégek számának megadása kötelező</small>
     </div>
     <div class="modal-footer">
-      <button type="button" (click)="sendReservation()" class="btn btn-success mb-3" [disabled]="!reservationForm.valid">Elküldöm</button>
+      <button type="button" routerLink="/bookform" class="btn btn-secondary mb-3 float-start">Vissza</button>
+      <button type="button" (click)="sendReservation()" class="btn btn-success mb-3"
+      [disabled]="!reservationForm.valid">Elküldöm</button>
     </div>
   </form>
 </div>
 <div *ngIf="this.showAlert" class="alert alert-warning" role="alert" id="alert">
-    <h4 class="alert-heading">Hiba</h4>
-    <p>{{errMessage}}</p>
-    <hr>
-    <button type="button" class="btn btn-warning" (click)="hideCustomAlert()">Bezárás</button>
+  <h4 class="alert-heading">Hiba</h4>
+  <p>{{errMessage}}</p>
+  <hr>
+  <button type="button" class="btn btn-warning" (click)="hideCustomAlert()">Bezárás</button>
 </div>

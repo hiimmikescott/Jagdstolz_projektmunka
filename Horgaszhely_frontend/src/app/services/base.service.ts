@@ -1,6 +1,6 @@
 // base.service.ts
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,9 +15,6 @@ export class BaseService {
 
   // ---------------------------------------------------------spots--------------------------------------------------------------
 
-  getData(target: string) {
-    return this.http.get(this.url + target);
-  }
 
   getSpotInfo(id: number): Observable<any> {
     return this.http.get<any>(`${this.url}spots/${id}`);
@@ -26,6 +23,8 @@ export class BaseService {
   // ---------------------------------------------------------user--------------------------------------------------------------
 
   updateProfile(birthdate: Date, name: string, email: string): Observable<any> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const id = sessionStorage.getItem("id");
     const user = {
       id,
@@ -33,20 +32,26 @@ export class BaseService {
       name,
       email
     };
-    return this.http.put(`${this.url}modifyuser`, user);
+    return this.http.put(`${this.url}modifyuser`, user, { headers });
   }
 
   getUserData(id: any): Observable<any> {
-    return this.http.get(`${this.url}getuser?id=${id}`);
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.url}getuser?id=${id}`, { headers });
   }
 
   deleteUser(id: any) {
-    return this.http.delete(`${this.url}deleteuser?id=${id}`);
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.url}deleteuser?id=${id}`, { headers });
   }
 
   // ---------------------------------------------------------reservations--------------------------------------------------------------
 
   sendReservation(user_id: any, fishingplace_id: any, reservationStart: any, reservationEnd: any, guestNumber: any): Observable<any> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const reservationData = {
       fishingplace_id,
       reservationEnd,
@@ -54,14 +59,18 @@ export class BaseService {
       user_id,
       guestNumber
     };
-    return this.http.post(`${this.url}addreservation`, reservationData);
+    return this.http.post(`${this.url}addreservation`, reservationData, { headers });
   }
 
   getUserReservations(id: any): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}getuserreservations?user_id=${id}`);
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any[]>(`${this.url}getuserreservations?user_id=${id}`, { headers });
   }
 
   updateUserReservation(id: number, user_id: number, fishingplace_id: number, reservationStart: Date, reservationEnd: Date, guestNumber: number): Observable<any> {
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const reservation = {
       id,
       user_id,
@@ -70,10 +79,16 @@ export class BaseService {
       reservationEnd,
       guestNumber
     };
-    return this.http.put<any>(`${this.url}modifyreservation`, reservation);
+    return this.http.put<any>(`${this.url}modifyreservation`, reservation, { headers });
   }
 
   deleteUserReservation(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}deletereservation?id=${id}`);
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<void>(`${this.url}deletereservation?id=${id}`, { headers });
+  }
+
+  private getAuthToken(): string | null {
+    return sessionStorage.getItem('token');
   }
 } 
