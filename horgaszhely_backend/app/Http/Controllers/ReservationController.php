@@ -157,16 +157,19 @@ class ReservationController extends ResponseController
         }
 
         //---{  success  }-------------
-
-        $reservation-> user_id=$input["user_id"];
-        $reservation-> fishingplace_id=$input["fishingplace_id"];
-        $reservation-> reservationStart=$input["reservationStart"];
-        $reservation-> reservationEnd=$input["reservationEnd"];
-        $reservation-> guestNumber=$input["guestNumber"];
+        if ($this->testDate($input)) {
+            $reservation-> user_id=$input["user_id"];
+            $reservation-> fishingplace_id=$input["fishingplace_id"];
+            $reservation-> reservationStart=$input["reservationStart"];
+            $reservation-> reservationEnd=$input["reservationEnd"];
+            $reservation-> guestNumber=$input["guestNumber"];
 
         $reservation->save();
 
         return  $this->sendResponse($reservation,"Foglalás módosítva");
+        }else{
+            return  $this->sendError("Erre az időpontra már foglalt a hely"); 
+        }
 
     }
 
