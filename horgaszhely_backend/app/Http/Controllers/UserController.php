@@ -19,7 +19,7 @@ class UserController extends ResponseController
 
         //---{  success  }----------
 
-        return $this->sendResponse($users, "öszes felhasznalo betöltve");
+        return $this->sendResponse($users, "Összes felhasználó betöltve");
     }
 
     //---{  one user  }----------------------------------------------------------
@@ -35,12 +35,12 @@ class UserController extends ResponseController
         //---{  error  }------------
 
         if(is_null($user)){
-            return $this->sendError("nincs ilyen felhasznalo");
+            return $this->sendError("A keresett felhasználó nem található");
         }
 
         //---{  success  }----------
 
-        return $this->sendResponse($user, "egy felhasznalo betöltve");
+        return $this->sendResponse($user, "Egy felhasználó betöltve");
     }
 
     //---{  modify user  }-------------------------------------------------------
@@ -59,7 +59,7 @@ class UserController extends ResponseController
          //---{  error  }------------
 
          if(is_null($user)){
-            return $this->sendError("nincs ilyen felhasznalo");
+            return $this->sendError("A keresett felhasználó nem található");
         }
 
         //---{  success  }----------
@@ -71,7 +71,7 @@ class UserController extends ResponseController
 
         $user->save();
 
-        return $this->sendResponse($user, "egy felhasznalo betöltve");
+        return $this->sendResponse($user, "Felhasználó adatai módosítva");
     }
 
     //---{  delete user  }--------------------------------------------------------
@@ -89,13 +89,13 @@ class UserController extends ResponseController
          //---{  error  }------------
 
          if(is_null($user)){
-            return $this->sendError("nincs ilyen felhasznalo");
+            return $this->sendError("A keresett felhasználó nem található");
         }
 
         $user->delete();
 
         //---{  success  }-----------
 
-        return $this->sendResponse($user, "felhasznalo törölve");
+        return $this->sendResponse($user, "Felhasználó törölve");
     }
 }

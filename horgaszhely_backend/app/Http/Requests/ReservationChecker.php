@@ -33,17 +33,18 @@ class ReservationChecker extends FormRequest
     }
     public function messages(){
         return[
-        "user_id.required"=>"elvárt mezö",
-        "fishingplace_id.required"=>"elvárt mezö",
-        "reservationStart.required"=>"elvárt mezö",
-        "reservationStart.date"=>"nem dátum",
-        "reservationStart.after"=>"tegnapra már nem tudsz idöpontot foglalni",
-        "reservationEnd.required"=>"elvárt mezö",
-        "reservationEnd.date"=>"nem dátum",
-        "reservationEnd.after"=>"a kezdeti dátum nak korában kell lennie ",
-        "guestNumber.numeric"=>"a mezö csak szám lehet",
-        "guestNumber.between:1,20"=>"enyi före nem lehet foglalni",
-        "guestNumber.required"=>"elvárt mezo"
+            "user_id.required" => "Kötelező mező",
+            "fishingplace_id.required" => "Kötelező mező",
+            "reservationStart.required" => "Kötelező mező",
+            "reservationStart.date" => "Nem érvényes dátum",
+            "reservationStart.after" => "Tegnapra már nem tudsz időpontot foglalni",
+            "reservationEnd.required" => "Kötelező mező",
+            "reservationEnd.date" => "Nem érvényes dátum",
+            "reservationEnd.after" => "A befejező dátumnak a kezdő dátum után kell lennie",
+            "guestNumber.numeric" => "A mező csak számot tartalmazhat",
+            "guestNumber.between:1,20" => "Ennyi főre nem lehet foglalni",
+            "guestNumber.required" => "Kötelező mező",
+            
         ];
     }
     public function failedValidation(Validator $validator){

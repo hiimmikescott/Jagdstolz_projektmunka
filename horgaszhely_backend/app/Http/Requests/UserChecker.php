@@ -31,12 +31,13 @@ class UserChecker extends FormRequest
     }
     public function messages(){
         return[
-            "name.required"=>"a név elvárt",
-            "name.max"=>"nemlehet 30 karakternél hoszab",
-            "email.required"=>"email elvárt",
-            "email.email"=>"nem email formatum",
-            "birthdate.required"=>"szuletési datum kötelezö",
-            "birthdate.date"=>"szuletési datum kötelezö dátum formátumban"
+            "name.required" => "A név megadása kötelező",
+            "name.max" => "A név nem lehet hosszabb 30 karakternél",
+            "email.required" => "Az e-mail cím megadása kötelező",
+            "email.email" => "Érvénytelen e-mail cím formátum",
+            "birthdate.required" => "A születési dátum megadása kötelező",
+            "birthdate.date" => "A születési dátumot dátum formátumban kell megadni",
+
         ];
     }
 

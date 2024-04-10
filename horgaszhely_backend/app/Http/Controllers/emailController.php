@@ -11,7 +11,7 @@ class emailController extends Controller
 {
     public function sendEmailCode ($emailCode,$email){
         $content = [
-            "title" => "viszaigazolokod",
+            "title" => "visszaigazolási kód",
             "code" => $emailCode
         ];
         Mail::to($email)->send(new Email($content));

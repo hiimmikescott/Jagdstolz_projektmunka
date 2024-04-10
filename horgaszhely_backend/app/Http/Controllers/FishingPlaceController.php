@@ -19,7 +19,7 @@ class FishingPlaceController extends ResponseController
 
         //---{  success  }-------------
 
-        return $this->sendResponse($fishingplaces,"horgaszhelyekbetöltve");
+        return $this->sendResponse($fishingplaces,"Horgászhelyek betöltve");
     }
 
     //---{  one fishing place  }--------------------------------------------------------
@@ -31,12 +31,12 @@ class FishingPlaceController extends ResponseController
         //---{  error  }---------------
 
         if(is_null($fishingplace)){
-            return $this->sendError("nincs ilyen horgaszhely");
+            return $this->sendError("A keresett horgászhely nem található");
         }
         
         //---{  success  }-------------
 
-        return $this->sendResponse($fishingplace,"horgaszhely betöltve");
+        return $this->sendResponse($fishingplace,"Horgászhely betöltve");
     }
  
     //---{  add fishing place  }--------------------------------------------------------
@@ -57,7 +57,7 @@ class FishingPlaceController extends ResponseController
       
         $fishingplace->save();
 
-        return $this->sendResponse($fishingplace,"horgaszhely hozáadva");
+        return $this->sendResponse($fishingplace,"Horgászhely hozzáadva");
     }
 
     //---{  modify fishingplace  }------------------------------------------------------
@@ -73,7 +73,7 @@ class FishingPlaceController extends ResponseController
         //---{  error 1 }--------------- 
         
         if(is_null($fishingplace)){
-            return $this->sendError("nincs ilyen horgaszhely");
+            return $this->sendError("A keresett horgászhely nem található");
         }
         
         //---{  success  }-------------
@@ -90,7 +90,7 @@ class FishingPlaceController extends ResponseController
 
         $fishingplace->save();
         
-        return $this->sendResponse($fishingplace,"horgaszhely modositva");
+        return $this->sendResponse($fishingplace,"Horgászhely módosítva");
     }
 
     //---{  delete fishingplace  }------------------------------------------------------
@@ -103,13 +103,13 @@ class FishingPlaceController extends ResponseController
         //---{  error  }--------------- 
 
         if(is_null($fishingplace)){
-            return $this->sendError("nincs ilyen horgaszhely");
+            return $this->sendError("A keresett horgászhely nem található");
         }
 
         $fishingplace->delete();
 
         //---{  success  }-------------
 
-        return $this->sendResponse($fishingplace,"horgaszhely törölve");
+        return $this->sendResponse($fishingplace,"Horgászhely törölve");
     }
 }

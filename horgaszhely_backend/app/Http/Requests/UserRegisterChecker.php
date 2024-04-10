@@ -39,19 +39,18 @@ class UserRegisterChecker extends FormRequest
     }
     public function messages(){
         return[
-            "name.required" => "Név elvárt",
-            "name.max"=> "Túl hosszú név",
-            "email.required"=> "Email elvárt",
-            "email.email"=> "Invalid email cím",
-            "password.required" => "Jelszó elvárt",
-            "password.min" => "Túl rövid a jelszó",
-            "password.letters"=>"legyenek betűk",
-            "password.mixed"=>"mixed case",
-            "password.symbols"=>"Különleges karakter kell",
-            "confirm_password.required"=>"Hiányzó jelszó megerősítés",
-            "password_confirmation.required" => "Nem egyező jelszó",
-            "birthdate.required"=>"Születési dátum kötelező"
-
+            "name.required" => "A név megadása kötelező",
+            "name.max" => "A név túl hosszú",
+            "email.required" => "Az e-mail cím megadása kötelező",
+            "email.email" => "Érvénytelen e-mail cím",
+            "password.required" => "A jelszó megadása kötelező",
+            "password.min" => "A jelszó túl rövid",
+            "password.letters" => "A jelszónak tartalmaznia kell betűket",
+            "password.mixed" => "A jelszónak kis- és nagybetűket is kell tartalmaznia",
+            "password.symbols" => "A jelszónak tartalmaznia kell speciális karaktereket",
+            "confirm_password.required" => "A jelszó megerősítése kötelező",
+            "password_confirmation.required" => "A jelszavak nem egyeznek",
+            "birthdate.required" => "A születési dátum megadása kötelező",
         ];
     }
     public function failedValidation(Validator $validator){

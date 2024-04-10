@@ -34,16 +34,16 @@ class FishingPlaceChecker extends FormRequest
     }
     public function messages(){
         return[
-            "pier.required"=>"elvárt mezö",
-            "firepit.required"=>"elvárt mezö",
-            "shelter.required"=>"elvárt mezö",
-            "description.required"=>"elvárt mezö",
-            "longitude.required"=>"elvárt mezö",
-            "latitude.required"=>"elvárt mezö",
-            "longitude.numeric"=>"hoszusági kordinátának számnak kell lennie.",
-            "latitude.numeric"=>"széleségi kordinátának számnak kell lennie.",
-            "longitude.between"=>"nem valos kordináta",  
-            "latitude.between"=>"nem valos kordináta",
+            "pier.required" => "Kötelező mező",
+            "firepit.required" => "Kötelező mező",
+            "shelter.required" => "Kötelező mező",
+            "description.required" => "Kötelező mező",
+            "longitude.required" => "Kötelező mező",
+            "latitude.required" => "Kötelező mező",
+            "longitude.numeric" => "A hosszúsági koordinátának számnak kell lennie.",
+            "latitude.numeric" => "A szélességi koordinátának számnak kell lennie.",
+            "longitude.between" => "Nem valós koordináta",
+            "latitude.between" => "Nem valós koordináta",
             
         ];
     }

@@ -21,7 +21,7 @@ class ReservationController extends ResponseController
         
         $reservations = Reservation::all();
 
-        return $this->sendResponse($reservations,"öszes foglalás");
+        return $this->sendResponse($reservations,"Összes foglalás");
     }
 
     //---{ one reservation  }------------------------------------
@@ -37,12 +37,12 @@ class ReservationController extends ResponseController
         //---{  error  }---------------
 
         if(is_null($reservation)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A keresett foglalás nem található");
         }
 
         //---{  success  }-------------
 
-        return  $this->sendResponse($reservation,"egy  foglalás");
+        return  $this->sendResponse($reservation,"Egy foglalás");
 
     }
 
@@ -59,12 +59,12 @@ class ReservationController extends ResponseController
         //---{  error  }---------------
 
         if(is_null($reservations)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A felhasználónak nincs foglalása");
         }
 
         //---{  success  }-------------
 
-        return  $this->sendResponse($reservations,"egy  foglalás");
+        return  $this->sendResponse($reservations,"A felhasználó foglalásai");
 
     }
 
@@ -90,9 +90,9 @@ class ReservationController extends ResponseController
     
             $reservation->save();
     
-            return  $this->sendResponse($reservation,"foglalás hozáadva");
+            return  $this->sendResponse($reservation,"Foglalás hozzáadva");
         }else{
-            return  $this->sendError("erre az idöre már foglalt a hely");
+            return  $this->sendError("Erre az időpontra már foglalt a hely");
         }
     }
 
@@ -112,7 +112,7 @@ class ReservationController extends ResponseController
         //---{  error 1 }---------------
 
         if(is_null($reservation)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A keresett foglalás nem található");
         }
 
         //---{  success  }-------------
@@ -126,7 +126,7 @@ class ReservationController extends ResponseController
 
         $reservation->save();
 
-        return  $this->sendResponse($reservation,"foglalás modositva");
+        return  $this->sendResponse($reservation,"Foglalás módosítva");
 
     }
 
@@ -149,7 +149,7 @@ class ReservationController extends ResponseController
         //---{  error 1 }---------------
 
         if(is_null($reservation)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A keresett foglalás nem található");
         }
 
         //---{  success  }-------------
@@ -162,7 +162,7 @@ class ReservationController extends ResponseController
 
         $reservation->save();
 
-        return  $this->sendResponse($reservation,"foglalás modositva");
+        return  $this->sendResponse($reservation,"Foglalás módosítva");
 
     }
 
@@ -183,14 +183,14 @@ class ReservationController extends ResponseController
         //---{  error  }---------------
 
         if(is_null($reservation)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A keresett foglalás nem található");
         }
 
         //---{  success  }-------------
 
         $reservation->delete();
 
-        return  $this->sendResponse($reservation,"foglalás törölve");
+        return  $this->sendResponse($reservation,"Foglalás törölve");
 
     }
 
@@ -212,14 +212,14 @@ class ReservationController extends ResponseController
         //---{  error  }---------------
 
         if(is_null($reservation)){
-            return $this->sendError("nincs ilyen foglalás");
+            return $this->sendError("A keresett foglalás nem található");
         }
 
         //---{  success  }-------------
 
         $reservation->delete();
 
-        return  $this->sendResponse($reservation,"foglalás törölve");
+        return  $this->sendResponse($reservation,"Foglalás törölve");
 
     }
 

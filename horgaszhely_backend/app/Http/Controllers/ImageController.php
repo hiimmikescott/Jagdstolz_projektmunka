@@ -41,7 +41,7 @@ class ImageController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        return response()->json(['message' => 'Image uploaded successfully.'], 201);
+        return response()->json(['message' => 'a kép sikeresen feltöltve.'], 201);
     }
 
     public function delete($id)
@@ -73,12 +73,12 @@ class ImageController extends Controller
 
         $image = Image::find($id);
         if (!$image) {
-            return response()->json(['message' => 'Image not found.'], 404);
+            return response()->json(['message' => 'a kép nem találhato.'], 404);
         }
 
         $image->description = $request->description;
         $image->save();
 
-        return response()->json(['message' => 'Image description modified successfully.'], 200);
+        return response()->json(['message' => 'a kép leirás sikeresen modositva.'], 200);
     }
 }

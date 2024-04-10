@@ -32,7 +32,7 @@ class AuthController extends ResponseController
         //---{  success  }---------------------------
 
          $success["name"] = $user->name;
-         return $this->sendResponse($success,"sikeres regisztrácio");
+         return $this->sendResponse($success,"sikeres regisztráció");
     }
 
     public function emailverify(Request $request) {
@@ -46,7 +46,7 @@ class AuthController extends ResponseController
             $time = date("Y-m-d", time());
             $user->email_verified_at = $time;
             $user->save();
-            return $this->sendResponse($time, "Viszaigazolkod elküldve");
+            return $this->sendResponse($time, "Visszaigazolás elküldve");
         } else {
             //---{  error  }--------------------------------------------------------
             return $this->sendError("Hibás viszaigazolokod");
@@ -76,12 +76,12 @@ class AuthController extends ResponseController
 
             } else {
                 //---{  error  }--------------------------------------------------------
-                return $this->sendError("bejelentkezési hiba, felhasználoi fiok még nincs visza igazolva");
+                return $this->sendError("Bejelentkezési hiba, felhasználói fiók még nincs visszaigazolva");
             }
         }
         else{
             //---{  error  }--------------------------------------------------------
-            return $this->sendError("Adatbeviteli hiba, hibás email vagy jelszó");
+            return $this->sendError("Adatbeviteli hiba, hibás e-mail cím vagy jelszó");
         }
     }
 

@@ -46,11 +46,11 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>{{$content['title']}}</h1>
-        <div class="code">{{$content['code']}}</div>
-        <h2>köszönjuk a regisztráciot</h2>
-        <p class="footer">ez egy automatikus email kérjuk ne válaszoljon</p>
+<div class="container">
+        <h1>{{ $content['title'] }}</h1>
+        <div class="code">{{ $content['code'] }}</div>
+        <h2>Köszönjük a regisztrációt!</h2>
+        <p class="footer">Ez egy automatikus e-mail, kérjük, ne válaszoljon.</p>
     </div>
 </body>
 </html>
