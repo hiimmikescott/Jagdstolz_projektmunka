@@ -25,7 +25,7 @@ class ImageController extends ResponseController
             return $image;
         });
 
-        return $this->sendResponse("képek betöltve");
+        return $this->sendResponse($images,"képek betöltve");
     }
 
     public function upload(Request $request)
@@ -45,7 +45,7 @@ class ImageController extends ResponseController
             'user_id' => $request->user_id,
         ]);
 
-        return $this->sendResponse("a kép sikeresen feltöltve.");
+        return $this->sendResponse($imageName,"a kép sikeresen feltöltve.");
     }
 
     public function delete($id)
@@ -66,7 +66,7 @@ class ImageController extends ResponseController
         //---{  delete image record from database  }---------------
         $image->delete();
 
-        return $this->sendResponse("Kép törölve");
+        return $this->sendResponse($image,"Kép törölve");
     }
 
     public function modify(Request $request, $id)
@@ -83,6 +83,6 @@ class ImageController extends ResponseController
         $image->description = $request->description;
         $image->save();
 
-        return $this->sendResponse("kép leirása sikeresen modositva");
+        return $this->sendResponse($image,"kép leirása sikeresen modositva");
     }
 }
