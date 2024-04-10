@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\ResponseController;
-
-
-
-class ImageController extends ResponseController
+class ImageController extends Controller
 {
     public function index()
     {
@@ -25,7 +21,7 @@ class ImageController extends ResponseController
             return $image;
         });
 
-        return $this->sendResponse($images,"képek betöltve");
+        return $images;
     }
 
     public function upload(Request $request)
@@ -45,7 +41,7 @@ class ImageController extends ResponseController
             'user_id' => $request->user_id,
         ]);
 
-        return $this->sendResponse($imageName,"a kép sikeresen feltöltve.");
+        return response()->json(['message' => 'a kép sikeresen feltöltve.'], 201);
     }
 
     public function delete($id)
@@ -54,7 +50,7 @@ class ImageController extends ResponseController
 
         //---{  error  }---------------
         if(is_null($image)){
-            return $this->sendError("Nincs ilyen kép");
+            return response()->json(["error" => "Nincs ilyen kép"], 404);
         }
 
         //---{  delete image from public folder  }---------------
@@ -66,7 +62,7 @@ class ImageController extends ResponseController
         //---{  delete image record from database  }---------------
         $image->delete();
 
-        return $this->sendResponse($image,"Kép törölve");
+        return response()->json(["message" => "Kép törölve"], 200);
     }
 
     public function modify(Request $request, $id)
@@ -77,12 +73,12 @@ class ImageController extends ResponseController
 
         $image = Image::find($id);
         if (!$image) {
-            return $this->sendError("a kép nem találhato");
+            return response()->json(['message' => 'a kép nem találhato.'], 404);
         }
 
         $image->description = $request->description;
         $image->save();
 
-        return $this->sendResponse($image,"kép leirása sikeresen modositva");
+        return response()->json(['message' => 'a kép leirás sikeresen modositva.'], 200);
     }
 }
