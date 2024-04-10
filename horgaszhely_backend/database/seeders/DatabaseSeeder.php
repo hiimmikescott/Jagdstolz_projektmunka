@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             adminUserTableData::class,
             fishingPlaceTableData::class,
-            usersTableData::class
+            usersTableData::class,
+            reservationTableData::class
         ]);
     }
 }
