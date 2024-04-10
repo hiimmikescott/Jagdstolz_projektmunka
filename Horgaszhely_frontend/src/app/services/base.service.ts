@@ -79,7 +79,7 @@ export class BaseService {
       reservationEnd,
       guestNumber
     };
-    return this.http.put<any>(`${this.url}modifyreservation`, reservation, { headers });
+    return this.http.put<any>(`${this.url}modifyuserreservation`, reservation, { headers });
   }
 
   deleteUserReservation(id: number): Observable<void> {
@@ -91,4 +91,4 @@ export class BaseService {
   private getAuthToken(): string | null {
     return sessionStorage.getItem('token');
   }
-} 
+}
