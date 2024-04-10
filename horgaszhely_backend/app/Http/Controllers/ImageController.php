@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class ImageController extends Controller
+class ImageController extends ResponseController
 {
     public function index()
     {
