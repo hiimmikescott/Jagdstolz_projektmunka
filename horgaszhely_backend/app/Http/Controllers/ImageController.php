@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class ImageController extends Controller
 {
     public function index()
@@ -21,7 +23,7 @@ class ImageController extends Controller
             return $image;
         });
 
-        return $images;
+        return $this->sendResponse("képek betöltve");
     }
 
     public function upload(Request $request)
@@ -41,7 +43,7 @@ class ImageController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        return response()->json(['message' => 'a kép sikeresen feltöltve.'], 201);
+        return $this->sendResponse("a kép sikeresen feltöltve.");
     }
 
     public function delete($id)
@@ -50,7 +52,7 @@ class ImageController extends Controller
 
         //---{  error  }---------------
         if(is_null($image)){
-            return response()->json(["error" => "Nincs ilyen kép"], 404);
+            return $this->sendError("Nincs ilyen kép");
         }
 
         //---{  delete image from public folder  }---------------
@@ -62,7 +64,7 @@ class ImageController extends Controller
         //---{  delete image record from database  }---------------
         $image->delete();
 
-        return response()->json(["message" => "Kép törölve"], 200);
+        return $this->sendResponse("Kép törölve");
     }
 
     public function modify(Request $request, $id)
@@ -73,12 +75,12 @@ class ImageController extends Controller
 
         $image = Image::find($id);
         if (!$image) {
-            return response()->json(['message' => 'a kép nem találhato.'], 404);
+            return $this->sendError("a kép nem találhato");
         }
 
         $image->description = $request->description;
         $image->save();
 
-        return response()->json(['message' => 'a kép leirás sikeresen modositva.'], 200);
+        return $this->sendResponse("kép leirása sikeresen modositva");
     }
 }

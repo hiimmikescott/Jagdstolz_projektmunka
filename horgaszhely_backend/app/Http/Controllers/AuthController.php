@@ -38,7 +38,7 @@ class AuthController extends ResponseController
     public function emailverify(Request $request) {
         //---{  email verification  }-----------------------------------------------
 
-        $code = $request->input('verifycode'); // Retrieve the value of the 'verifycode' parameter
+        $code = $request->input('verifycode'); 
         $user = User::where('verifycode', $code)->first();
 
         if ($user) {
