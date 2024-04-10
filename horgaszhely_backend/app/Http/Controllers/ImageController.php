@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\ResponseController;
+
 
 
 class ImageController extends ResponseController
