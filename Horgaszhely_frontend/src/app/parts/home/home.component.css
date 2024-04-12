@@ -5,3 +5,14 @@
 .home-text {
   font-size: large;
 }
+.container{
+  max-width: 95%;
+}
+@media (max-width: 768px) {
+  #carouselExampleInterval img {
+    max-height: 250px;
+  }
+  #card{
+    padding: 20px;
+  }
+}

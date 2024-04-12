@@ -21,8 +21,8 @@
         </li>
       </ul>
     </div>
+    <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/register" *ngIf="!loggedIn()">Regisztráció</button>
+    <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedIn()">Bejelentkezés</button>
+    <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedIn()">Kijelentkezés</button>
   </div>
-  <button type="button" class="btn btn-success ms-2 me-2 mt-2" routerLink="/register" *ngIf="!loggedIn()">Regisztráció</button>
-  <button type="button" class="btn btn-success me-2 mt-2" routerLink="/login" *ngIf="!loggedIn()">Bejelentkezés</button>
-  <button type="button" class="btn btn-success me-2 mt-2" (click)="logout()" *ngIf="loggedIn()">Kijelentkezés</button>
 </nav>
