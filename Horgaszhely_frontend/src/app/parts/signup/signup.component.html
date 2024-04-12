@@ -13,7 +13,7 @@
     <label for="password" class="form-label">Jelszó</label>
     <input type="password" class="form-control" [(ngModel)]="password" required minlength="6">
     <small *ngIf="password && password.length < 6" class="text-danger">A jelszónak legalább 6 karakter hosszúnak kell
-      lennie</small>
+      lennie, valamint nagy- és kis betű, továbbá különleges karaktert kell tartalmaznia!</small>
   </div>
   <div class="mb-3">
     <label for="confirm_password" class="form-label">Jelszó megerősítése</label>
