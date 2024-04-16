@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,28 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   private url = "http://127.0.0.1:8000/api";
+  private token = sessionStorage.getItem("token")
 
   constructor(private http :HttpClient) { }
 
   // ---------------------------------------------------------users--------------------------------------------------------------
-  
+
   getUsers(): Observable<any[]>{
     return this.http.get<any[]>(`${this.url}/getusers`)
   }
 
   deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/deleteuser?id=${userId}`);
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
+    return this.http.delete<void>(`${this.url}/deleteuser?id=${userId}`,{headers});
   }
 
   updateUser(id:number,birthdate:Date,name:string,email:string): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
     const user ={
       id,name,email,birthdate
     }
-    return this.http.put<any>(`${this.url}/modifyuser`,user);
+    return this.http.put<any>(`${this.url}/modifyuser`,user,{headers});
   }
 
   // ---------------------------------------------------------reservations--------------------------------------------------------------
-  
+
   getReservations():Observable<any[]>{
     return this.http.get<any[]>(`${this.url}/getreservations`)
   }
@@ -38,18 +41,20 @@ export class AdminService {
   }
 
   updateReservation(id:number,user_id:number,fishingplace_id:number,reservationStart:Date,reservationEnd:Date,guestNumber:number): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
     const reservation ={
       id,user_id,fishingplace_id,reservationStart,reservationEnd,guestNumber
     }
-    return this.http.put<any>(`${this.url}/modifyreservation`,reservation);
+    return this.http.put<any>(`${this.url}/modifyreservation`,reservation,{headers});
   }
 
   deleteReservation(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/deletereservation?id=${userId}`);
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.token}` });
+    return this.http.delete<void>(`${this.url}/deletereservation?id=${userId}`,{headers});
   }
 
   // ---------------------------------------------------------fishingspots--------------------------------------------------------------
-  
+
   getFishingspots():Observable<any[]>{
     return this.http.get<any[]>(`${this.url}/fishingplaces`)
   }
